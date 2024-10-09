@@ -39,5 +39,6 @@ function resizeBoxes() {
         document.querySelector('.prg-editor').style.border = '1px solid rgb(200,200,200)';
         document.querySelector('.prg-editor').style.boxSizing = 'border-box';
         document.querySelector('.prg-editor').style.height = windowHeight*0.65 + 'px';
+        document.querySelector('.right-box').style.paddingBottom = '25px';
     }
 }
