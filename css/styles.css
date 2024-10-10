@@ -106,3 +106,12 @@
   color: darkgray;
   opacity: 1;
 }
+
+.prg-editor {
+    border: 1px solid rgb(200,200,200);
+    box-sizing: border-box;
+}
+
+.program-input {
+    padding-bottom: 2px;
+}

@@ -18,8 +18,6 @@ function resizeBoxes() {
         document.querySelector('.left-box').style.overflowY = 'auto';
         document.querySelector('.right-box').style.height = boxHeight + 'px';
         document.querySelector('.right-box').style.overflowY = 'auto';
-        document.querySelector('.prg-editor').style.border = '1px solid rgb(200,200,200)';
-        document.querySelector('.prg-editor').style.boxSizing = 'border-box';
         document.querySelector('.left-buttons-holder').style.marginRight = '9%';
         document.querySelector('.right-buttons-holder').style.marginLeft = '9%';
 
@@ -32,12 +30,10 @@ function resizeBoxes() {
         }, 0);
         totalHeight += titleBarHeight;
 
-        document.querySelector('.prg-editor').style.height = windowHeight - totalHeight -12 + 'px';
+        document.querySelector('.prg-editor').style.height = windowHeight - totalHeight -14 + 'px';
 
     } 
     else {
-        document.querySelector('.prg-editor').style.border = '1px solid rgb(200,200,200)';
-        document.querySelector('.prg-editor').style.boxSizing = 'border-box';
         document.querySelector('.prg-editor').style.height = windowHeight*0.65 + 'px';
         document.querySelector('.right-box').style.paddingBottom = '25px';
     }
