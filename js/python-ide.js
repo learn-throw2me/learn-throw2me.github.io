@@ -55,6 +55,7 @@ function resizeBoxes() {
 
 document.querySelector('.run-the-code').addEventListener('click', async function() {
     showSpinner();
+    editor.setOption("showGutter", true);
     const inputValues = document.querySelector('.program-input').value.replace(/\\/g, '\\\\').replace(/"/g, '\\"');
     const code = editor.getValue().replace(/\\/g, '\\\\').replace(/'/g, "\\'");
     const output = await pyodide.runPythonAsync(`
@@ -86,4 +87,15 @@ sys.stderr = sys.__stderr__
     prgOutput = 'Output: \n' + prgOutput;
     document.querySelector('.prg-output').innerHTML = `<pre style='padding-bottom:2px;padding-left:5px'>${prgOutput}</pre>`;
     hideSpinner();
+    smoothScrollToBottom('right-box');
 });
+
+function smoothScrollToBottom(className) {
+    const scrollableDiv = document.querySelector(`.${className}`);
+    if (scrollableDiv) {
+        scrollableDiv.scroll({
+            top: scrollableDiv.scrollHeight,
+            behavior: 'smooth'
+        });
+    }
+};

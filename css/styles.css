@@ -91,6 +91,7 @@
     resize: none;
     padding: 0px;
     padding-left: 5px;
+    font-family: var(--bs-font-monospace);
     color: white;
 }
 
@@ -115,6 +116,11 @@
 
 .program-input {
     padding-bottom: 2px;
+}
+
+.prg-output {
+    font-size: 18px;
+    font-weight: normal;
 }
 
 .spinner-container {
