@@ -83,7 +83,7 @@ sys.stderr = sys.__stderr__
 `);
     let [result, error] = output;
     let prgOutput = result + (error || '');
-    prgOutput = prgOutput || "No output? Check the program again...";
+    prgOutput = prgOutput || "No output? Check the program again.";
     prgOutput = 'Output: \n' + prgOutput;
     document.querySelector('.prg-output').innerHTML = `<pre style='padding-bottom:2px;padding-left:5px'>${prgOutput}</pre>`;
     hideSpinner();
