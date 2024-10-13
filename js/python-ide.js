@@ -1,6 +1,20 @@
-document.addEventListener('DOMContentLoaded', function() {
+let pyodide;
+
+document.addEventListener('DOMContentLoaded', async function() {
     resizeBoxes();
+    showSpinner();
+    pyodide = await loadPyodide();
+    await pyodide.loadPackage(['numpy', 'pandas']);
+    hideSpinner();
 });
+
+function showSpinner() {
+            document.getElementById('spinnerContainer').style.display = 'flex';
+};
+
+function hideSpinner() {
+    document.getElementById('spinnerContainer').style.display = 'none';
+};
 
 function resizeBoxes() {
     const windowHeight = window.innerHeight;
@@ -37,4 +51,39 @@ function resizeBoxes() {
         document.querySelector('.prg-editor').style.height = windowHeight*0.65 + 'px';
         document.querySelector('.right-box').style.paddingBottom = '25px';
     }
-}
+};
+
+document.querySelector('.run-the-code').addEventListener('click', async function() {
+    showSpinner();
+    const inputValues = document.querySelector('.program-input').value.replace(/\\/g, '\\\\').replace(/"/g, '\\"');
+    const code = editor.getValue().replace(/\\/g, '\\\\').replace(/'/g, "\\'");
+    const output = await pyodide.runPythonAsync(`
+import sys
+import warnings
+from io import StringIO
+warnings.filterwarnings("ignore", category=DeprecationWarning)
+input_stream = StringIO("""${inputValues}""")
+sys.stdin = input_stream
+output_stream = StringIO()
+sys.stdout = output_stream
+error_stream = StringIO()
+sys.stderr = error_stream
+
+try:
+    exec('''${code}''')
+except Exception as e:
+    print(e, file=sys.stderr)
+
+sys.stdin = sys.__stdin__
+sys.stdout = sys.__stdout__
+sys.stderr = sys.__stderr__
+
+(output_stream.getvalue(), error_stream.getvalue())
+`);
+    let [result, error] = output;
+    let prgOutput = result + (error || '');
+    prgOutput = prgOutput || "No output? Check the program again...";
+    prgOutput = prgOutput.replace(/\n/g, '<br>').replace(/ /g, '&nbsp;');
+    document.querySelector('.prg-output').innerHTML = `<p style='padding-bottom:2px'>${prgOutput}</p>`;
+    hideSpinner();
+});
