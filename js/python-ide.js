@@ -56,9 +56,10 @@ function resizeBoxes() {
 document.querySelector('.run-the-code').addEventListener('click', async function() {
     showSpinner();
     editor.setOption("showGutter", true);
-    const inputValues = document.querySelector('.program-input').value.replace(/\\/g, '\\\\').replace(/"/g, '\\"');
-    const code = editor.getValue().replace(/\\/g, '\\\\').replace(/'/g, "\\'");
+    const inputValues = document.querySelector('.program-input').value.replace(/\\/g, '\\\\').replace(/'/g, "\\'").replace(/"/g, '\\"');
+    const code = editor.getValue().replace(/\\/g, '\\\\').replace(/'/g, "\\'").replace(/"/g, '\\"');
     const output = await pyodide.runPythonAsync(`
+globals().clear()
 import sys
 import warnings
 from io import StringIO
