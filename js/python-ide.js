@@ -95,6 +95,14 @@ sys.stderr = sys.__stderr__
     smoothScrollToBottom('right-box');
 });
 
+document.querySelector('.clear-the-code').addEventListener('click', function() {
+    document.querySelector('.prg-output').innerHTML = '';
+    editor.setOption("showGutter", false);
+    editor.setValue('', 1);
+    editor.insert("# Start coding in Python here\n");
+    document.querySelector('.program-input').value = '';
+});
+
 function smoothScrollToBottom(className) {
     const scrollableDiv = document.querySelector(`.${className}`);
     if (scrollableDiv) {
