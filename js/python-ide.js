@@ -12,11 +12,11 @@ document.addEventListener('DOMContentLoaded', async function() {
 
 function showSpinner() {
     document.getElementById('spinnerContainer').style.display = 'flex';
-};
+}
 
 function hideSpinner() {
     document.getElementById('spinnerContainer').style.display = 'none';
-};
+}
 
 function prepareEditor() {
     editor = ace.edit("editor");
@@ -31,7 +31,7 @@ function prepareEditor() {
     editor.setValue('', 1);
     editor.container.style.lineHeight = 1.5;
     editor.insert("# Start coding in Python here\n");
-};
+}
 
 function resizeBoxes() {
     const windowHeight = window.innerHeight;
@@ -64,7 +64,7 @@ function resizeBoxes() {
         document.querySelector('.prg-editor').style.height = windowHeight*0.65 + 'px';
         document.querySelector('.right-box').style.paddingBottom = '25px';
     }
-};
+}
 
 document.querySelector('.run-the-code').addEventListener('click', async function() {
     showSpinner();
@@ -124,4 +124,4 @@ function smoothScrollToBottom(className) {
             behavior: 'smooth'
         });
     }
-};
+}

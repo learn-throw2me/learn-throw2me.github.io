@@ -42,10 +42,14 @@
 }
 
 .custom-heading {
-    color: #4a90e2;
+    color: rgb(6, 161, 65);
     font-weight: bold;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
     margin-bottom: 20px;
+}
+
+.heading-color {
+    color: rgb(6, 161, 65);
 }
 
 .animated-text {
