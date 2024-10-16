@@ -1,6 +1,8 @@
+let editor;
 let pyodide;
 
 document.addEventListener('DOMContentLoaded', async function() {
+    prepareEditor();
     resizeBoxes();
     showSpinner();
     pyodide = await loadPyodide();
@@ -16,6 +18,21 @@ function hideSpinner() {
     document.getElementById('spinnerContainer').style.display = 'none';
 };
 
+function prepareEditor() {
+    editor = ace.edit("editor");
+    editor.setTheme("ace/theme/eclipse");
+    editor.session.setMode("ace/mode/python");
+    editor.resize(true);
+    editor.setOptions({
+            fontSize: "15px",
+            highlightActiveLine: false,
+            showGutter: false
+        });
+    editor.setValue('', 1);
+    editor.container.style.lineHeight = 1.5;
+    editor.insert("# Start coding in Python here\n");
+};
+
 function resizeBoxes() {
     const windowHeight = window.innerHeight;
     const windowWidth = window.innerWidth;
@@ -24,14 +41,10 @@ function resizeBoxes() {
                 
     if (windowWidth > windowHeight) {
         const boxHeight = windowHeight - titleBarHeight;
-        document.querySelector('.should-resize-this').style.height = boxHeight +'px';
-        document.querySelector('.should-resize-this').style.width = windowWidth +'px';
-        document.querySelector('.container').style.marginLeft = '0px';
-        document.querySelector('.container').style.marginRight = '0px';
-        document.querySelector('.left-box').style.height = boxHeight + 'px';
-        document.querySelector('.left-box').style.overflowY = 'auto';
-        document.querySelector('.right-box').style.height = boxHeight + 'px';
-        document.querySelector('.right-box').style.overflowY = 'auto';
+        document.querySelector('.should-resize-this').style.cssText = `height: ${boxHeight}px; width: ${windowWidth}px;`;
+        document.querySelector('.container').style.cssText = 'margin-left: 0px; margin-right: 0px;';
+        document.querySelector('.left-box').style.cssText = `height: ${boxHeight}px; overflow-y: auto;`;
+        document.querySelector('.right-box').style.cssText = `height: ${boxHeight}px; overflow-y: auto;`;
         document.querySelector('.left-buttons-holder').style.marginRight = '9%';
         document.querySelector('.right-buttons-holder').style.marginLeft = '9%';
 
