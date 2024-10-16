@@ -131,6 +131,15 @@
     font-weight: normal;
 }
 
+.table {
+    border: 1px solid gray;
+    border-collapse: collapse;
+}
+.table th, .table td {
+    border: 1px solid gray;
+    vertical-align: middle;
+}
+
 .spinner-container {
     position: fixed;
     top: 0;
