@@ -99,7 +99,7 @@ sys.stderr = sys.__stderr__
     let prgOutput = result + (error || '');
     prgOutput = prgOutput || "No output? Check the program again. \n";
     prgOutput = 'Output: \n' + prgOutput;
-    prgOutput += '\n*Suggestions, feedback, collab or anything? \nWrite to us at <a href="mailto:hi@throw2me.com" style="color: lightblue;text-decoration: none">hi@throw2me.com</a> :-)'
+    prgOutput += '\n*Feedback, collab or anything else? \nWrite to us at <a href="mailto:hi@throw2me.com" style="color: lightblue;text-decoration: none">hi@throw2me.com</a> :-)'
     document.querySelector('.prg-output').innerHTML = `<pre style='padding-bottom:2px;padding-left:5px'>${prgOutput}</pre>`;
     hideSpinner();
     window.scrollTo({
