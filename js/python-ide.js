@@ -61,7 +61,7 @@ function resizeBoxes() {
 
     } 
     else {
-        document.querySelector('.prg-editor').style.height = windowHeight*0.65 + 'px';
+        document.querySelector('.prg-editor').style.height = windowWidth*1.3 + 'px';
         document.querySelector('.right-box').style.paddingBottom = '25px';
     }
 }
@@ -99,6 +99,7 @@ sys.stderr = sys.__stderr__
     let prgOutput = result + (error || '');
     prgOutput = prgOutput || "No output? Check the program again.";
     prgOutput = 'Output: \n' + prgOutput;
+    prgOutput += '\n*Suggestions, feedback, collab or anything? \nWrite to us at <a href="mailto:hi@throw2me.com" style="color: lightblue;text-decoration: none">hi@throw2me.com</a> :-)'
     document.querySelector('.prg-output').innerHTML = `<pre style='padding-bottom:2px;padding-left:5px'>${prgOutput}</pre>`;
     hideSpinner();
     window.scrollTo({
