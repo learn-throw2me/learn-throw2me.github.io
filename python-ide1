@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en" translate="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex">
+    <title>Learn - Throw 2 Me</title>
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+    ::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #888 transparent;
+}
+
+.btn-silver {
+    background-color: rgb(225, 225, 225);
+    color: black;
+    border: 1px solid rgb(225, 225, 225);
+    border-radius: 0;
+    width: 80px;
+}
+
+.btn-silver:hover {
+    background-color: rgb(225, 225, 225);
+    color: black;
+    border-radius: 0;
+    width: 80px;
+}
+
+.container-fluid {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.custom-heading {
+    color: rgb(6, 161, 65);
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    margin-bottom: 20px;
+}
+
+.heading-color {
+    color: rgb(6, 161, 65);
+}
+
+.animated-text {
+    opacity: 0;
+    transition: opacity 1s ease;
+}
+
+.fade-in {
+    opacity: 1;
+}
+
+.title-bar {
+    background-color: rgb(43, 87, 154);
+    width: 100%;
+    padding: 1rem;
+}
+
+.title-text {
+    color: white;
+    margin: 0;
+    text-align: center;
+    font-weight: 900;
+}
+
+.bg-custom {
+    background-color: rgb(6, 161, 65);
+     width: 100%;
+}
+
+.full-height {
+    height: 100vh;
+}
+
+.left-box, .right-box {
+    border: 1px solid rgb(200, 200, 200);
+    box-sizing: border-box;
+}
+
+.left-content {
+    padding-left: 3px;
+}
+
+.custom-textarea {
+    border: 1px solid rgb(45,45,45);
+    border-radius: 0px;
+    background-color: rgb(45,45,45);
+    resize: none;
+    padding: 0px;
+    padding-left: 5px;
+    font-family: var(--bs-font-monospace);
+    color: white;
+}
+
+.custom-textarea:focus {
+    border: 1px solid rgb(45,45,45);
+    outline: none;
+    box-shadow: none;
+    background-color: rgb(45,45,45);
+    border-radius: 0px;
+    color: white
+}
+
+.form-control::placeholder {
+  color: darkgray;
+  opacity: 1;
+}
+
+.prg-editor {
+    border: 1px solid rgb(200,200,200);
+    box-sizing: border-box;
+}
+
+.program-input {
+    padding-bottom: 2px;
+}
+
+.prg-output {
+    font-size: 18px;
+    font-weight: normal;
+}
+
+.table {
+    border: 1px solid gray;
+    border-collapse: collapse;
+}
+.table th, .table td {
+    border: 1px solid gray;
+    vertical-align: middle;
+}
+
+.spinner-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(5px);
+    z-index: 1050;
+}
+
+.spinner {
+    font-size: 3rem;
+    color: rgb(6, 161, 65);
+}
+
+</style>
+</head>
+<body>
+
+<div class="bg-custom title-bar-ide">
+<h3 style="font-weight: 900; margin-bottom: 0px; line-height: 1.5;" class="text-center text-white">Throw 2 Me</h3>
+</div>
+
+<div class="container">
+    <div class="row full-height should-resize-this">
+        <div class="col-md-6 left-box">
+            <div class="left-buttons-holder d-flex justify-content-between" style="padding:5px">
+                <button class="btn btn-silver btn-sm">Previous</button>
+                <button class="btn btn-silver btn-sm mx-auto">Solve</button>
+                <button class="btn btn-silver btn-sm">Next</button>
+            </div>
+            <div class='left-content'>
+                <h5 class="heading-color">Welcome to Throw 2 Me!</h4>
+                <p class="text-justify">Dive into a world of creativity and logic with a variety of coding challenges. Are you a beginner? Don't worry! We will also include basic lessons (or links) on key topics whenever needed. Whether you're just starting out or looking to sharpen your skills, you'll find engaging content that enhances your learning experience.</p>
+                <p>You'll also encounter real-world scenarios and data, giving you the opportunity to apply your knowledge. Get ready to tackle challenges that prepare you for real-life coding situations!</p>
+                <h5 class="heading-color">How to Use</h5>
+                <p class="text-justify">For better performance and navigation, always open in an external or standalone browser instead of an in-app browser. You'll see one challenge (or a lesson) at a time. Use the "Next" button to move on to the following challenge (or a lesson), and "Previous" to return to the one before. Click "Run" to execute your code and see the results. If you want to clear the code area, use the "Clear" button. For challenges with predefined test inputs, click "Test" to automatically add inputs. Use "Solve" button above the challenge, to see the solution in the code editor. Enjoy your coding journey!</p>
+                <h5 class="heading-color">Integrated Coding Environment</h5>
+                <p class="text-justify">Experience coding with our integrated coding environment! Designed for seamless learning, it allows you to write, test, and debug your code in real-time. You'll have access to useful tools and resources right at your fingertips, making it easy to experiment and iterate as you learn. Whether you're working through lessons or tackling challenges, our environment fosters creativity and efficiency, helping you build your skills and confidence as a coder. Check the features on your right or scroll down to the bottom, depending on your screen size.</p>
+            </div>
+        </div>
+        <div class="col-md-6 right-box">
+            <div class="right-buttons-holder d-flex justify-content-between" style="padding:5px">
+                <button class="btn btn-silver btn-sm run-the-code">Run</button>
+                <button class="btn btn-silver btn-sm mx-auto clear-the-code">Clear</button>
+                <button class="btn btn-silver btn-sm">Test</button>
+            </div>
+            <div class="right-content">
+                <div class="prg-input form-group">
+                <textarea class="program-input form-control custom-textarea" id="program-input-id" placeholder="Input:" rows="4" spellcheck="false"></textarea>
+                </div>
+                <div class="prg-editor" id="editor">
+                </div>
+                <div class="prg-output" style="background-color: rgb(45,45,45); color:White">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="spinner-container" id="spinnerContainer">
+        <div class="spinner">
+            <i class="fas fa-spinner fa-spin"></i>
+        </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/ace-builds@1.36.2/src-noconflict/ace.js"></script>
+<script src="https://cdn.jsdelivr.net/pyodide/v0.26.2/full/pyodide.js"></script>
+<script>
+let editor;
+let pyodide;
+
+document.addEventListener('DOMContentLoaded', async function() {
+    prepareEditor();
+    resizeBoxes();
+    showSpinner();
+    pyodide = await loadPyodide();
+    await pyodide.loadPackage(['numpy', 'pandas']);
+    hideSpinner();
+});
+
+function showSpinner() {
+    document.getElementById('spinnerContainer').style.display = 'flex';
+}
+
+function hideSpinner() {
+    document.getElementById('spinnerContainer').style.display = 'none';
+}
+
+function prepareEditor() {
+    editor = ace.edit("editor");
+    editor.setTheme("ace/theme/eclipse");
+    editor.session.setMode("ace/mode/python");
+    editor.resize(true);
+    editor.setOptions({
+            fontSize: "15px",
+            highlightActiveLine: false,
+            showGutter: false
+        });
+    editor.setValue('', 1);
+    editor.container.style.lineHeight = 1.5;
+    editor.insert("# Start coding in Python here\n");
+}
+
+function resizeBoxes() {
+    const windowHeight = window.innerHeight;
+    const windowWidth = window.innerWidth;
+    const titleBar = document.querySelector('.title-bar-ide');
+    const titleBarHeight = titleBar ? titleBar.offsetHeight : 10; 
+                
+    if (windowWidth > windowHeight) {
+        const boxHeight = windowHeight - titleBarHeight;
+        document.querySelector('.should-resize-this').style.cssText = `height: ${boxHeight}px; width: ${windowWidth}px;`;
+        document.querySelector('.container').style.cssText = 'margin-left: 0px; margin-right: 0px;';
+        document.querySelector('.left-box').style.cssText = `height: ${boxHeight}px; overflow-y: auto;`;
+        document.querySelector('.right-box').style.cssText = `height: ${boxHeight}px; overflow-y: auto;`;
+        document.querySelector('.left-buttons-holder').style.marginRight = '9%';
+        document.querySelector('.right-buttons-holder').style.marginLeft = '9%';
+
+        var totalHeight = [...document.querySelectorAll('.right-buttons-holder, .prg-input')]
+        .reduce((sum, div) => {
+        const style = getComputedStyle(div);
+        const margin = parseFloat(style.marginTop) + parseFloat(style.marginBottom);
+        const height = div.offsetHeight + margin;
+        return sum + height;
+        }, 0);
+        totalHeight += titleBarHeight;
+
+        document.querySelector('.prg-editor').style.height = windowHeight - totalHeight -14 + 'px';
+
+    } 
+    else {
+        document.querySelector('.prg-editor').style.height = windowWidth*1.3 + 'px';
+        document.querySelector('.right-box').style.paddingBottom = '25px';
+    }
+}
+
+document.querySelector('.run-the-code').addEventListener('click', async function() {
+    showSpinner();
+    editor.setOption("showGutter", true);
+    const inputValues = document.querySelector('.program-input').value.replace(/\\/g, '\\\\').replace(/'/g, "\\'").replace(/"/g, '\\"');
+    const code = editor.getValue().replace(/\\/g, '\\\\').replace(/'/g, "\\'").replace(/"/g, '\\"');
+    const output = await pyodide.runPythonAsync(`
+globals().clear()
+import sys
+import warnings
+from io import StringIO
+warnings.filterwarnings("ignore", category=DeprecationWarning)
+input_stream = StringIO("""${inputValues}""")
+sys.stdin = input_stream
+output_stream = StringIO()
+sys.stdout = output_stream
+error_stream = StringIO()
+sys.stderr = error_stream
+
+try:
+    exec('''${code}''')
+except Exception as e:
+    print(e, file=sys.stderr)
+
+sys.stdin = sys.__stdin__
+sys.stdout = sys.__stdout__
+sys.stderr = sys.__stderr__
+
+(output_stream.getvalue(), error_stream.getvalue())
+`);
+    let [result, error] = output;
+    let prgOutput = result + (error || '');
+    prgOutput = prgOutput || "No output? Check the program again. \n";
+    prgOutput = 'Output: \n' + prgOutput;
+    prgOutput += '\n*Feedback, collab or anything else? \n<i class="fas fa-envelope" style="color: white;"></i> <a href="mailto:hi@throw2me.com" style="color: lightblue;text-decoration: none">hi@throw2me.com</a> | <i class="fab fa-facebook" style="color: white;"></i> <a href="https://www.facebook.com/profile.php?id=61563347068813" target="_blank" style="color: lightblue; text-decoration: none;">Like please!</a>'
+    document.querySelector('.prg-output').innerHTML = `<pre style='padding-bottom:2px;padding-left:5px'>${prgOutput}</pre>`;
+    hideSpinner();
+    window.scrollTo({
+    top: document.body.scrollHeight,
+    behavior: 'smooth'
+    });
+    smoothScrollToBottom('right-box');
+});
+
+document.querySelector('.clear-the-code').addEventListener('click', function() {
+    document.querySelector('.prg-output').innerHTML = '';
+    editor.setOption("showGutter", false);
+    editor.setValue('', 1);
+    editor.insert("# Start coding in Python here\n");
+    document.querySelector('.program-input').value = '';
+});
+
+function smoothScrollToBottom(className) {
+    const scrollableDiv = document.querySelector(`.${className}`);
+    if (scrollableDiv) {
+        scrollableDiv.scroll({
+            top: scrollableDiv.scrollHeight,
+            behavior: 'smooth'
+        });
+    }
+}
+</script>
+</body>
+</html>
