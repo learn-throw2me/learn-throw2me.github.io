@@ -90,6 +90,7 @@ sys.stderr = sys.__stderr__
     let prgOutput = result + (error || '');
     prgOutput = prgOutput || "No output? Check the program. \n";
     prgOutput = 'Output: \n' + prgOutput;
+    if(!error && result)
     prgOutput += '\nWith love <i class="fas fa-heart" style="color: red;"></i>, from Throw 2 Me <i class="fas fa-smile" style="color: yellow;"></i>'
     document.querySelector('.prg-output').innerHTML = `<pre style='padding-bottom:2px;padding-left:5px;margin-bottom:0px'>${prgOutput}</pre>`;
     hideSpinner();
