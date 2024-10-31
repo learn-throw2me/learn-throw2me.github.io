@@ -54,7 +54,7 @@ function resizeBoxes() {
     }, 0);
     totalHeight += titleBarHeight;
 
-    document.querySelector('.prg-editor').style.height = windowHeight - totalHeight -14 + 'px';
+    document.querySelector('.prg-editor').style.height = windowHeight - totalHeight -8 + 'px';
 }
 
 document.querySelector('.run-the-code').addEventListener('click', async function() {
