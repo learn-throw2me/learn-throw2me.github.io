@@ -91,8 +91,7 @@ sys.stderr = sys.__stderr__
     let prgOutput = result + (error || '');
     prgOutput = prgOutput || "No output? Check program. \n";
     prgOutput = 'Output: \n' + prgOutput;
-    if(!error && result)
-    {
+    if (!error && result) {
         prgOutput += '\nWith <i class="fas fa-heart" style="color: red;"></i>, from Throw 2 Me <i class="fas fa-smile" style="color: yellow;"></i>'
         editor.setOption("showGutter", false)
     }
