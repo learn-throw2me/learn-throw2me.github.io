@@ -31,7 +31,7 @@ function prepareEditor() {
         });
     editor.setValue('', 1);
     editor.container.style.lineHeight = 1.5;
-    editor.insert("# Code:\n");
+    editor.insert("#Code\n");
 }
 
 function resizeBoxes() {
@@ -90,8 +90,10 @@ sys.stderr = sys.__stderr__
     let prgOutput = result + (error || '');
     prgOutput = prgOutput || "No output? Check program. \n";
     prgOutput = 'Output: \n' + prgOutput;
-    if(!error && result)
-    prgOutput += '\nWith <i class="fas fa-heart" style="color: red;"></i>, from Throw 2 Me <i class="fas fa-smile" style="color: yellow;"></i>'
+    if(!error && result) {
+        prgOutput += '\nWith <i class="fas fa-heart" style="color: red;"></i>, from Throw 2 Me <i class="fas fa-smile" style="color: yellow;"></i>'
+        editor.setOption("showGutter", false)
+    }
     document.querySelector('.prg-output').innerHTML = `<pre style='padding-bottom:2px;padding-left:5px;margin-bottom:0px'>${prgOutput}</pre>`;
     hideSpinner();
     window.scrollTo({
@@ -105,7 +107,7 @@ document.querySelector('.clear-the-code').addEventListener('click', function() {
     document.querySelector('.prg-output').innerHTML = '';
     editor.setOption("showGutter", false);
     editor.setValue('', 1);
-    editor.insert("# Code:\n");
+    editor.insert("#Code\n");
     document.querySelector('.program-input').value = '';
 });
 
