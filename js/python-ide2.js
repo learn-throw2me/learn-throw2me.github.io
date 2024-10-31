@@ -31,6 +31,7 @@ function prepareEditor() {
         });
     editor.setValue('', 1);
     editor.container.style.lineHeight = 1.5;
+    editor.insert("# Code:\n");
 }
 
 function resizeBoxes() {
@@ -44,8 +45,7 @@ function resizeBoxes() {
     document.querySelector('.container').style.cssText = 'margin-left: 0px; margin-right: 0px;';
     document.querySelector('.right-box').style.cssText = `height: ${boxHeight}px; overflow-y: auto;`;
 
-    //var totalHeight = [...document.querySelectorAll('.right-buttons-holder, .prg-input')]
-    var totalHeight = [...document.querySelectorAll('.right-buttons-holder')]
+    var totalHeight = [...document.querySelectorAll('.right-buttons-holder, .prg-input')]
     .reduce((sum, div) => {
     const style = getComputedStyle(div);
     const margin = parseFloat(style.marginTop) + parseFloat(style.marginBottom);
@@ -60,8 +60,7 @@ function resizeBoxes() {
 document.querySelector('.run-the-code').addEventListener('click', async function() {
     showSpinner();
     editor.setOption("showGutter", true);
-    //const inputValues = document.querySelector('.program-input').value.replace(/\\/g, '\\\\').replace(/'/g, "\\'").replace(/"/g, '\\"');
-    const inputValues = '';
+    const inputValues = document.querySelector('.program-input').value.replace(/\\/g, '\\\\').replace(/'/g, "\\'").replace(/"/g, '\\"');
     const code = editor.getValue().replace(/\\/g, '\\\\').replace(/'/g, "\\'").replace(/"/g, '\\"');
     const output = await pyodide.runPythonAsync(`
 globals().clear()
@@ -105,7 +104,8 @@ document.querySelector('.clear-the-code').addEventListener('click', function() {
     document.querySelector('.prg-output').innerHTML = '';
     editor.setOption("showGutter", false);
     editor.setValue('', 1);
-    //document.querySelector('.program-input').value = '';
+    editor.insert("# Code:\n");
+    document.querySelector('.program-input').value = '';
 });
 
 function smoothScrollToBottom(className) {
