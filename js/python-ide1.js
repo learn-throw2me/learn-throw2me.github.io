@@ -5,8 +5,14 @@ document.addEventListener('DOMContentLoaded', async function() {
     prepareEditor();
     resizeBoxes();
     showSpinner();
-    pyodide = await loadPyodide();
-    //await pyodide.loadPackage(['numpy', 'pandas']);
+    try {
+        pyodide = await loadPyodide();
+        //await pyodide.loadPackage(['numpy', 'pandas']);
+        } catch {
+        hideSpinner();
+        location.reload();
+        return;
+    } 
     hideSpinner();
 });
 
