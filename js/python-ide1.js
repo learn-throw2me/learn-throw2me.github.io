@@ -5,7 +5,11 @@ document.addEventListener('DOMContentLoaded', async function() {
     prepareEditor();
     resizeBoxes();
     showSpinner();
+    let reloadTimer;
     try {
+        reloadTimer = setTimeout(function() {
+            location.reload();
+        }, 10000);
         pyodide = await loadPyodide();
         //await pyodide.loadPackage(['numpy', 'pandas']);
         } catch {
@@ -13,6 +17,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         location.reload();
         return;
     } 
+    clearTimeout(reloadTimer);
     hideSpinner();
 });
 
