@@ -2,9 +2,9 @@ let editor;
 let pyodide;
 
 document.addEventListener('DOMContentLoaded', async function() {
+    showSpinner();
     prepareEditor();
     resizeBoxes();
-    showSpinner();
     let reloadTimer;
     try {
         reloadTimer = setTimeout(function() {
