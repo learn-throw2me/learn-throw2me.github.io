@@ -122,6 +122,10 @@ document.querySelector('.clear-the-code').addEventListener('click', function() {
     document.querySelector('.program-input').value = '';
 });
 
+document.querySelector('.reload-the-code').addEventListener('click', async function() {
+    location.reload();
+});
+
 function smoothScrollToBottom(className) {
     const scrollableDiv = document.querySelector(`.${className}`);
     if (scrollableDiv) {
