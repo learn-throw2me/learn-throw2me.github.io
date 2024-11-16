@@ -91,7 +91,19 @@ class WorkerAPI {
 
   onmessage(event) {
     if (event.data.id === 'write') {
-      console.log(event.data.data);
+        let data = event.data.data;
+        let filteredData = data.replace(/\x1B\[[0-9;]*[A-Za-z]/g, '');
+        let consoleElement = document.querySelector('.console-output-here');
+        if (consoleElement) {
+            consoleElement.textContent += filteredData;
+            if(filteredData.includes("Error: process exited with code 1."))
+                editor.setOption("showGutter", true);
+              window.scrollTo({
+                top: document.body.scrollHeight,
+                behavior: 'smooth'
+                });
+                smoothScrollToBottom('right-box');
+        }
     }
   }
 }
@@ -99,9 +111,11 @@ class WorkerAPI {
 const api = new WorkerAPI();
 
 document.querySelector('.run-the-code').addEventListener('click', async function() {
-    editor.setOption("showGutter", true);
     //const inputValues = document.querySelector('.program-input').value.replace(/\\/g, '\\\\').replace(/'/g, "\\'").replace(/"/g, '\\"');
     //const code = editor.getValue().replace(/\\/g, '\\\\').replace(/'/g, "\\'").replace(/"/g, '\\"');
+    //let prgOutput = '<span style="font-size:10px"><i class="fas fa-globe" style="color: lightgreen;"></i> Throw 2 Me (.com)</span> \n';
+    document.querySelector('.prg-output').innerHTML = `<pre class='console-output-here' style='padding-bottom:2px;padding-left:5px;margin-bottom:0px'></pre>`;
+    //document.querySelector('.console-output-here').setHTMLUnsafe = prgOutput;
     const code = editor.getValue();
     api.compileLinkRun(code);
 });
