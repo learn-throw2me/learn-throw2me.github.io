@@ -6,36 +6,18 @@
 const CACHE_NAME = 'v4';
 const expectedCaches = [CACHE_NAME];
 
-const cdn = 'https://cdnjs.cloudflare.com/ajax/libs';
+//const cdn = 'https://cdnjs.cloudflare.com/ajax/libs';
 
 self.addEventListener('install', event => {
   event.waitUntil(
     caches.open(CACHE_NAME).then(cache => {
       return cache.addAll([
-        `${cdn}/ace/1.4.5/ace.js`,
-        `${cdn}/ace/1.4.5/keybinding-emacs.js`,
-        `${cdn}/ace/1.4.5/keybinding-sublime.js`,
-        `${cdn}/ace/1.4.5/keybinding-vim.js`,
-        `${cdn}/ace/1.4.5/mode-assembly_x86.js`,
-        `${cdn}/ace/1.4.5/mode-c_cpp.js`,
-        `${cdn}/golden-layout/1.5.9/css/goldenlayout-base.css`,
-        `${cdn}/golden-layout/1.5.9/css/goldenlayout-light-theme.css`,
-        `${cdn}/golden-layout/1.5.9/goldenlayout.min.js`,
-        `${cdn}/jquery/3.4.1/jquery.min.js`,
-        `${cdn}/xterm/3.14.5/addons/fit/fit.min.js`,
-        `${cdn}/xterm/3.14.5/xterm.min.css`,
-        `${cdn}/xterm/3.14.5/xterm.min.js`,
-        './',
         './6502.html',
         './6502.js',
         './asm.html',
         './asm.js',
-        './index.html',
         './main.css',
         './memfs',
-        './shared.js',
-        './shared_web.js',
-        './web.js',
         './worker.js',
       ]);
     })
