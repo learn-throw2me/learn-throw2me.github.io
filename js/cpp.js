@@ -96,8 +96,12 @@ class WorkerAPI {
         let consoleElement = document.querySelector('.console-output-here');
         if (consoleElement) {
             consoleElement.textContent += filteredData;
-            if(filteredData.includes("Error: process exited with code 1."))
-                editor.setOption("showGutter", true);
+            if(filteredData.includes("Error: process exited with code 1.")) {
+                  editor.setOption("showGutter", true);
+                  hideSpinner();
+                  }
+              else if(filteredData.includes("test.wasm"))
+                hideSpinner();
               window.scrollTo({
                 top: document.body.scrollHeight,
                 behavior: 'smooth'
@@ -112,6 +116,7 @@ const api = new WorkerAPI();
 
 document.querySelector('.run-the-code').addEventListener('click', async function() {
     editor.setOption("showGutter", false);
+    showSpinner();
     //const inputValues = document.querySelector('.program-input').value.replace(/\\/g, '\\\\').replace(/'/g, "\\'").replace(/"/g, '\\"');
     //const code = editor.getValue().replace(/\\/g, '\\\\').replace(/'/g, "\\'").replace(/"/g, '\\"');
     //let prgOutput = '<span style="font-size:10px"><i class="fas fa-globe" style="color: lightgreen;"></i> Throw 2 Me (.com)</span> \n';
