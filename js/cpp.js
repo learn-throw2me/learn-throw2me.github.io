@@ -111,6 +111,7 @@ class WorkerAPI {
 const api = new WorkerAPI();
 
 document.querySelector('.run-the-code').addEventListener('click', async function() {
+    editor.setOption("showGutter", false);
     //const inputValues = document.querySelector('.program-input').value.replace(/\\/g, '\\\\').replace(/'/g, "\\'").replace(/"/g, '\\"');
     //const code = editor.getValue().replace(/\\/g, '\\\\').replace(/'/g, "\\'").replace(/"/g, '\\"');
     //let prgOutput = '<span style="font-size:10px"><i class="fas fa-globe" style="color: lightgreen;"></i> Throw 2 Me (.com)</span> \n';

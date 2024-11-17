@@ -102,7 +102,7 @@ sys.stderr = sys.__stderr__
     prgOutput = prgOutput || "No output? Check program. \n";
     prgOutput = 'Output: \n' + prgOutput;
     if(!error && result) {
-        prgOutput += '<span style="font-size:10px"><i class="fas fa-globe" style="color: lightgreen;"></i> Throw 2 Me (.com)</span>';
+        //prgOutput += '<span style="font-size:10px"><i class="fas fa-globe" style="color: lightgreen;"></i> Throw 2 Me (.com)</span>';
         editor.setOption("showGutter", false);
     }
     document.querySelector('.prg-output').innerHTML = `<pre style='padding-bottom:2px;padding-left:5px;margin-bottom:0px'>${prgOutput}</pre>`;
