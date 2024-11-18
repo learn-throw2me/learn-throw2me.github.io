@@ -40,7 +40,7 @@ function resizeBoxes() {
     document.querySelector('.container').style.cssText = 'margin-left: 0px; margin-right: 0px;';
     document.querySelector('.right-box').style.cssText = `height: ${boxHeight}px; overflow-y: auto;`;
 
-    var totalHeight = [...document.querySelectorAll('.right-buttons-holder')]
+    var totalHeight = [...document.querySelectorAll('.right-buttons-holder, .prg-input')]
     .reduce((sum, div) => {
     const style = getComputedStyle(div);
     const margin = parseFloat(style.marginTop) + parseFloat(style.marginBottom);
@@ -57,7 +57,7 @@ document.querySelector('.clear-the-code').addEventListener('click', function() {
     editor.setOption("showGutter", false);
     editor.setValue('', 1);
     editor.insert("//Code\n");
-    //document.querySelector('.program-input').value = '';
+    document.querySelector('.program-input').value = '';
 });
 
 document.querySelector('.reload-the-code').addEventListener('click', async function() {
@@ -117,14 +117,27 @@ const api = new WorkerAPI();
 document.querySelector('.run-the-code').addEventListener('click', async function() {
     editor.setOption("showGutter", false);
     showSpinner();
-    //const inputValues = document.querySelector('.program-input').value.replace(/\\/g, '\\\\').replace(/'/g, "\\'").replace(/"/g, '\\"');
-    //const code = editor.getValue().replace(/\\/g, '\\\\').replace(/'/g, "\\'").replace(/"/g, '\\"');
+    let inputValues = document.querySelector('.program-input').value;
+    inputValues = inputValues || '';
     //let prgOutput = '<span style="font-size:10px"><i class="fas fa-globe" style="color: lightgreen;"></i> Throw 2 Me (.com)</span> \n';
     document.querySelector('.prg-output').innerHTML = `<pre class='console-output-here' style='padding-bottom:2px;padding-left:5px;margin-bottom:0px'></pre>`;
-    //document.querySelector('.console-output-here').setHTMLUnsafe = prgOutput;
     const code = editor.getValue();
-    api.compileLinkRun(code);
+    let inputCode = redirectInputsToStdin(code, inputValues);
+    api.compileLinkRun(inputCode);
 });
+
+function redirectInputsToStdin(code, inputValues) {
+    if (inputValues == null || inputValues == '') return code;
+    inputValues = inputValues.split('').reverse().join('');
+    let modifiedCode = code.replace(/\/\/capture inputs\n/, `${[...inputValues].map(c => {
+        if (c === '\n') {
+            return `ungetc('\\n',stdin)`;
+        }
+        return `ungetc('${c}',stdin)`;
+    }).join(',')};\n`);
+    console.log(modifiedCode);
+    return modifiedCode;
+}
 
 if (navigator.serviceWorker) {
   navigator.serviceWorker.register('cdn/cppwasm/service_worker.js').then(reg => {
