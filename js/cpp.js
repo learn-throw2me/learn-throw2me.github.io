@@ -130,7 +130,7 @@ function redirectInputsToStdin(code, inputValues) {
     if (inputValues == null || inputValues == '') return code;
     if (code.includes("stdio.h")) {
       inputValues = inputValues.split('').reverse().join('');
-      let modifiedCode = code.replace(/\/\/capture inputs\n/, `${[...inputValues].map(c => {
+      let modifiedCode = code.replace(/\/\/capture input\n/, `${[...inputValues].map(c => {
           if (c === '\n') {
               return `ungetc('\\n',stdin)`;
           }
@@ -140,7 +140,7 @@ function redirectInputsToStdin(code, inputValues) {
     }
     else if (code.includes("iostream")) {
       inputValues = inputValues.split('').reverse().join('');
-      let modifiedCode = code.replace(/\/\/capture inputs\n/, `${[...inputValues].map(c => {
+      let modifiedCode = code.replace(/\/\/capture input\n/, `${[...inputValues].map(c => {
           if (c === '\n') {
             return `cin.putback('\\n')`;
           }
