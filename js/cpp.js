@@ -96,11 +96,11 @@ class WorkerAPI {
         let consoleElement = document.querySelector('.console-output-here');
         if (consoleElement) {
             consoleElement.textContent += filteredData;
-            if(filteredData.includes("Error: process exited with code 1.")) {
+            if (filteredData.includes("Error: process exited with code 1.")) {
                   editor.setOption("showGutter", true);
                   hideSpinner();
                   }
-              else if(filteredData.includes("test.wasm"))
+              else if (filteredData.includes("test.wasm"))
                 hideSpinner();
               window.scrollTo({
                 top: document.body.scrollHeight,
@@ -128,15 +128,27 @@ document.querySelector('.run-the-code').addEventListener('click', async function
 
 function redirectInputsToStdin(code, inputValues) {
     if (inputValues == null || inputValues == '') return code;
-    inputValues = inputValues.split('').reverse().join('');
-    let modifiedCode = code.replace(/\/\/capture inputs\n/, `${[...inputValues].map(c => {
-        if (c === '\n') {
-            return `ungetc('\\n',stdin)`;
-        }
-        return `ungetc('${c}',stdin)`;
-    }).join(',')};\n`);
-    console.log(modifiedCode);
-    return modifiedCode;
+    if (code.includes("stdio.h")) {
+      inputValues = inputValues.split('').reverse().join('');
+      let modifiedCode = code.replace(/\/\/capture inputs\n/, `${[...inputValues].map(c => {
+          if (c === '\n') {
+              return `ungetc('\\n',stdin)`;
+          }
+          return `ungetc('${c}',stdin)`;
+      }).join(',')};\n`);
+      return modifiedCode;
+    }
+    else if (code.includes("iostream")) {
+      inputValues = inputValues.split('').reverse().join('');
+      let modifiedCode = code.replace(/\/\/capture inputs\n/, `${[...inputValues].map(c => {
+          if (c === '\n') {
+            return `cin.putback('\\n')`;
+          }
+          return `cin.putback('${c}')`;
+      }).join(',')};\n`);
+      return modifiedCode;
+    }
+    return code;
 }
 
 if (navigator.serviceWorker) {
