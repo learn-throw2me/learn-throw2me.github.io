@@ -134,6 +134,9 @@ function redirectInputsToStdin(code, inputValues) {
           if (c === '\n') {
               return `ungetc('\\n',stdin)`;
           }
+          if (c === "'") {
+              return `ungetc('\'',stdin)`;
+          }
           return `ungetc('${c}',stdin)`;
       }).join(',')};\n`);
       return modifiedCode;
@@ -143,6 +146,9 @@ function redirectInputsToStdin(code, inputValues) {
       let modifiedCode = code.replace(/\/\/capture input\n/, `${[...inputValues].map(c => {
           if (c === '\n') {
             return `cin.putback('\\n')`;
+          }
+          if (c === "'") {
+            return `cin.putback('\'')`;
           }
           return `cin.putback('${c}')`;
       }).join(',')};\n`);
