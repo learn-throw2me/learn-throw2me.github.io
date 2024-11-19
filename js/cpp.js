@@ -80,7 +80,6 @@ class WorkerAPI {
     const channel = new MessageChannel();
     this.port = channel.port1;
     this.port.onmessage = this.onmessage.bind(this);
-
     const remotePort = channel.port2;
     this.worker.postMessage({ id: 'constructor', data: remotePort }, [remotePort]);
   }
