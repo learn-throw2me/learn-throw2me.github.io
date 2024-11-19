@@ -1,11 +1,7 @@
 # Throw 2 Me
-Start taking up coding challenges to learn and become an expert.
+Start tackling coding challenges today to learn, grow, and become an expert!
 
-
-This project is made and maintained by the creator of throw2me.com.  
-If you use this, partly or fully, please add the following credit line in a suitable place.
-Partly contributed by the creator of [throw2me.com](https://throw2me.com).
-
+This repository, a part of Project Throw 2 Me, is crafted and maintained by the creator of [throw2me.com](https://throw2me.com), with the mission of making coding education open, accessible, and engaging for all. This repository is regularly updated with new challenges and resources, ensuring a continuous process of learning and skill development.
 
 ## Third-Party Licenses
 
