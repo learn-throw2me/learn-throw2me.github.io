@@ -135,7 +135,7 @@ function redirectInputsToStdin(code, inputValues) {
               return `ungetc('\\n',stdin)`;
           }
           if (c === "'") {
-              return `ungetc('\'',stdin)`;
+              return `ungetc('\\'',stdin)`;
           }
           return `ungetc('${c}',stdin)`;
       }).join(',')};\n`);
@@ -148,7 +148,7 @@ function redirectInputsToStdin(code, inputValues) {
           return `cin.putback('\\n')`;
         }
         if (c === "'") {
-          return `cin.putback('\'')`;
+          return `cin.putback('\\'')`;
         }
         return `cin.putback('${c}')`;
     }).join(',')};\n`);
