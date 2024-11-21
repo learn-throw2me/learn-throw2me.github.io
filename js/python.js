@@ -13,10 +13,10 @@ document.addEventListener('DOMContentLoaded', async function() {
         pyodide = await loadPyodide();
         //await pyodide.loadPackage(['numpy', 'pandas']);
         } catch {
-        hideSpinner();
-        location.reload();
-        return;
-    } 
+            hideSpinner();
+            location.reload();
+            return;
+        } 
     clearTimeout(reloadTimer);
     hideSpinner();
 });
@@ -58,11 +58,11 @@ function resizeBoxes() {
 
     var totalHeight = [...document.querySelectorAll('.right-buttons-holder, .prg-input')]
     .reduce((sum, div) => {
-    const style = getComputedStyle(div);
-    const margin = parseFloat(style.marginTop) + parseFloat(style.marginBottom);
-    const height = div.offsetHeight + margin;
-    return sum + height;
-    }, 0);
+        const style = getComputedStyle(div);
+        const margin = parseFloat(style.marginTop) + parseFloat(style.marginBottom);
+        const height = div.offsetHeight + margin;
+        return sum + height;
+        }, 0);
     totalHeight += titleBarHeight;
 
     document.querySelector('.prg-editor').style.height = windowHeight - totalHeight -8 + 'px';
