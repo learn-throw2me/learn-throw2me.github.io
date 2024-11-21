@@ -35,11 +35,11 @@ function prepareEditor() {
     editor.session.setMode("ace/mode/python");
     editor.resize(true);
     editor.setOptions({
-            fontSize: "15px",
-            highlightActiveLine: false,
-            printMargin: false,
-            showGutter: false
-        });
+        fontSize: "15px",
+        highlightActiveLine: false,
+        printMargin: false,
+        showGutter: false
+    });
     editor.setValue('', 1);
     editor.container.style.lineHeight = 1.5;
     editor.insert("#Code\n");
