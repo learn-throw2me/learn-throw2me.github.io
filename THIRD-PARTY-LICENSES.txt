@@ -1,8 +1,10 @@
 # Third-Party Licenses
 ----------------------
 
+************
 ## Bootstrap
 ------------
+************
 
 The MIT License (MIT)
 
@@ -26,8 +28,10 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
+***************
 ## Font Awesome
 ---------------
+***************
 
 Fonticons, Inc. (https://fontawesome.com)
 
@@ -195,8 +199,10 @@ trademarks does not indicate endorsement of the trademark holder by Font
 Awesome, nor vice versa. **Please do not use brand logos for any purpose except
 to represent the company, product, or service to which they refer.**
 
+*************
 ## Ace Editor
 -------------
+*************
 
 Copyright (c) 2010, Ajax.org B.V.
 All rights reserved.
@@ -223,8 +229,10 @@ ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
+**********
 ## Pyodide
 ----------
+**********
 
 Mozilla Public License Version 2.0
 ==================================
@@ -600,8 +608,10 @@ Exhibit B - "Incompatible With Secondary Licenses" Notice
   This Source Code Form is "Incompatible With Secondary Licenses", as
   defined by the Mozilla Public License, v. 2.0.
   
+  ******************************************
   ## Clang/LLD in WebAssembly (wasm - clang)
   ------------------------------------------
+  ******************************************
   
   from https://github.com/binji/wasm-clang
 
@@ -807,8 +817,10 @@ Exhibit B - "Incompatible With Secondary Licenses" Notice
    See the License for the specific language governing permissions and
    limitations under the License.
 
+   *******
    ## LLVM
    -------
+   *******
 
    The LLVM Project is under the Apache License v2.0 with LLVM Exceptions:
 ==============================================================================
@@ -1088,8 +1100,10 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS WITH THE
 SOFTWARE.
 
+********
 ## vasm
 --------
+********
 
 vasm is copyright in 2002-2019 by Volker Barthelmann.
 
