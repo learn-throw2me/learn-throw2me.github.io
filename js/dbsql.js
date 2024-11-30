@@ -26,7 +26,7 @@ function prepareEditor() {
     });
     editor.setValue('', 1);
     editor.container.style.lineHeight = 1.5;
-    editor.insert("--Code\n");
+    editor.insert("--Queries\n");
 }
 
 function resizeBoxes() {
@@ -56,7 +56,7 @@ document.querySelector('.clear-the-code').addEventListener('click', function() {
     document.querySelector('.prg-output').innerHTML = '';
     editor.setOption("showGutter", false);
     editor.setValue('', 1);
-    editor.insert("--Code\n");
+    editor.insert("--Queries\n");
 });
 
 document.querySelector('.reload-the-code').addEventListener('click', async function() {
@@ -100,14 +100,14 @@ document.querySelector('.run-the-code').addEventListener('click', async function
                         });
                         let formattedResults = '';
                         result.columns.forEach((column, i) => {
-                            formattedResults += column.padEnd(columnWidths[i], ' ') + '\t';
+                            formattedResults += column.padEnd(columnWidths[i], ' ') + ' | ';
                         });
-                        formattedResults = formattedResults.trim() + '\n';
+                        formattedResults = formattedResults.trimEnd() + '\n';
                         result.values.forEach(row => {
                             row.forEach((value, i) => {
-                                formattedResults += value.toString().padEnd(columnWidths[i], ' ') + '\t';
+                                formattedResults += (value === null ? '' : value.toString()).padEnd(columnWidths[i], ' ') + ' | ';
                             });
-                            formattedResults = formattedResults.trim() + '\n';
+                            formattedResults = formattedResults.trimEnd() + '\n';
                         });
                         lastResult += `${formattedResults}\n`;
                     } else {
@@ -125,14 +125,14 @@ document.querySelector('.run-the-code').addEventListener('click', async function
                     });
                     let formattedResults = '';
                     results.columns.forEach((column, index) => {
-                        formattedResults += column.padEnd(columnWidths[index], ' ') + '\t';
+                        formattedResults += column.padEnd(columnWidths[index], ' ') + ' | ';
                     });
-                    formattedResults = formattedResults.trim() + '\n';
+                    formattedResults = formattedResults.trimEnd() + '\n';
                     results.values.forEach(row => {
                         row.forEach((value, index) => {
-                            formattedResults += value.toString().padEnd(columnWidths[index], ' ') + '\t';
+                            formattedResults += (value === null ? '' : value.toString()).padEnd(columnWidths[index], ' ') + ' | ';
                         });
-                        formattedResults = formattedResults.trim() + '\n';
+                        formattedResults = formattedResults.trimEnd() + '\n';
                     });
                     lastResult += `${formattedResults}\n`;
                 } else {
