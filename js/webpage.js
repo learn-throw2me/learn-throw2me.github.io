@@ -57,6 +57,7 @@ function resizeBoxes() {
 
 document.querySelector('.run-the-code').addEventListener('click', async function() {
     const htmlCode = editor.getValue();
+    document.querySelector('.prg-output').style.cssText += 'border-left: 1px solid lightgrey; border-bottom: 1px solid lightgrey; border-right: 1px solid lightgrey;';
     const iframe = document.createElement('iframe');
     iframe.style.width = '100%';
     iframe.style.height = `${window.innerWidth}px`;
@@ -74,6 +75,7 @@ document.querySelector('.run-the-code').addEventListener('click', async function
 
 document.querySelector('.clear-the-code').addEventListener('click', function() {
     document.querySelector('.prg-output').innerHTML = '';
+    document.querySelector('.prg-output').style.cssText += 'border-left: none; border-bottom: none; border-right: none;';
     editor.setValue('', 1);
     editor.insert(`<!DOCTYPE html>
 <html lang="en">
