@@ -62,7 +62,7 @@ document.querySelector('.run-the-code').addEventListener('click', async function
     iframe.style.width = '100%';
     iframe.style.height = `${window.innerWidth}px`;
     iframe.style.border = 'none';
-    iframe.style.marginBottom = '-7px';
+    iframe.style.marginBottom = '-8px';
     iframe.srcdoc = htmlCode;
     document.querySelector('.prg-output').innerHTML = '';
     document.querySelector('.prg-output').appendChild(iframe);
