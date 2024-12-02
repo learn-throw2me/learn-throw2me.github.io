@@ -1,58 +1,69 @@
 <!DOCTYPE html>
-<html lang="en" translate="no">
+<html lang="te">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex">
-    <title>Learn - Throw 2 Me</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/styles.css" rel="stylesheet">
-    <style>
-    .mt-5 {
-        margin-top: 0px !important;
-        padding: 0px;
-    }
-    </style>
+    <meta name="google" content="notranslate">
+    <title>Coding in Telugu</title>
+    <link href="cdn/fontawesome/css/all.min.css" rel="stylesheet">
+    <link href="cdn/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
 </head>
-<body class="container mt-5" style="padding:20px">
+<body>
+    <div class="container-fluid">
+        <header class="header">
+            <div class="row align-items-center">
+                <div class="col-12 text-center">
+                    <h1 class="display-4 text-white">
+                        కోడింగ్ తెలుగులో<span class="text-white-50"> Coding in Telugu</span>
+                    </h1>
+                    <p class="lead text-white-50">తెలుగులో కోడింగ్ చేయడమే కొత్త తరహా</p>
+                    <a href="javascript:void(0);" class="btn btn-outline-light btn-lg" id="toggleButton">
+                        <i class="fas fa-play-circle"></i> ప్రారంభించండి
+                    </a>
+                </div>
+            </div>
+        </header>
 
-<h3 class="display-6 custom-heading text-center">Welcome</h3>
-
-<div style="background-color: lightgray; line-height: 2;">
-    <p class="animated-text text-center">Thank you for being here! This page will feature links to different coding challenges. We will update it as and when a new one arrives. Best of luck!!!</p>
-</div>
-    
-<div class="container mt-5">
-    <div class="row">
-        <div class="col-md-12">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th style="width: 35%;">Week / Day</th>
-                        <th>Challenge / Lesson</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Coming soon</td>
-                        <td>Here you can see the challenge or lesson. We will update this very soon...</td>
-                    </tr>
-                </tbody>
-            </table>
+        <div id="iframeContainer" style="display: none; width: 100%; text-align: center;">
+            <iframe id="learningIframe" style="width: 100%; height: 0; border: none; border-radius: 5px;" data-src="https://learn.throw2me.com/cpp"></iframe>
         </div>
+
+        <section id="learn" class="mt-5">
+            <div class="row">
+                <div class="col-md-6 text-center">
+                    <h2 class="text-white">తెలుగులో కోడింగ్ నేర్చుకోండి</h2>
+                    <p class="text-white-50">మీ భాషలో కోడింగ్ నేర్చుకునే ఒక కొత్త దారి</p>
+                </div>
+                <div class="col-md-6 text-center">
+                    <i class="fas fa-code fa-5x text-white"></i>
+                </div>
+            </div>
+        </section>
     </div>
-</div>
 
-<div style="background-color: lightgray; line-height: 2;">
-    <p class="text-center">
-    For collaboration, suggestions, feedback, submission of issues, complaints, challenges, real-world scenarios, or anything else, please write to us at 
-    <a href="mailto:hi@throw2me.com" style="text-decoration: none; color: darkblue;">hi@throw2me.com</a>
-    </p>
-</div>
+    <script src="cdn/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.getElementById("toggleButton").addEventListener("click", function() {
+            var iframeContainer = document.getElementById("iframeContainer");
+            var iframe = document.getElementById("learningIframe");
+            if (iframeContainer.style.display === "none") {
+                iframeContainer.style.display = "block";
+                setTimeout(function() {
+                    var width = iframeContainer.offsetWidth;
+                    iframe.style.height = width + "px";
+                    iframe.src = iframe.getAttribute("data-src");
+                }, 100);
+            } else {
+                iframeContainer.style.display = "none";
+                iframe.src = "";
+            }
 
-<p>&nbsp;</p><p>&nbsp;</p>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<script src="js/scripts.js"></script>
+            var msg = new SpeechSynthesisUtterance("ఈ యాప్ మీరు తెలుగులో కోడింగ్ నేర్చుకోవడంలో సహాయం చేస్తుంది. మీరు ఈ యాప్ ద్వారా సులభంగా మరియు స్పష్టంగా కోడింగ్ నేర్చుకోగలరు. ఇది తెలుగులో కోడింగ్ నేర్చుకునే ఉత్తమ మార్గం, ఎందుకంటే మీరు మీ భాషలోనే అన్ని సూత్రాలను, నిర్వచనాలను, మరియు ఉదాహరణలను అర్థం చేసుకోవచ్చు. ఈ యాప్ ఉపయోగించి, మీరు కోడింగ్ లో నైపుణ్యం పొందడమే కాకుండా, తెలుగులో కోడింగ్ నేర్చుకునే ఒక ప్రత్యేక అనుభవం పొందగలుగుతారు.");
+            msg.lang = "te-IN";
+            window.speechSynthesis.speak(msg);
+        });
+    </script>
 </body>
 </html>
