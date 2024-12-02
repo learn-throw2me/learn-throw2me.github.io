@@ -52,7 +52,7 @@
                 iframeContainer.style.display = "block";
                 setTimeout(function() {
                     var width = iframeContainer.offsetWidth;
-                    iframe.style.height = width + "px";
+                    iframe.style.height = width*1.5 + "px";
                     iframe.src = iframe.getAttribute("data-src");
                 }, 100);
             } else {
