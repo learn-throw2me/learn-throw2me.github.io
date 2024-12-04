@@ -21,6 +21,10 @@
     scrollbar-color: beige transparent;
 }
 
+pre {
+    border-bottom: 1px solid rgb(45,45,45);
+}
+
 .btn-silver {
     background-color: rgb(225, 225, 225);
     color: black;
