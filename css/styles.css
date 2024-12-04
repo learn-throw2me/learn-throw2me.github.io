@@ -8,8 +8,8 @@
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #888;
-    border-radius: 10px;
+    background: beige;
+    border-radius: 8px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
@@ -18,7 +18,7 @@
 
 * {
     scrollbar-width: thin;
-    scrollbar-color: #888 transparent;
+    scrollbar-color: beige transparent;
 }
 
 .btn-silver {
