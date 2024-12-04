@@ -4,6 +4,10 @@ Start tackling coding challenges today to learn, grow, and become an expert!
 **(Copyright 2024 The owner of throw2me.com)**
 
 **Building an app using the contents of this repository is not allowed.**
+**Packaging them for use on the Play Store or the App Store is not allowed.**
+
+You can deploy a website, but not build an app, because this would result in identical apps with same codebase.
+Please refer to the license for information related to the use of the contents in this repository.**
 
 You can deploy a website, but not build an app, because this would result in identical apps with same codebase.
 Please refer to the license for information related to the use of the contents in this repository.
