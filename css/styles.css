@@ -23,6 +23,8 @@
 
 pre {
     border-bottom: 1px solid rgb(45,45,45);
+    border-left: 1px solid rgb(45,45,45);
+    border-right: 1px solid rgb(45,45,45);
 }
 
 .btn-silver {
