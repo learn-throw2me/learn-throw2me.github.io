@@ -21,6 +21,15 @@
     scrollbar-color: #888 transparent;
 }
 
+body, html {
+    overflow: scroll;
+    scrollbar-width: none;
+}
+
+body::-webkit-scrollbar, html::-webkit-scrollbar {
+    display: none;
+}
+
 .btn-silver {
     background-color: rgb(225, 225, 225);
     color: black;
