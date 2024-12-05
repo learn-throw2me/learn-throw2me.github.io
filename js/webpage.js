@@ -65,6 +65,7 @@ document.querySelector('.run-the-code').addEventListener('click', async function
     iframe.srcdoc = htmlCode;
     document.querySelector('.prg-output').innerHTML = '';
     document.querySelector('.prg-output').appendChild(iframe);
+    document.querySelector('.right-content').style.paddingBottom = '7px';
     window.scrollTo({
     top: document.body.scrollHeight,
     behavior: 'smooth'
@@ -87,6 +88,7 @@ document.querySelector('.clear-the-code').addEventListener('click', function() {
 </body>
 </html>
 `);
+document.querySelector('.right-content').style.paddingBottom = '6px';
 });
 
 document.querySelector('.reload-the-code').addEventListener('click', async function() {
