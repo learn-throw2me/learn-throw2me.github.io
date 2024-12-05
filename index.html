@@ -16,25 +16,22 @@
             <div class="row align-items-center">
                 <div class="col-12 text-center">
                     <h1 class="display-4 text-white">
-                        కోడింగ్ తెలుగులో<span class="text-white-50"> Coding in Telugu</span>
+                        కోడింగ్ - తెలుగులో
                     </h1>
-                    <p class="lead text-white-50">తెలుగులో కోడింగ్ నేర్చుకోవడమే కొత్త ధోరణి</p>
-                    <a href="javascript:void(0);" class="btn btn-outline-light btn-lg" id="toggleButton">
+                    <h2 class="text-white-75"> Coding in Telugu</h2>
+                    <p class="lead text-white-50">తెలుగులో కోడింగ్ నేర్చుకోవడమే కొత్త ట్రెండ్</p>
+                    <a href="cpp.html" class="btn btn-outline-light btn-lg">
                         <i class="fas fa-play-circle"></i> ప్రారంభించండి
                     </a>
                 </div>
             </div>
         </header>
 
-        <div id="iframeContainer" style="display: none; width: 100%; text-align: center;">
-            <iframe id="learningIframe" style="width: 100%; height: 0; border: none; margin-top:20px; border-radius: 8px;" data-src="https://learn.throw2me.com/cpp"></iframe>
-        </div>
-
         <section id="learn" class="mt-5">
             <div class="row">
                 <div class="col-md-6 text-center">
                     <h2 class="text-white">తెలుగులో కోడింగ్ నేర్చుకోండి</h2>
-                    <p class="text-white-50">మీ భాషలో కోడింగ్ నేర్చుకునే ఒక కొత్త దారి</p>
+                    <p class="text-white-50">మీ భాషలో కోడింగ్ నేర్చుకునే ఒక కొత్త మార్గం </p>
                 </div>
                 <div class="col-md-6 text-center">
                     <i class="fas fa-code fa-5x text-white"></i>
@@ -44,26 +41,5 @@
     </div>
 
     <script src="cdn/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script>
-        document.getElementById("toggleButton").addEventListener("click", function() {
-            var iframeContainer = document.getElementById("iframeContainer");
-            var iframe = document.getElementById("learningIframe");
-            if (iframeContainer.style.display === "none") {
-                iframeContainer.style.display = "block";
-                setTimeout(function() {
-                    var width = iframeContainer.offsetWidth;
-                    iframe.style.height = width*1.5 + "px";
-                    iframe.src = iframe.getAttribute("data-src");
-                }, 100);
-            } else {
-                iframeContainer.style.display = "none";
-                iframe.src = "";
-            }
-
-            var msg = new SpeechSynthesisUtterance("ఈ యాప్ మీరు తెలుగులో కోడింగ్ నేర్చుకోవడంలో సహాయం చేస్తుంది. మీరు ఈ యాప్ ద్వారా సులభంగా మరియు స్పష్టంగా కోడింగ్ నేర్చుకోగలరు. ఇది తెలుగులో కోడింగ్ నేర్చుకునే ఉత్తమ మార్గం, ఎందుకంటే మీరు మీ భాషలోనే అన్ని సూత్రాలను, నిర్వచనాలను, మరియు ఉదాహరణలను అర్థం చేసుకోవచ్చు. ఈ యాప్ ఉపయోగించి, మీరు కోడింగ్ లో నైపుణ్యం పొందడమే కాకుండా, తెలుగులో కోడింగ్ నేర్చుకునే ఒక ప్రత్యేక అనుభవం పొందగలుగుతారు.");
-            msg.lang = "te-IN";
-            window.speechSynthesis.speak(msg);
-        });
-    </script>
 </body>
 </html>

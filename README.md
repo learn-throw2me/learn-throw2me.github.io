@@ -1,7 +1,7 @@
 # Throw 2 Me
 Start tackling coding challenges today to learn, grow, and become an expert!
 
-**(Copyright 2024 The owner of throw2me.com)**
+**(Copyright 2024-Present The owner of throw2me.com)**
 
 **Building an app using the contents of this repository is not allowed.**
 **Packaging them for use on the Play Store or the App Store is not allowed.**
