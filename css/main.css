@@ -69,3 +69,8 @@ section i:hover {
         font-size: 1.2rem;
     }
 }
+
+.no-gap {
+    padding-top: 0px;
+    padding-bottom: 0px;
+}

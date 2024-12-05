@@ -27,6 +27,12 @@
             </div>
         </header>
 
+        <section class="mt-5 text-center no-gap">
+            <button id="speakButton" class="btn btn-outline-light btn-lg">
+                <i class="fas fa-volume-up text-white"></i> వినండి
+            </button>
+        </section>
+
         <section id="learn" class="mt-5">
             <div class="row">
                 <div class="col-md-6 text-center">
@@ -41,5 +47,14 @@
     </div>
 
     <script src="cdn/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        document.getElementById('speakButton').addEventListener('click', function() {
+            var msg = new SpeechSynthesisUtterance();
+            msg.text = "మీరు కోడింగ్ నేర్చుకుంటున్నారని నాకు చాలా ఆనందంగా ఉంది. మీరు మంచి కోడర్ అవుతారు!";
+            msg.lang = "te-IN";
+            window.speechSynthesis.speak(msg);
+        });
+    </script>
 </body>
 </html>
