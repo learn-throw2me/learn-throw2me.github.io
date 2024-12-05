@@ -21,9 +21,8 @@ function prepareEditor() {
     editor.insert(`<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Learn - Throw 2 Me</title>
+<meta charset="UTF-8">
+<title>Learn - Throw 2 Me</title>
 </head>
 <body>
 
@@ -80,9 +79,8 @@ document.querySelector('.clear-the-code').addEventListener('click', function() {
     editor.insert(`<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Learn - Throw 2 Me</title>
+<meta charset="UTF-8">
+<title>Learn - Throw 2 Me</title>
 </head>
 <body>
 
