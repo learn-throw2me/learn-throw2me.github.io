@@ -4,7 +4,8 @@
 
 Building an app using the contents of this repository is not allowed.
 You cannot package them for use on the Play Store or the App Store.
-You can deploy a website, but not build an app, because this would result in identical apps with same codebase.
+You can deploy a website (using your own properly registered domain or subdomain), 
+but not build an app, because this would result in identical apps with same codebase.
  
 The contents of this repository are provided under the following terms for use and distribution
 (in the form of files and folders (soft copy), or as a deployed website only).
@@ -45,7 +46,7 @@ You may redistribute the contents of the repository, provided that the terms out
 Redistribution must not violate any other intellectual property or licensing rights.
 
 Websites:
-You can only launch websites with the content from this repository. 
+You can only launch websites (using your own properly registered domains or subdomains) with the content from this repository. 
 **You cannot build an app. You cannot package for use on the Play Store or the App Store.**.
 Please make sure all branding and advertising terms are met as stated earlier.
 
