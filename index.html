@@ -19,7 +19,7 @@
                         కోడింగ్ - తెలుగులో
                     </h1>
                     <h2 class="text-white-75"> Coding in Telugu</h2>
-                    <p class="lead text-white-50">తెలుగులో కోడింగ్ నేర్చుకోవడమే కొత్త ట్రెండ్</p>
+                    <p class="lead text-white-50">తెలుగులో కోడింగ్ నేర్చుకోవడం సులభం!</p>
                     <a href="python.html" class="btn btn-outline-light btn-lg">
                         <i class="fas fa-play-circle"></i> ప్రారంభించండి
                     </a>
@@ -28,8 +28,13 @@
         </header>
 
         <section class="mt-5 text-center no-gap">
-            <button id="speakButton" class="btn btn-outline-light btn-lg">
+            <body>
+            <button id="speakButton" class="btn btn-outline-light btn-lg" onclick="speakText('మీరు కోడింగ్ నేర్చుకుంటున్నారని నాకు చాలా ఆనందంగా ఉంది. మీరు మంచి కోడర్ అవుతారు! I am Telling That')">
                 <i class="fas fa-volume-up text-white"></i> వినండి
+            </button>
+            <br>
+            <button id="muteButton" class="btn btn-outline-light btn-lg" onclick="stopSpeech()">
+                <i class="fas fa-volume-mute text-white"></i> ఆపండి
             </button>
         </section>
 
@@ -47,14 +52,6 @@
     </div>
 
     <script src="cdn/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-    <script>
-        document.getElementById('speakButton').addEventListener('click', function() {
-            var msg = new SpeechSynthesisUtterance();
-            msg.text = "మీరు కోడింగ్ నేర్చుకుంటున్నారని నాకు చాలా ఆనందంగా ఉంది. మీరు మంచి కోడర్ అవుతారు!";
-            msg.lang = "te-IN";
-            window.speechSynthesis.speak(msg);
-        });
-    </script>
+    <script src="js/voice.js"></script>
 </body>
 </html>
