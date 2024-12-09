@@ -82,8 +82,9 @@ section i:hover {
     }
 }
 
-.no-gap {
-    padding-top: 0px;
-    padding-bottom: 0px;
-    margin-top: 10px !important;
+#startButton:focus, #startButton:active {
+    outline: none;
+    box-shadow: none;
+    background-color: transparent !important;
+    border-color: transparent !important;
 }
