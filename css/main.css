@@ -82,9 +82,11 @@ section i:hover {
     }
 }
 
-#startButton:focus, #startButton:active {
-    outline: none;
-    box-shadow: none;
+.main-start.btn-outline-light:hover {
     background-color: transparent !important;
-    border-color: transparent !important;
+    color: white !important;
+}
+
+#learn {
+    margin-top: 50px !important;
 }
