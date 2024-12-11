@@ -2,12 +2,12 @@
 
 **YOU CANNOT BUILD AN APP. YOU CANNOT PACKAGE FOR USE ON THE PLAY STORE OR THE APP STORE.**
 
-Building an app using the contents of this repository is not allowed.
+Building an app using the contents of this repository (or folder/folders) is not allowed.
 You cannot package them for use on the Play Store or the App Store.
 You can deploy a website (using your own properly registered domain or subdomain), 
 but not build an app, because this would result in identical apps with same codebase.
  
-The contents of this repository are provided under the following terms for use and distribution
+The contents of this repository (or folder/folders) are provided under the following terms for use and distribution
 (in the form of files and folders (soft copy), or as a deployed website only).
 
 White-Labeling: 
@@ -19,16 +19,17 @@ Advertising:
 You may place your own advertisements within the content, provided they comply with the advertising standards of platforms like Google and Facebook.
 
 Modification: 
-You are not allowed to modify any of the core content, functionality, or structure of the repository (except adding your brand and your ads, as stated above).
-All original code, educational resources, challenges, and materials must remain intact.
+You are not allowed to modify any of the core content, functionality, or structure of the repository (or folder/folders), except adding your brand and your ads, as stated above.
+All original code, educational resources, challenges, and materials, including this license must remain intact.
 You may not remove, alter, or modify any essential parts of the content or its original functionality.
+Third party licenses are also provided. You cannot alter or remove them.
 
 New Content:
 You cannot add new content or translate the content into other languages. 
 We will update the repo on a regular basis. You can deploy updated versions periodically.
 
 Project Throw 2 Me Supporters:
-This repository may contain ads or content from sponsors and supporters who support Project Throw 2 Me.
+This repository (or folder/folders) may contain ads or content from sponsors and supporters who support Project Throw 2 Me.
 You are prohibited from bypassing, circumventing, or removing these ads or sponsored content in any way. 
 All sponsored content must remain visible and unaltered. 
 Altering these ads and content placements is strictly prohibited.
@@ -42,13 +43,16 @@ While there is no restriction on number of ads, limit the number of ads to avoid
 Content or ads from sponsors and supporters should not be altered in any form, as stated earlier.
 
 Redistribution:
-You may redistribute the contents of the repository, provided that the terms outlined here are adhered to and the core content, functionality, or structure of the repository (except adding your brand and your ads, as stated above) is not modified.
+You may redistribute the contents of the repository (or folder/folders), provided that the terms outlined here are adhered to.
+ Make sure the core content, functionality, or structure of the repository (or folder/folders), (except adding your brand and your ads, as stated above) is not modified.
 Redistribution must not violate any other intellectual property or licensing rights.
+Please make sure this license is included as it is, without any modification.
+Third party licenses are also provided. You cannot alter or remove them.
 
 Websites:
 You can only launch websites (using your own properly registered domains or subdomains) with the content from this repository. 
 **You cannot build an app. You cannot package for use on the Play Store or the App Store.**.
-Please make sure all branding and advertising terms are met as stated earlier.
+While launching websites, please make sure all branding, advertising, and modification terms are met as stated earlier.
 
 No Liability:
 The owner of throw2me.com (who is also the owner of this repository) assumes no liability for any damages, loss of data, or other issues arising from the use, modification, or distribution of this content.
