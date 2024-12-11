@@ -4,8 +4,7 @@
 
 Building an app using the contents of this repository (or folder/folders) is not allowed.
 You cannot package them for use on the Play Store or the App Store.
-You can deploy a website (using your own properly registered domain or subdomain), 
-but not build an app, because this would result in identical apps with same codebase.
+You can deploy a website (using your own properly registered domain or subdomain), but not build an app, because this would result in identical apps with same codebase.
  
 The contents of this repository (or folder/folders) are provided under the following terms for use and distribution
 (in the form of files and folders (soft copy), or as a deployed website only).
@@ -44,7 +43,7 @@ Content or ads from sponsors and supporters should not be altered in any form, a
 
 Redistribution:
 You may redistribute the contents of the repository (or folder/folders), provided that the terms outlined here are adhered to.
- Make sure the core content, functionality, or structure of the repository (or folder/folders), (except adding your brand and your ads, as stated above) is not modified.
+Make sure the core content, functionality, or structure of the repository (or folder/folders), (except adding your brand and your ads, as stated above) is not modified.
 Redistribution must not violate any other intellectual property or licensing rights.
 Please make sure this license is included as it is, without any modification.
 Third party licenses are also provided. You cannot alter or remove them.
