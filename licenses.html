@@ -11,14 +11,34 @@
     <link href="cdn/fontawesome/css/all.min.css" rel="stylesheet">
     <link href="cdn/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="css/styles.css" rel="stylesheet">
-    
+    <style>
+    ::-webkit-scrollbar-thumb {
+        background: white;
+    }
+
+    ::-webkit-scrollbar:vertical {
+        width: 0px;
+    }
+
+    ::-webkit-scrollbar-track:vertical {
+        background: transparent;
+    }
+
+    ::-webkit-scrollbar-thumb:vertical {
+        background: transparent;
+    }
+
+    * {
+        scrollbar-width: thin;
+        scrollbar-color: white transparent;
+    }
     </style>
 </head>
 <body style="background-color: #063e6c;">
 
 <div class="top-container" style="position:fixed; height: 36px; background-color: #063e6c; display: flex; justify-content: flex-start; align-items: center;">
-    <div onclick="window.history.back()" style="color: white; width: 100vh; height: 30px; display: flex; justify-content: center; align-items: center; background-color: #063e6c; margin: 3px 0; padding: 0 20px;">
-        <i class="fas fa-times-circle" style="color: white; font-size: 24px;"></i>
+    <div onclick="window.history.back()" style="color: white; width: 100vh; height: 30px; display: flex; align-items: center; background-color: #063e6c; margin: 3px 0; padding: 0 20px;">
+        <i class="fas fa-arrow-circle-left" style="color: white; font-size: 24px;"></i>
     </div>
 </div>
 
