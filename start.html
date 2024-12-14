@@ -53,7 +53,7 @@
 <body>
 
 <div class="top-container" style="height: 36px; background-color: #063e6c; display: flex; justify-content: space-between; align-items: center; width: 100%; padding-left: 20px; padding-right: 20px;">
-    <div onclick="location.reload()" style="color: #063e6c; width: 24px; height: 24px; display: flex; justify-content: center; align-items: center; background-color: white; border-radius: 50%;">
+    <div onclick="restart()" style="color: #063e6c; width: 24px; height: 24px; display: flex; justify-content: center; align-items: center; background-color: white; border-radius: 50%;">
         <i class="fas fa-sync" style="color: #063e6c; font-size: 14px;"></i>
     </div>
     <div onclick="stopSpeech()" style="color: #063e6c; width: 24px; height: 24px; display: flex; justify-content: center; align-items: center; background-color: white; border-radius: 50%;">
@@ -111,28 +111,24 @@
 </div>
 
     <script src="cdn/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="js/start.js"></script>
     <script src="js/voice.js"></script>
+
     <script>
-    //to check the in disk file version and memory file version and reload if needed
-    
+    //to catch up with the lastest file on disk
     const inMemoryVersion = 10000;
-
-    if (window.performance && performance.navigation) {
-        if (performance.navigation.type === performance.navigation.TYPE_BACK_FORWARD) {
-            const currentUrl = window.location.pathname;
-            const baseUrl = currentUrl.split('?')[0];
-            const newUrl = baseUrl + '?t=' + new Date().getTime();
-
-            fetch('version.json?t=' + new Date().getTime())
-                .then(response => response.json())
-                .then(versionData => {
-                    const onDiskVersion = versionData.version;
-                    if (onDiskVersion > inMemoryVersion) {
-                        window.location.href = newUrl;
-                    }
-                });
-        }
-    }
+    const currentUrl = window.location.pathname;
+    const baseUrl = currentUrl.split('?')[0];
+    const newUrl = baseUrl + '?t=' + new Date().getTime();
+    fetch('version.json?t=' + new Date().getTime())
+        .then(response => response.json())
+        .then(versionData => {
+            const onDiskVersion = versionData.version;
+            if (onDiskVersion > inMemoryVersion) {
+                window.location.href = newUrl;
+            }
+        });
     </script>
+
 </body>
 </html>
