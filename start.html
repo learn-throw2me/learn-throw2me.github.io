@@ -36,55 +36,103 @@
             display: inline-block;
             vertical-align: middle;
         }
+        .top-container {
+            --bs-gutter-x: 1.5rem;
+            --bs-gutter-y: 0;
+            width: 100%;
+            padding-right: calc(var(--bs-gutter-x)* .5);
+            padding-left: calc(var(--bs-gutter-x)* .5);
+            margin-right: auto;
+            margin-left: auto;
+        }
+        .row.mt-4 {
+            margin-top: 0px !important;
+        }
     </style>
 </head>
 <body>
-    <div class="container-fluid">
-        <div class="row mt-4">
-            <div class="col-12">
-                <a href="c_index.html" class="btn main-start btn-outline-light btn-lg d-block mb-3">
-                    <i class="fas fa-laptop-code icon"></i> 
-                    <span class="separator">|</span>
-                    <span class="text">C Programming</span>
-                </a>
-            </div>
-            <div class="col-12">
-                <a href="cpp_index.html" class="btn main-start btn-outline-light btn-lg d-block mb-3">
-                    <i class="fas fa-cubes icon"></i> 
-                    <span class="separator">|</span>
-                    <span class="text">OOP with C++</span>
-                </a>
-            </div>
-            <div class="col-12">
-                <a href="dsa_index.html" class="btn main-start btn-outline-light btn-lg d-block mb-3">
-                    <i class="fas fa-project-diagram icon"></i> 
-                    <span class="separator">|</span>
-                    <span class="text">Data Structures & Algorithms</span>
-                </a>
-            </div>
-            <div class="col-12">
-                <a href="sql_index.html" class="btn main-start btn-outline-light btn-lg d-block mb-3">
-                    <i class="fas fa-database icon"></i> 
-                    <span class="separator">|</span>
-                    <span class="text">Databases & SQL</span>
-                </a>
-            </div>
-            <div class="col-12">
-                <a href="web_index.html" class="btn main-start btn-outline-light btn-lg d-block mb-3">
-                    <i class="fas fa-globe icon"></i> 
-                    <span class="separator">|</span>
-                    <span class="text">Web Development</span>
-                </a>
-            </div>
-            <div class="col-12">
-                <a href="python_index.html" class="btn main-start btn-outline-light btn-lg d-block mb-3">
-                    <i class="fas fa-table icon"></i> 
-                    <span class="separator">|</span>
-                    <span class="text">Python Programming</span>
-                </a>
-            </div>
+
+<div class="top-container" style="height: 36px; background-color: #063e6c; display: flex; justify-content: space-between; align-items: center; width: 100%; padding-left: 20px; padding-right: 20px;">
+    <div onclick="location.reload()" style="color: #063e6c; width: 24px; height: 24px; display: flex; justify-content: center; align-items: center; background-color: white; border-radius: 50%;">
+        <i class="fas fa-sync" style="color: #063e6c; font-size: 14px;"></i>
+    </div>
+    <div onclick="stopSpeech()" style="color: #063e6c; width: 24px; height: 24px; display: flex; justify-content: center; align-items: center; background-color: white; border-radius: 50%;">
+        <i class="fas fa-volume-mute" style="color: #063e6c; font-size: 14px;"></i>
+    </div>
+</div>
+
+<i class="fas fa-minus separator" style="display: inline-block; width: 100%; text-align: center; font-size: 18px; margin: 0px; color: gray;"></i>
+
+<div class="container-fluid">
+    <div class="row mt-4">
+        <div class="col-12">
+            <a href="c_index.html" class="btn main-start btn-outline-light btn-lg d-block mb-3">
+                <i class="fas fa-laptop-code icon"></i> 
+                <span class="separator">|</span>
+                <span class="text">C Programming</span>
+            </a>
+        </div>
+        <div class="col-12">
+            <a href="cpp_index.html" class="btn main-start btn-outline-light btn-lg d-block mb-3">
+                <i class="fas fa-cubes icon"></i> 
+                <span class="separator">|</span>
+                <span class="text">OOP with C++</span>
+            </a>
+        </div>
+        <div class="col-12">
+            <a href="dsa_index.html" class="btn main-start btn-outline-light btn-lg d-block mb-3">
+                <i class="fas fa-project-diagram icon"></i> 
+                <span class="separator">|</span>
+                <span class="text">Data Structures & Algorithms</span>
+            </a>
+        </div>
+        <div class="col-12">
+            <a href="sql_index.html" class="btn main-start btn-outline-light btn-lg d-block mb-3">
+                <i class="fas fa-database icon"></i> 
+                <span class="separator">|</span>
+                <span class="text">Databases & SQL</span>
+            </a>
+        </div>
+        <div class="col-12">
+            <a href="web_index.html" class="btn main-start btn-outline-light btn-lg d-block mb-3">
+                <i class="fas fa-globe icon"></i> 
+                <span class="separator">|</span>
+                <span class="text">Web Development</span>
+            </a>
+        </div>
+        <div class="col-12">
+            <a href="python_index.html" class="btn main-start btn-outline-light btn-lg d-block mb-3">
+                <i class="fas fa-table icon"></i> 
+                <span class="separator">|</span>
+                <span class="text">Python Programming</span>
+            </a>
         </div>
     </div>
+</div>
+
     <script src="cdn/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="js/voice.js"></script>
+    <script>
+    //to check the in disk file version and memory file version and reload if needed
+    
+    const inMemoryVersion = 10000;
+
+    if (window.performance && performance.navigation) {
+        if (performance.navigation.type === performance.navigation.TYPE_BACK_FORWARD) {
+            const currentUrl = window.location.pathname;
+            const baseUrl = currentUrl.split('?')[0];
+            const newUrl = baseUrl + '?t=' + new Date().getTime();
+
+            fetch('version.json?t=' + new Date().getTime())
+                .then(response => response.json())
+                .then(versionData => {
+                    const onDiskVersion = versionData.version;
+                    if (onDiskVersion > inMemoryVersion) {
+                        window.location.href = newUrl;
+                    }
+                });
+        }
+    }
+    </script>
 </body>
 </html>
