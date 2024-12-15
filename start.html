@@ -218,7 +218,7 @@
         .then(versionData => {
             const onDiskVersion = versionData.version;
             if (onDiskVersion > inMemoryVersion) {
-                window.location.href = newUrl;
+                window.location.replace(newUrl);
             }
             fetch('https://learn.throw2me.com/version.json')
             .then(response2 =>response2.json())
