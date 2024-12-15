@@ -7,7 +7,6 @@ function showUpdateAlertModal() {
         document.querySelector('.update-alert').style.display = 'block';
         document.querySelector('.update-alert').setAttribute('aria-hidden', 'false');
         document.querySelector('.update-alert').setAttribute('aria-modal', 'true');
-        document.querySelector('.modal-backdrop').style.display = 'block';
     }
 
     function hideUpdateAlertModal() {
@@ -15,7 +14,6 @@ function showUpdateAlertModal() {
         document.querySelector('.update-alert').style.display = 'none';
         document.querySelector('.update-alert').setAttribute('aria-hidden', 'true');
         document.querySelector('.update-alert').setAttribute('aria-modal', 'false');
-        document.querySelector('.modal-backdrop').style.display = 'none';
     }
 
     function setUpdateAlertText(text1, text2) {
