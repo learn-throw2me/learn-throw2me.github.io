@@ -30,6 +30,14 @@ body::-webkit-scrollbar, html::-webkit-scrollbar {
     background: transparent;
 }
 
+::-webkit-scrollbar-track {
+    box-shadow: none;
+}
+
+::-webkit-scrollbar-thumb {
+    box-shadow: none;
+}
+
 body {
     background-color: #063e6c;
     color: #f1f1f1;
