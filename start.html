@@ -150,7 +150,7 @@
     <div class="row">
         <div class="col-12" style="border-bottom: 1px solid gray;">
             <h5>Update Settings</h5>
-            <p>Always keep automatic updates on. New topics and exercises will be added every month. If app crashes for any reason, close it and restart it again.</p>
+            <p>Always keep automatic updates on. New topics and exercises will be added every month. If app crashes for any reason, close and restart it.</p>
             <p>ఎప్పుడూ అప్డేట్స్ ఆన్‌లో ఉంచండి. కొత్త టాపిక్స్ సుమారు నెలకొకసారి ఉంటాయి. యాప్ ఏదైనా కారణంగా క్రాష్ అయితే, క్లోజ్ చేసి మళ్లీ స్టార్ట్ చెయ్యండి.</p>
         </div>
     </div>
@@ -179,9 +179,39 @@
     </a>
 </div>
 
+<!-- Modal -->
+<div class="modal fade update-alert" tabindex="-1" role="dialog" aria-labelledby="updateAlertLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Update Alert</h5>
+      </div>
+      <div class="modal-body">
+        <div class="update-alert-text">This is update alert text 1.</div>
+        <br>
+        <div class="update-alert-text2">Still seeing this after an update? Or is no newer version available? Please reload.</div>
+        <br>
+      </div>
+      <div class="modal-footer">
+        <a href="#" class="update-alert-link" style="text-decoration: none;">
+        <button type="button" class="btn btn-secondary" style="color: white">Update</button>
+        </a>
+        <button type="button" class="btn btn-secondary" onClick="restart()">Reload</button>
+        <button type="button" class="btn btn-secondary" style="color: white" onclick="hideUpdateAlertModal()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
     <script src="cdn/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="js/start.js"></script>
     <script src="js/voice.js"></script>
+
+    <script>
+    setUpdateAlertText("The first text", null);
+    setUpdateAlertLink("https://www.example.com");
+    showUpdateAlertModal();
+    </script>
 
     <script>
     //to catch up with the latest version
@@ -196,6 +226,17 @@
             if (onDiskVersion > inMemoryVersion) {
                 window.location.href = newUrl;
             }
+            fetch('https://learn.throw2me.com/version.json')
+            .then(response2 =>response2.json())
+            .then(versionData2 => {
+                const onRemoteVersion = versionData2.version
+                if (onDiskVersion < onRemoteVersion)
+                {
+                    setUpdateAlertText(versionData2.text, null);
+                    setUpdateAlertLink(versionData2.link);
+                    showUpdateAlertModal();
+                }
+            });
         });
     </script>
 
