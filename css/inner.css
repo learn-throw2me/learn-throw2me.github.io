@@ -11,26 +11,24 @@ h1, h2, h3, h4, h5, h6, p, ol, ul {
 
 body, html {
     overflow: scroll;
-    scrollbar-width: thin;
+    scrollbar-width: none;
 }
 
 body::-webkit-scrollbar, html::-webkit-scrollbar {
-    width: 4px;
-    height: 4px;
+    display: none;
 }
 
-::-webkit-scrollbar:vertical, ::-webkit-scrollbar:horizontal {
-    width: 4px;
-    height: 4px;
-    background-color: white;
+::-webkit-scrollbar:vertical {
+    width: 0px;
+    box-shadow: none;
 }
 
-::-webkit-scrollbar-track:vertical, ::-webkit-scrollbar-track:horizontal {
-    background: white;
+::-webkit-scrollbar-track:vertical {
+    background: transparent;
 }
 
-::-webkit-scrollbar-thumb:vertical, ::-webkit-scrollbar-thumb:horizontal {
-    background: white;
+::-webkit-scrollbar-thumb:vertical {
+    background: transparent;
 }
 
 body {
