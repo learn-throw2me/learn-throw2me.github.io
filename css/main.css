@@ -20,6 +20,7 @@ body::-webkit-scrollbar, html::-webkit-scrollbar {
 
 ::-webkit-scrollbar:vertical {
     width: 0px;
+    box-shadow: none;
 }
 
 ::-webkit-scrollbar-track:vertical {
@@ -28,14 +29,6 @@ body::-webkit-scrollbar, html::-webkit-scrollbar {
 
 ::-webkit-scrollbar-thumb:vertical {
     background: transparent;
-}
-
-::-webkit-scrollbar-track {
-    box-shadow: none;
-}
-
-::-webkit-scrollbar-thumb {
-    box-shadow: none;
 }
 
 body {
