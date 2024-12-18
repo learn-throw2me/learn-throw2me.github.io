@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex">
+    <meta name="google" content="notranslate">
+    <meta http-equiv="Cache-Control" content="no-store">
+    <meta http-equiv="Pragma" content="no-cache">
+    <title>Coding in Telugu</title>
+    <link href="/cdn/fontawesome/css/all.min.css" rel="stylesheet">
+    <link href="/cdn/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/lessons.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="top-container" style="height: 36px; background-color: #063e6c; display: flex; justify-content: space-between; align-items: center; width: 100%; padding-left: 20px; padding-right: 20px;">
+    <div onclick="window.history.back()" style="color: #063e6c; width: 24px; height: 24px; display: flex; justify-content: center; align-items: center; background-color: white; border-radius: 50%;">
+        <i class="fas fa-sync" style="color: #063e6c; font-size: 14px;"></i>
+    </div>
+    <div onclick="stopSpeech()" style="color: #063e6c; width: 24px; height: 24px; display: flex; justify-content: center; align-items: center; background-color: white; border-radius: 50%;">
+        <i class="fas fa-volume-mute" style="color: #063e6c; font-size: 14px;"></i>
+    </div>
+</div>
+
+<i class="fas fa-minus separator" style="display: inline-block; width: 100%; text-align: center; font-size: 18px; margin: 0px; color: gray;"></i>
+
+
+
+<div class="bottom-container" style="height: 36px; background-color: #063e6c; display: grid; grid-template-columns: 1fr 1fr 1fr; align-items: center; margin: 3px 0; margin-top: 5px;">
+    <a href="https://www.facebook.com/profile.php?id=61563347068813" style="text-decoration: none;">
+        <div style="color: #d3d3d3; display: flex; flex-direction: column; justify-content: center; align-items: center; background-color: #063e6c; margin: 3px 0;">
+            <i class="fas fa-thumbs-up" style="color: #d3d3d3; font-size: 16px;"></i>
+            <span style="color: #d3d3d3; font-size: 10px;">Like please!</span>
+        </div>
+    </a>
+
+    <a href="mailto:hi@throw2me.com" style="text-decoration: none;">
+        <div style="color: #d3d3d3; display: flex; flex-direction: column; justify-content: center; align-items: center; background-color: #063e6c; margin: 3px 0;">
+            <i class="fas fa-envelope" style="color: #d3d3d3; font-size: 16px;"></i>
+            <span style="color: #d3d3d3; font-size: 10px;">hi@throw2me.com</span>
+        </div>
+    </a>
+
+    <a href="/licenses.html" style="text-decoration: none;">
+        <div style="color: #d3d3d3; display: flex; flex-direction: column; justify-content: center; align-items: center; background-color: #063e6c; margin: 3px 0;">
+            <i class="fas fa-balance-scale" style="color: #d3d3d3; font-size: 16px;"></i>
+            <span style="color: #d3d3d3; font-size: 10px;">Licenses</span>
+        </div>
+    </a>
+</div>
+
+<!-- Modal -->
+<div class="modal fade update-alert" tabindex="-1" role="dialog" aria-labelledby="updateAlertLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Update Alert</h5>
+      </div>
+      <div class="modal-body">
+        <div class="update-alert-text">This is update alert text 1.</div>
+        <br>
+        <div class="update-alert-text2">Still seeing this after an update? Or is no newer version available? Please reload.</div>
+        <br>
+      </div>
+      <div class="modal-footer">
+        <a href="#" class="update-alert-link" style="text-decoration: none;">
+        <button type="button" class="btn btn-secondary" style="color: white">Update</button>
+        </a>
+        <button type="button" class="btn btn-secondary" onClick="restart()">Reload</button>
+        <button type="button" class="btn btn-secondary" style="color: white" onclick="hideUpdateAlertModal()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <script src="/cdn/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="/js/voice.js"></script>
+
+    <script>
+    //to check for the latest version on remote
+    fetch('/version.json?t=' + new Date().getTime())
+        .then(response => response.json())
+        .then(versionData => {
+            const onDiskVersion = versionData.version;
+            fetch('https://learn.throw2me.com/version.json')
+            .then(response2 =>response2.json())
+            .then(versionData2 => {
+                const onRemoteVersion = versionData2.version
+                if (onDiskVersion < onRemoteVersion)
+                {
+                    setUpdateAlertText(versionData2.text, null);
+                    setUpdateAlertLink(versionData2.link);
+                    showUpdateAlertModal();
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
