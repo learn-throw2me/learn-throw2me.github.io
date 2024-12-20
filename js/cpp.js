@@ -30,7 +30,7 @@ function prepareEditor() {
 }
 
 function resizeBoxes() {
-    const windowHeight = window.innerHeight - 80;
+    const windowHeight = window.innerHeight - 82;
     const windowWidth = window.innerWidth;
     const titleBar = document.querySelector('.title-bar-ide');
     const titleBarHeight = titleBar ? titleBar.offsetHeight : 0; 
