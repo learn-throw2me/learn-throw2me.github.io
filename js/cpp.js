@@ -92,6 +92,7 @@ class WorkerAPI {
       if (event.data.id === 'write') {
           let data = event.data.data;
           let filteredData = data.replace(/\x1B\[[0-9;]*[A-Za-z]/g, '');
+          filteredData = "*Don't forget to add \n//capture input \n  comment in main one time, in this app to read inputs.\n" + filteredData;
           let consoleElement = document.querySelector('.console-output-here');
           if (consoleElement) {
               consoleElement.textContent += filteredData;
