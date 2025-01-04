@@ -92,7 +92,6 @@ class WorkerAPI {
       if (event.data.id === 'write') {
           let data = event.data.data;
           let filteredData = data.replace(/\x1B\[[0-9;]*[A-Za-z]/g, '');
-          filteredData = "*Don't forget to add \n//capture input \n  comment in main one time, in this app to read inputs.\n" + filteredData;
           let consoleElement = document.querySelector('.console-output-here');
           if (consoleElement) {
               consoleElement.textContent += filteredData;
@@ -123,6 +122,8 @@ document.querySelector('.run-the-code').addEventListener('click', async function
     //let prgOutput = '<span style="font-size:10px"><i class="fas fa-globe" style="color: lightgreen;"></i> Throw 2 Me (.com)</span> \n';
     document.querySelector('.prg-output').innerHTML = `<pre class='console-output-here' style='padding-bottom:2px;padding-left:5px;margin-bottom:0px'></pre>`;
     const code = editor.getValue();
+    if (/scanf|fscanf|sscanf|getchar|fgetc|gets|fgets|getc|cin|getline|cin\.get|cin\.getline|cin\.read/.test(code) && !/\/\/capture input/.test(code))
+    consoleElement.textContent += "*Please add \n //capture input \n comment in main in this app to capture input.";
     let inputCode = redirectInputsToStdin(code, inputValues);
     api.compileLinkRun(inputCode);
 });
