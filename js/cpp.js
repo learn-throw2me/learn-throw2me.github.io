@@ -123,7 +123,7 @@ document.querySelector('.run-the-code').addEventListener('click', async function
     document.querySelector('.prg-output').innerHTML = `<pre class='console-output-here' style='padding-bottom:2px;padding-left:5px;margin-bottom:0px'></pre>`;
     const code = editor.getValue();
     if (/scanf|fscanf|sscanf|getchar|fgetc|gets|fgets|getc|cin|getline|cin\.get|cin\.getline|cin\.read/.test(code) && !/\/\/capture input/.test(code))
-    document.querySelector('.console-output-here').textContent += "*Please add \n //capture input \n comment in main in this app to capture input.";
+    document.querySelector('.console-output-here').textContent += "*Please add \n//capture input \ncomment in main once (in this app) to capture input.";
     let inputCode = redirectInputsToStdin(code, inputValues);
     api.compileLinkRun(inputCode);
 });
