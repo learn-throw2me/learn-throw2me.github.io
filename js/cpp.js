@@ -89,24 +89,24 @@ class WorkerAPI {
     }
 
     onmessage(event) {
-      if (event.data.id === 'write') {
-          let data = event.data.data;
-          let filteredData = data.replace(/\x1B\[[0-9;]*[A-Za-z]/g, '');
-          let consoleElement = document.querySelector('.console-output-here');
-          if (consoleElement) {
-              consoleElement.textContent += filteredData;
-              if (filteredData.includes("Error: process exited with code 1.")) {
-                  editor.setOption("showGutter", true);
-                  hideSpinner();
-              }
-              else if (filteredData.includes("test.wasm")) {
-                  hideSpinner();
-              }
-              window.scrollTo({
-                  top: document.body.scrollHeight,
-                  behavior: 'smooth'
-              });
-              smoothScrollToBottom('right-box');
+        if (event.data.id === 'write') {
+            let data = event.data.data;
+            let filteredData = data.replace(/\x1B\[[0-9;]*[A-Za-z]/g, '');
+            let consoleElement = document.querySelector('.console-output-here');
+            if (consoleElement) {
+                consoleElement.textContent += filteredData;
+                if (filteredData.includes("Error: process exited with code 1.")) {
+                    editor.setOption("showGutter", true);
+                    hideSpinner();
+                }
+                else if (filteredData.includes("test.wasm")) {
+                    hideSpinner();
+                }
+                window.scrollTo({
+                    top: document.body.scrollHeight,
+                    behavior: 'smooth'
+                });
+                smoothScrollToBottom('right-box');
             }
         }
     }
