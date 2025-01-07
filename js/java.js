@@ -13,6 +13,14 @@ function hideSpinner() {
     document.getElementById('spinnerContainer').style.display = 'none';
 }
 
+function showLineNum() {
+    editor.setOption("showGutter", true);
+}
+
+function hideLineNum() {
+    editor.setOption("showGutter", false);
+}
+
 function prepareEditor() {
     editor = ace.edit("editor");
     editor.setTheme("ace/theme/eclipse");
@@ -71,6 +79,14 @@ document.querySelector('.clear-the-code').addEventListener('click', function() {
 document.querySelector('.reload-the-code').addEventListener('click', async function() {
     location.reload();
 });
+
+function goToBottom() {
+    window.scrollTo({
+        top: document.body.scrollHeight,
+        behavior: 'smooth'
+    });
+    smoothScrollToBottom('right-box');
+}
 
 function smoothScrollToBottom(className) {
     const scrollableDiv = document.querySelector(`.${className}`);

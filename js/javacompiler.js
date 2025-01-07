@@ -1,6 +1,6 @@
 document.querySelector('.run-the-code').addEventListener('click', function () {
     showSpinner();
-    editor.setOption("showGutter", false);
+    hideLineNum();
     document.querySelector('.prg-output').innerHTML = `<pre class='console-output-here' style='padding-bottom:2px;padding-left:5px;margin-bottom:0px'>Output:\n</pre>`;
     var fs = BrowserFS.BFSRequire("fs");
     var process = BrowserFS.BFSRequire('process');
@@ -45,12 +45,8 @@ document.querySelector('.run-the-code').addEventListener('click', function () {
         process.stdout.on('data', function (data) {
             textareaOutput.textContent += data.toString();
             hideSpinner();
-            editor.setOption("showGutter", false);
-            window.scrollTo({
-                top: document.body.scrollHeight,
-                behavior: 'smooth'
-            });
-            smoothScrollToBottom('right-box');
+            hideLineNum();
+            goToBottom();
         });
         
         process.stderr.on('data', function (data) {
@@ -58,13 +54,9 @@ document.querySelector('.run-the-code').addEventListener('click', function () {
             if (data.toString().includes("Error:"))
             {
                 hideSpinner();
-                editor.setOption("showGutter", true);
+                showLineNum();
             }
-            window.scrollTo({
-                top: document.body.scrollHeight,
-                behavior: 'smooth'
-            });
-            smoothScrollToBottom('right-box');
+            goToBottom();
         });
         
 
@@ -94,22 +86,15 @@ document.querySelector('.run-the-code').addEventListener('click', function () {
                             process.stdin.write("1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n");
                             
                         hideSpinner();
-                        window.scrollTo({
-                            top: document.body.scrollHeight,
-                            behavior: 'smooth'
-                        });
-                        smoothScrollToBottom('right-box');
+                        showLineNum();
+                        goToBottom();
 
                     } else {
                         textareaOutput.textContent += "Error: Compilation failed.\n";
                         
                         hideSpinner();
-                        editor.setOption("showGutter", true);
-                        window.scrollTo({
-                            top: document.body.scrollHeight,
-                            behavior: 'smooth'
-                        });
-                        smoothScrollToBottom('right-box');
+                        showLineNum();
+                        goToBottom();
                     }
                 }
             );
