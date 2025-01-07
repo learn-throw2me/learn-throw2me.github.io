@@ -1,7 +1,7 @@
 document.querySelector('.run-the-code').addEventListener('click', function () {
     showSpinner();
     hideLineNum();
-    document.querySelector('.prg-output').innerHTML = `<pre class='console-output-here' style='padding-bottom:2px;padding-left:5px;margin-bottom:0px'>Output:\n</pre>`;
+    document.querySelector('.prg-output').innerHTML = `<pre class='console-output-here' style='padding-bottom:2px;padding-left:5px;margin-bottom:0px'>Output. Please wait...\n</pre>`;
     var fs = BrowserFS.BFSRequire("fs");
     var process = BrowserFS.BFSRequire('process');
     var buffer = BrowserFS.BFSRequire("buffer").Buffer;
