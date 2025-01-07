@@ -162,3 +162,8 @@ section i:hover {
 ol, ul {
     padding-left: 1rem
 }
+
+pre {
+    background-color: rgb(45,45,45);
+    color: white;
+}
