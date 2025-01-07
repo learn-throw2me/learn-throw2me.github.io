@@ -34,10 +34,12 @@ function prepareEditor() {
     });
     editor.setValue('', 1);
     editor.container.style.lineHeight = 1.5;
-    editor.insert(`public class Main {
-    public static void main(String[] args) {
-        
-    }
+    editor.insert(`public class Main
+{
+public static void main(String[] args)
+{
+    
+}
 }`);
 }
 
@@ -68,10 +70,12 @@ document.querySelector('.clear-the-code').addEventListener('click', function() {
     document.querySelector('.prg-output').innerHTML = '';
     editor.setOption("showGutter", false);
     editor.setValue('', 1);
-    editor.insert(`public class Main {
-    public static void main(String[] args) {
-        
-    }
+    editor.insert(`public class Main
+{
+public static void main(String[] args)
+{
+    
+}
 }`);
     document.querySelector('.program-input').value = '';
 });
