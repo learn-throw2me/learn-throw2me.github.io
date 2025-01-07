@@ -80,6 +80,13 @@ document.querySelector('.reload-the-code').addEventListener('click', async funct
     location.reload();
 });
 
+function errorTest() {
+    if (document.querySelector('.console-output-here').textContent.includes("Error:"))
+    showLineNum();
+    else
+    hideLineNum();
+}
+
 function goToBottom() {
     window.scrollTo({
         top: document.body.scrollHeight,

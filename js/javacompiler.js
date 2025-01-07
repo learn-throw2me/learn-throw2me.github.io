@@ -33,8 +33,8 @@ document.querySelector('.run-the-code').addEventListener('click', function () {
 
     function afterLoad() {
         var textareaOutput = document.querySelector('.console-output-here');
+        var textareaInput = document.querySelector('.program-input').value;
         var textareaCode = editor.getValue();
-        var textareaInput = document.querySelector('.program-input');
         
         process.initializeTTYs();
         process.chdir('/home');
@@ -45,17 +45,14 @@ document.querySelector('.run-the-code').addEventListener('click', function () {
         process.stdout.on('data', function (data) {
             textareaOutput.textContent += data.toString();
             hideSpinner();
-            hideLineNum();
+            errorTest();
             goToBottom();
         });
         
         process.stderr.on('data', function (data) {
             textareaOutput.textContent += data.toString()
-            if (data.toString().includes("Error:"))
-            {
-                hideSpinner();
-                showLineNum();
-            }
+            hideSpinner();
+            showLineNum();
             goToBottom();
         });
         
@@ -80,8 +77,8 @@ document.querySelector('.run-the-code').addEventListener('click', function () {
                             }
                         );
 
-                        if (textareaInput.value != null && textareaInput.value !== "")
-                            process.stdin.write(textareaInput.value + "\n1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n");
+                        if (textareaInput != null && textareaInput !== "")
+                            process.stdin.write(textareaInput + "\n1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n");
                         else
                             process.stdin.write("1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n");
                             
