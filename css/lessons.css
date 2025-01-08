@@ -164,5 +164,7 @@ ol, ul {
 }
 
 pre {
-    color: yellow;
+    background-color: rgb(65,65,65);
+    font-size: 14px;
+    color: white;
 }
