@@ -164,10 +164,10 @@ ol, ul {
 }
 
 pre {
-    background-color: whitesmoke;
+    background-color: #035ca5;
     font-size: 14px;
     border: 3px solid whitesmoke;
     border-radius: 8px;
     box-sizing: border-box;
-    color: #035ca5;
+    color: white;
 }
