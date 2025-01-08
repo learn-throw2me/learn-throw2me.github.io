@@ -164,9 +164,10 @@ ol, ul {
 }
 
 pre {
-    background-color: #035ca5;
+    background-color: whitesmoke;
     font-size: 14px;
-    border: 3px solid #035ca5;
+    border: 3px solid whitesmoke;
+    border-radius: 8px;
     box-sizing: border-box;
-    color: yellow;
+    color: #035ca5;
 }
