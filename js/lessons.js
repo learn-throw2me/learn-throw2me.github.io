@@ -87,3 +87,57 @@ document.addEventListener('DOMContentLoaded', async function() {
         }
     }
 });
+
+function startSpeech(path) {
+    let folder = null;
+    let contentIndex = null;
+    let fetchRoute = null;
+    const firstTwoChars = path.slice(0, 2);
+    switch (firstTwoChars) {
+        case "cc":
+        folder = "c/speech";
+        break;
+        case "cp":
+        folder = "cpp/speech";
+        break;
+        case "ja":
+        folder = "java/speech";
+        break;
+        case "da":
+        folder = "dsa/speech";
+        break;
+        case "db":
+        folder = "dbsql/speech";
+        break;
+        case "we":
+        folder = "web/speech";
+        break;
+        case "py":
+        folder = "python/speech";
+        break;
+        default:
+        folder = null;
+    }
+
+    if (folder) {
+        const contentIndexValue = path.slice(2);
+        contentIndex = parseInt(contentIndexValue, 10);
+        if (isNaN(contentIndex)) {
+        contentIndex = null;
+        }
+        if (contentIndex !== null) {
+        fetchRoute = `/${folder}/${contentIndex}.txt`;
+
+        fetch(fetchRoute)
+            .then(response => {
+            if (response.ok) {
+                return response.text();
+            }
+            throw new Error('Failed to load content');
+            })
+            .then(voiceContent => {
+                speakText(voiceContent);
+            })
+        }
+    }
+}
