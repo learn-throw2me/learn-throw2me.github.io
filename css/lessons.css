@@ -192,3 +192,19 @@ pre {
     gap: 2px;
     margin-bottom: 13px;
 }
+
+.vsep8 {
+    margin-bottom: 8px !important;
+}
+
+.vsep10 {
+    margin-bottom: 10px !important;
+}
+
+.vsep12 {
+    margin-bottom: 12px !important;
+}
+
+.vsep14 {
+    margin-bottom: 14px !important;
+}
