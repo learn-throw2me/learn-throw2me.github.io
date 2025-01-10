@@ -1,4 +1,5 @@
 let editor;
+let preCode = "";
 
 document.addEventListener('DOMContentLoaded', async function() {
     prepareEditor();
@@ -26,7 +27,10 @@ function prepareEditor() {
     });
     editor.setValue('', 1);
     editor.container.style.lineHeight = 1.5;
-    editor.insert("--Queries\n");
+    if (preCode == "")
+        editor.insert("--Queries\n");
+    else
+        editor.insert("--Run to see pre-existing data\n");
 }
 
 function resizeBoxes() {
@@ -56,7 +60,10 @@ document.querySelector('.clear-the-code').addEventListener('click', function() {
     document.querySelector('.prg-output').innerHTML = '';
     editor.setOption("showGutter", false);
     editor.setValue('', 1);
-    editor.insert("--Queries\n");
+    if (preCode == "")
+        editor.insert("--Queries\n");
+    else
+        editor.insert("--Run to see pre-existing data\n");
 });
 
 document.querySelector('.reload-the-code').addEventListener('click', async function() {
@@ -81,7 +88,7 @@ document.querySelector('.run-the-code').addEventListener('click', async function
     document.querySelector('.prg-output').innerHTML = `<pre class='console-output-here' style='padding-bottom:2px;padding-left:5px;margin-bottom:0px'></pre>`;
     showSpinner();
     editor.setOption("showGutter", false);
-    var sqlQuery = editor.getValue();
+    var sqlQuery = preCode + editor.getValue();
     worker.onmessage = function (event) {
         hideSpinner();
         let consoleElement = document.querySelector('.console-output-here');
