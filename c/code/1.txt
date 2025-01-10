@@ -1,0 +1,12 @@
+>>###input#start
+input demo
+input second line
+>>###input#end
+
+>>###precode#start
+>>###precode#end
+
+>>###code#start
+//code comment first line
+//code comment second line
+>>###code#end
