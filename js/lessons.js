@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', async function() {
                     if (mainContentDiv) {
                         mainContentDiv.innerHTML = htmlContent;
                     }
-                })
+                });
             }
         }
     }
@@ -137,7 +137,7 @@ function startSpeech(path) {
             })
             .then(voiceContent => {
                 speakText(voiceContent);
-            })
+            });
         }
     }
 }
