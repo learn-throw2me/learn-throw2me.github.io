@@ -162,6 +162,9 @@ function restoreScrollPosition() {
     const savedData = localStorage.getItem(currentUrl);
 
     if (savedData !== null) {
-        window.scrollTo(0, JSON.parse(savedData));
+        window.scrollTo({
+            top: JSON.parse(savedData),
+            behavior: 'smooth'
+        });
     }
 }
