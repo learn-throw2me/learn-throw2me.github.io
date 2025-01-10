@@ -27,6 +27,7 @@ function setUpdateAlertLink(url) {
 }
 
 document.addEventListener('DOMContentLoaded', async function() {
+    detectAndSaveScrollPosition();
     const hash = window.location.hash;
     const paramValue = hash.slice(1);
     let folder = null;
@@ -81,6 +82,7 @@ document.addEventListener('DOMContentLoaded', async function() {
                     const mainContentDiv = document.querySelector('.main-content');
                     if (mainContentDiv) {
                         mainContentDiv.innerHTML = htmlContent;
+                        restoreScrollPosition();
                     }
                 });
             }
@@ -139,5 +141,27 @@ function startSpeech(path) {
                 speakText(voiceContent);
             });
         }
+    }
+}
+
+function detectAndSaveScrollPosition() {
+    let isScrolling;
+
+    document.addEventListener('scroll', function () {
+        clearTimeout(isScrolling);
+        isScrolling = setTimeout(function () {
+            const currentUrl = JSON.stringify(window.location.href);
+            const scrollData = JSON.stringify(window.scrollY);
+            localStorage.setItem(currentUrl, scrollData);
+        }, 150);
+    });
+}
+
+function restoreScrollPosition() {
+    const currentUrl = JSON.stringify(window.location.href);
+    const savedData = localStorage.getItem(currentUrl);
+
+    if (savedData !== null) {
+        window.scrollTo(0, JSON.parse(savedData));
     }
 }
