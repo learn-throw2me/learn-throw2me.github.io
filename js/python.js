@@ -19,6 +19,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         } 
     clearTimeout(reloadTimer);
     hideSpinner();
+    loadCode();
 });
 
 function showSpinner() {

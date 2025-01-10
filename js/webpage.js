@@ -3,6 +3,7 @@ let editor;
 document.addEventListener('DOMContentLoaded', async function() {
     prepareEditor();
     resizeBoxes();
+    loadCode();
 });
 
 function prepareEditor() {

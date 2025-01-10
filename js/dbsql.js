@@ -2,8 +2,10 @@ let editor;
 let preCode = "";
 
 document.addEventListener('DOMContentLoaded', async function() {
+    preCode = "";
     prepareEditor();
     resizeBoxes();
+    loadCode();
 });
 
 function showSpinner() {
