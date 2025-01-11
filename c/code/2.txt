@@ -10,7 +10,7 @@
 int main() 
 {
     //print data on screen
-    printf("Hello, World!\n");
+    printf("Hello, World!");
     return 0;
 }
 >>###code#end

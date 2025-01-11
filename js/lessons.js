@@ -90,7 +90,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     }
 });
 
-function startSpeech(path) {
+function startSpeech(path, part) {
     let folder = null;
     let contentIndex = null;
     let fetchRoute = null;
@@ -138,7 +138,12 @@ function startSpeech(path) {
             throw new Error('Failed to load content');
             })
             .then(voiceContent => {
-                speakText(voiceContent);
+                const extractedText = voiceContent.includes(`<<${part}>>`)
+                    ? voiceContent
+                        .split(`<<${part}>>`)[1]
+                        .replace(/<<part\d+>>/g, '')
+                    : '';
+                speakText(extractedText);
             });
         }
     }
