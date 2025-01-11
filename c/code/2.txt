@@ -1,0 +1,16 @@
+>>###input#start
+>>###input#end
+
+>>###precode#start
+>>###precode#end
+
+>>###code#start
+#include <stdio.h>
+
+int main() 
+{
+    //print data on screen
+    printf("Hello, World!\n");
+    return 0;
+}
+>>###code#end
