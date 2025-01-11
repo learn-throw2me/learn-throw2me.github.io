@@ -91,6 +91,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 });
 
 function startSpeech(path, part) {
+    stopSpeech();
     let folder = null;
     let contentIndex = null;
     let fetchRoute = null;
@@ -143,8 +144,6 @@ function startSpeech(path, part) {
                         .split(`<<${part}>>`)[1]
                         .replace(/<<part\d+>>/g, '')
                     : '';
-                if (part != "part1")
-                    stopSpeech();
                 speakText(extractedText);
             });
         }
