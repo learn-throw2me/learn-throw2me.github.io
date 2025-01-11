@@ -143,6 +143,8 @@ function startSpeech(path, part) {
                         .split(`<<${part}>>`)[1]
                         .replace(/<<part\d+>>/g, '')
                     : '';
+                if (part != "part1")
+                    stopSpeech();
                 speakText(extractedText);
             });
         }
