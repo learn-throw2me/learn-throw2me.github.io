@@ -59,7 +59,7 @@ function loadCode() {
                     preCode = precodeContent;
                 if(codeSectionContent !="") {
                     editor.setValue('', 1);
-                    editor.insert(codeSectionContent);
+                    editor.insert(codeSectionContent + "\n");
                 }
             });
         }

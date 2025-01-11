@@ -1,8 +1,14 @@
 >>###input#start
+sample input line 1
+sample input line 2
 >>###input#end
 
 >>###precode#start
 >>###precode#end
 
 >>###code#start
+void main()
+{
+    
+}
 >>###code#end
