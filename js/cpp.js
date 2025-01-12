@@ -1,5 +1,5 @@
 let editor;
-
+let fflushNote = false;
 document.addEventListener('DOMContentLoaded', async function() {
     prepareEditor();
     resizeBoxes();
@@ -101,6 +101,11 @@ class WorkerAPI {
                     hideSpinner();
                 }
                 else if (filteredData.includes("test.wasm")) {
+                    const code = editor.getValue();
+                    if (/scanf|fscanf|sscanf|getchar|fgetc|gets|fgets|getc|cin|getline|cin\.get|cin\.getline|cin\.read/.test(code) && !/fflush\(stdin\);/.test(code) && fflushNote == false) {
+                        document.querySelector('.console-output-here').textContent += "\n*IMP: Please add (in this app only) \nfflush(stdin); \nin main block start to use input.\n";
+                        fflushNote = true;
+                    }
                     hideSpinner();
                 }
                 window.scrollTo({
@@ -123,8 +128,9 @@ document.querySelector('.run-the-code').addEventListener('click', async function
     //let prgOutput = '<span style="font-size:10px"><i class="fas fa-globe" style="color: lightgreen;"></i> Throw 2 Me (.com)</span> \n';
     document.querySelector('.prg-output').innerHTML = `<pre class='console-output-here' style='padding-bottom:2px;padding-left:5px;margin-bottom:0px'></pre>`;
     const code = editor.getValue();
-    if (/scanf|fscanf|sscanf|getchar|fgetc|gets|fgets|getc|cin|getline|cin\.get|cin\.getline|cin\.read/.test(code) && !/\/\/capture input/.test(code))
-    document.querySelector('.console-output-here').textContent += "*Please add \n//capture input \ncomment in main once (in this app) to read input.\n";
+    fflushNote = false;
+    //if (/scanf|fscanf|sscanf|getchar|fgetc|gets|fgets|getc|cin|getline|cin\.get|cin\.getline|cin\.read/.test(code) && !/\/\/capture input/.test(code))
+    //document.querySelector('.console-output-here').textContent += "*Please add \n//capture input \ncomment in main once (in this app) to read input.\n";
     let inputCode = redirectInputsToStdin(code, inputValues);
     api.compileLinkRun(inputCode);
 });
@@ -133,7 +139,7 @@ function redirectInputsToStdin(code, inputValues) {
     if (inputValues == null || inputValues == '') return code;
     if (code.includes("stdio.h")) {
         inputValues = inputValues.split('').reverse().join('');
-        let modifiedCode = code.replace(/\/\/capture input\n/, `${[...inputValues].map(c => {
+        let modifiedCode = code.replace(/fflush\(stdin\);\n/, `${[...inputValues].map(c => {
             if (c === '\n') {
                 return `ungetc('\\n',stdin)`;
             }
@@ -146,7 +152,7 @@ function redirectInputsToStdin(code, inputValues) {
     }
     else if (code.includes("iostream")) {
         inputValues = inputValues.split('').reverse().join('');
-        let modifiedCode = code.replace(/\/\/capture input\n/, `${[...inputValues].map(c => {
+        let modifiedCode = code.replace(/fflush\(stdin\);\n/, `${[...inputValues].map(c => {
           if (c === '\n') {
               return `cin.putback('\\n')`;
           }
