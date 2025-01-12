@@ -103,7 +103,7 @@ class WorkerAPI {
                 else if (filteredData.includes("test.wasm")) {
                     const code = editor.getValue();
                     if (/scanf|fscanf|sscanf|getchar|fgetc|gets|fgets|getc|cin|getline|cin\.get|cin\.getline|cin\.read/.test(code) && !/fflush\(stdin\);/.test(code) && fflushNote == false) {
-                        document.querySelector('.console-output-here').textContent += "\n*IMP: Please add (in this app only) \nfflush(stdin); \nin main block start to use input.\n";
+                        document.querySelector('.console-output-here').textContent += "\n*IMP: Please add (in this app only) \nfflush(stdin); \nin main block start, to use input.\n";
                         fflushNote = true;
                     }
                     hideSpinner();
