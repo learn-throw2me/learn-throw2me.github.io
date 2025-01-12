@@ -170,6 +170,7 @@ pre {
     border: 3px solid #035ca5;
     box-sizing: border-box;
     color: whitesmoke;
+    margin-bottom: 2px;
 }
 
  .micro-button {
@@ -190,7 +191,24 @@ pre {
 .micro-button-class {
     display: flex;
     gap: 2px;
-    margin-bottom: 13px;
+    justify-content: flex-end;
+    /*margin-bottom: 13px;*/
+}
+
+.vsep0 {
+    margin-bottom: 0px !important;
+}
+
+.vsep2 {
+    margin-bottom: 2px !important;
+}
+
+.vsep4 {
+    margin-bottom: 4px !important;
+}
+
+.vsep6 {
+    margin-bottom: 6px !important;
 }
 
 .vsep8 {
@@ -207,4 +225,12 @@ pre {
 
 .vsep14 {
     margin-bottom: 14px !important;
+}
+
+.vsep16 {
+    margin-bottom: 16px !important;
+}
+
+.main-content * {
+    margin-bottom: 2px;
 }
