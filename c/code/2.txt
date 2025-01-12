@@ -1,3 +1,5 @@
+<<part1>>
+
 >>###input#start
 >>###input#end
 
@@ -10,6 +12,27 @@
 int main() 
 {
     //print data on screen
+    printf("Hello, World!");
+    return 0;
+}
+>>###code#end
+
+
+<<part2>>
+
+>>###input#start
+dummy input text
+>>###input#end
+
+>>###precode#start
+>>###precode#end
+
+>>###code#start
+#include <stdio.h>
+
+int main() 
+{
+    //print data on screen part 2
     printf("Hello, World!");
     return 0;
 }

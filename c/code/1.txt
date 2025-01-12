@@ -1,3 +1,5 @@
+<<part1>>
+
 >>###input#start
 sample input line 1
 sample input line 2

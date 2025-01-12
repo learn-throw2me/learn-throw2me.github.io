@@ -6,7 +6,8 @@ function loadCode() {
     let fetchRoute = null;
     if (path == "" || path ==null)
         return;
-    const firstTwoChars = path.slice(0, 2);
+    const [beforePart, part] = [path.slice(0, path.indexOf("part")), path.slice(path.indexOf("part"))];
+    const firstTwoChars = beforePart.slice(0, 2);
     switch (firstTwoChars) {
         case "cc":
         folder = "c/code";
@@ -34,7 +35,7 @@ function loadCode() {
     }
 
     if (folder) {
-        const contentIndexValue = path.slice(2);
+        const contentIndexValue = beforePart.slice(2);
         contentIndex = parseInt(contentIndexValue, 10);
         if (isNaN(contentIndex)) {
         contentIndex = null;
@@ -49,9 +50,22 @@ function loadCode() {
                 }
             })
             .then(codeContent => {
-                const inputContent = extractContent('>>###input#start', '>>###input#end', codeContent);
-                const precodeContent = extractContent('>>###precode#start', '>>###precode#end', codeContent);
-                const codeSectionContent = extractContent('>>###code#start', '>>###code#end', codeContent);
+
+                console.log(codeContent);
+                console.log(part);
+
+                const extractedText = codeContent.includes(`<<${part}>>`)
+                ? codeContent
+                    .split(`<<${part}>>`)[1]
+                    .split(/<<part\d+>>/)[0]
+                    .replace(/<<part\d+>>/g, '')
+                : '';
+
+                console.log(extractedText);
+
+                const inputContent = extractContent('>>###input#start', '>>###input#end', extractedText);
+                const precodeContent = extractContent('>>###precode#start', '>>###precode#end', extractedText);
+                const codeSectionContent = extractContent('>>###code#start', '>>###code#end', extractedText);
 
                 if (inputContent != "")
                     document.querySelector('.program-input').value = inputContent;
