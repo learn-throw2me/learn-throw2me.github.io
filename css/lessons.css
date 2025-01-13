@@ -234,3 +234,32 @@ pre {
 .main-content * {
     margin-bottom: 2px;
 }
+::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+}
+
+::-webkit-scrollbar-track {
+    background: #035ca5;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #0582d2;
+}
+
+::-webkit-scrollbar:vertical {
+    width: 0px;
+}
+
+::-webkit-scrollbar-track:vertical {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb:vertical {
+    background: transparent;
+}
+
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #0582d2 transparent;
+}

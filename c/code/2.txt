@@ -32,8 +32,7 @@ dummy input text
 
 int main() 
 {
-    //print data on screen part 2
-    printf("Hello, World!");
+    printf("Hello, World!"); // Comment can be added here also
     return 0;
 }
 >>###code#end
