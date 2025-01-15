@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', async function() {
             location.reload();
         }, 10000);
         pyodide = await loadPyodide();
-        //await pyodide.loadPackage(['numpy', 'pandas']);
+        await pyodide.loadPackage(['numpy', 'pandas']);
         } catch {
             hideSpinner();
             location.reload();
