@@ -2,6 +2,10 @@ function restart() {
     window.location.replace('index.html?t=' + new Date().getTime());
 }
 
+function restart2() {
+    window.location.replace('start.html?t=' + new Date().getTime());
+}
+
 function showUpdateAlertModal() {
     document.querySelector('.update-alert').classList.add('show');
     document.querySelector('.update-alert').style.display = 'block';
