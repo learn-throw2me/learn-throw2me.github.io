@@ -232,7 +232,7 @@ pre {
 }
 
 .main-content * {
-    margin-bottom: 2px;
+    margin-bottom: 8px;
 }
 ::-webkit-scrollbar {
     width: 4px;
