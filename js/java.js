@@ -41,7 +41,8 @@ public static void main(String[] args)
 {
     
 }
-}`);
+}
+`);
 }
 
 function resizeBoxes() {
@@ -77,7 +78,8 @@ public static void main(String[] args)
 {
     
 }
-}`);
+}
+`);
     document.querySelector('.program-input').value = '';
 });
 
