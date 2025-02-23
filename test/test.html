@@ -78,14 +78,19 @@
         }
 
         window.onload = () => {
-            loadUserPage();
             adjustIframeSize();
+            loadUserPage();
         };
         
-        /* window.onresize = () => {
+        window.matchMedia("(orientation: portrait)").addEventListener("change", () => {
             adjustIframeSize();
             loadUserPage();
-        }; */
+        });
+
+        window.matchMedia("(orientation: landscape)").addEventListener("change", () => {
+            adjustIframeSize();
+            loadUserPage();
+        });
     </script>
 </head>
 <body>
