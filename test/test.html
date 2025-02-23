@@ -6,31 +6,28 @@
     <title>Full-Screen Iframe</title>
 
     <style>
-        /* ✅ Ensure the parent body fills the screen and has a white background */
         html, body {
             margin: 0;
             padding: 0;
             border: none;
-            width: 100%;
-            height: 100%;
-            justify-content: center;
-            align-items: center;
-            background-color: #ffffff; /* ✅ White background for natural behavior */
+            background-color: #ffffff;
         }
 
-        /* ✅ Full-screen iframe with no predefined styles */
         iframe {
-            width: 100%;
-            height: 100%;
             border: none;
             margin: 0;
             padding: 0;
+            display: block;
         }
     </style>
 
     <script>
+        function adjustIframeSize(iframe) {
+            iframe.style.width = window.innerWidth + "px";
+            iframe.style.height = window.innerHeight + "px";
+        }
+
         async function loadUserPage() {
-            // User's raw HTML (no predefined styles, fully customizable)
             const userHTML = `
             <!DOCTYPE html>
             <html lang="en">
@@ -39,7 +36,7 @@
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
                 <title>User Page</title>
             </head>
-            <body style="background-color: white;">
+            <body style="background-color: white; margin: 0; padding: 0;">
                 <h1>Welcome to Your Page</h1>
                 <p>This is user-generated content.</p>
                 <p>Keep scrolling to see how it behaves...</p>
@@ -47,22 +44,23 @@
                 <p>Even more content...</p>
                 <p>More scrolling...</p>
                 <p>Still scrolling...</p>
-                <p>Yes, the iframe content behaves like a normal window! 🎉</p>
+                <p>Yes, the iframe content behaves like a normal window!</p>
             </body>
             </html>`;
 
-            // Convert HTML string to a secure Blob
             const blob = new Blob([userHTML], { type: "text/html" });
             const blobURL = URL.createObjectURL(blob);
 
-            // Create and load the iframe
             const iframe = document.createElement("iframe");
+            adjustIframeSize(iframe);
             iframe.src = blobURL;
-            document.body.innerHTML = ""; // Clear the page
+
+            document.body.innerHTML = "";
             document.body.appendChild(iframe);
+
+            window.addEventListener("resize", () => adjustIframeSize(iframe));
         }
 
-        // Load user page when the window is ready
         window.onload = loadUserPage;
     </script>
 </head>
