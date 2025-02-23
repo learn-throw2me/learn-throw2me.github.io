@@ -19,11 +19,12 @@
             padding: 0;
             border: none;
             background-color: #ffffff;
+            overflow: hidden;
         }
 
         iframe {
             width: 100%;
-            height: 100%;
+            height: 100vh;
             margin: 0;
             padding: 0;
             border: none;
@@ -32,12 +33,10 @@
     </style>
 
     <script>
-        function adjustIframeSize(iframe) {
-            iframe.style.width = window.innerWidth + "px";
-            iframe.style.height = window.innerHeight + "px";
-        }
+        let blobURL = "";
+        let iframe = null;
 
-        async function loadUserPage() {
+        function generateBlobURL() {
             const userHTML = `<!DOCTYPE html>
             <html lang="en">
             <head>
@@ -48,72 +47,45 @@
             <body style="background-color: pink;">
                 <h1>Welcome to Your Page</h1>
                 <p>This is user-generated content.</p>
-                <p>Keep scrolling to see how it behaves...</p>
-                <p>More content...</p>
-                <p>Even more content...</p>
-                <p>Keep scrolling to see how it behaves...</p>
-                <p>More content...</p>
-                <p>Even more content...</p>
-                <p>Keep scrolling to see how it behaves...</p>
-                <p>More content...</p>
-                <p>Even more content...</p>
-                <p>Keep scrolling to see how it behaves...</p>
-                <p>More content...</p>
-                <p>Even more content...</p>
-                <p>Keep scrolling to see how it behaves...</p>
-                <p>More content...</p>
-                <p>Even more content...</p>
-                <p>Keep scrolling to see how it behaves...</p>
-                <p>More content...</p>
-                <p>Even more content...</p>
-                <p>Keep scrolling to see how it behaves...</p>
-                <p>More content...</p>
-                <p>Even more content...</p>
-                <p>Keep scrolling to see how it behaves...</p>
-                <p>More content...</p>
-                <p>Even more content...</p>
-                <p>Keep scrolling to see how it behaves...</p>
-                <p>More content...</p>
-                <p>Even more content...</p>
-                <p>Keep scrolling to see how it behaves...</p>
-                <p>More content...</p>
-                <p>Even more content...</p>
-                <p>Keep scrolling to see how it behaves...</p>
-                <p>More content...</p>
-                <p>Even more content...</p>
-                <p>Keep scrolling to see how it behaves...</p>
-                <p>More content...</p>
-                <p>Even more content...</p>
-                <p>Keep scrolling to see how it behaves...</p>
-                <p>More content...</p>
-                <p>Even more content...</p>
-                <p>Keep scrolling to see how it behaves...</p>
-                <p>More content...</p>
-                <p>Even more content...</p>
-                <p>Keep scrolling to see how it behaves...</p>
-                <p>More content...</p>
-                <p>Even more content...</p>
-                <p>Keep scrolling to see how it behaves...</p>
-                <p>More content...</p>
-                <p>Even more content...</p>
-                <p>More scrolling...</p>
-                <p>Still scrolling...</p>
+                ${"<p>Keep scrolling to see how it behaves...</p>".repeat(20)}
                 <p>Yes, the iframe content behaves like a normal window!</p>
             </body>
             </html>`;
 
             const blob = new Blob([userHTML], { type: "text/html" });
-            const blobURL = URL.createObjectURL(blob);
-
-            const iframe = document.createElement("iframe");
-            document.body.appendChild(iframe);
-            adjustIframeSize(iframe);
-            iframe.src = blobURL;
-
-            window.addEventListener("resize", () => adjustIframeSize(iframe));
+            return URL.createObjectURL(blob);
         }
 
-        window.onload = loadUserPage;
+        function adjustIframeSize() {
+            if (iframe) {
+                iframe.style.width = window.innerWidth + "px";
+                iframe.style.height = window.innerHeight + "px";
+            }
+        }
+
+        function loadUserPage() {
+            if (blobURL) {
+                URL.revokeObjectURL(blobURL);
+            }
+            blobURL = generateBlobURL();
+            
+            if (!iframe) {
+                iframe = document.createElement("iframe");
+                document.body.appendChild(iframe);
+            }
+            adjustIframeSize();
+            iframe.src = blobURL;
+        }
+
+        window.onload = () => {
+            loadUserPage();
+            adjustIframeSize();
+        };
+        
+        /* window.onresize = () => {
+            adjustIframeSize();
+            loadUserPage();
+        }; */
     </script>
 </head>
 <body>
