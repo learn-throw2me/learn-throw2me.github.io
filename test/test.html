@@ -22,7 +22,7 @@
             overflow: hidden;
         }
 
-        iframe {
+        object {
             width: 100%;
             height: 100vh;
             margin: 0;
@@ -34,7 +34,7 @@
 
     <script>
         let blobURL = "";
-        let iframe = null;
+        let objectTag = null;
 
         function generateBlobURL() {
             const userHTML = `<!DOCTYPE html>
@@ -194,10 +194,10 @@
             return URL.createObjectURL(blob);
         }
 
-        function adjustIframeSize() {
-            if (iframe) {
-                iframe.style.width = window.innerWidth + "px";
-                iframe.style.height = window.innerHeight + "px";
+        function adjustObjectSize() {
+            if (objectTag) {
+                objectTag.style.width = window.innerWidth + "px";
+                objectTag.style.height = window.innerHeight + "px";
             }
         }
 
@@ -207,26 +207,26 @@
             }
             blobURL = generateBlobURL();
             
-            if (!iframe) {
-                iframe = document.createElement("iframe");
-                document.body.appendChild(iframe);
+            if (!objectTag) {
+                objectTag = document.createElement("object");
+                document.body.appendChild(objectTag);
             }
-            adjustIframeSize();
-            iframe.src = blobURL;
+            adjustObjectSize();
+            objectTag.data = blobURL;
         }
 
         window.onload = () => {
-            adjustIframeSize();
+            adjustObjectSize();
             loadUserPage();
         };
         
         window.matchMedia("(orientation: portrait)").addEventListener("change", () => {
-            adjustIframeSize();
+            adjustObjectSize();
             loadUserPage();
         });
 
         window.matchMedia("(orientation: landscape)").addEventListener("change", () => {
-            adjustIframeSize();
+            adjustObjectSize();
             loadUserPage();
         });
     </script>

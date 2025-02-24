@@ -3,134 +3,150 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Portfolio</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <meta name="description" content="Real Estate Business Portfolio">
+    <meta name="keywords" content="real estate, portfolio, property, business">
+    <title>Real Estate Business Portfolio</title>
     <style>
         body {
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #fafafa;
+        }
+        header {
+            background-color: #333;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #444;
+        }
+        nav a {
+            color: white;
+            padding: 14px 20px;
+            text-decoration: none;
+            text-align: center;
+        }
+        nav a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+        }
+        .property-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+            border-bottom: 1px solid #ddd;
+        }
+        .property-item h3 {
+            margin: 0;
+            font-size: 1.5em;
+        }
+        .property-item p {
+            font-size: 1em;
+            color: #555;
+        }
+        footer {
+            background-color: #333;
             color: white;
             text-align: center;
-            overflow-x: hidden;
-            transition: background 0.5s ease-in-out;
-            animation: gradientBG 10s infinite alternate;
-        }
-
-        @keyframes gradientBG {
-            0% {
-                background: linear-gradient(135deg, #1e3c72, #2a5298);
-            }
-            100% {
-                background: linear-gradient(135deg, #2a5298, #1e3c72);
-            }
-        }
-
-        .content-container {
-            transform: scale(0.95);
-            transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
-            opacity: 0;
-        }
-
-        .content-container.visible {
-            transform: scale(1);
-            opacity: 1;
-        }
-
-        .card {
-            background: rgba(255, 255, 255, 0.1);
-            border: none;
-            backdrop-filter: blur(10px);
-            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0px 4px 20px rgba(255, 255, 255, 0.2);
-        }
-
-        .btn-custom {
-            background-color: #ff9800;
-            color: white;
-            transition: all 0.3s ease-in-out;
-        }
-
-        .btn-custom:hover {
-            background-color: #e68900;
-            transform: scale(1.05);
-        }
-
-        .btn-glow {
-            transition: box-shadow 0.3s ease-in-out;
-        }
-
-        .btn-glow:hover {
-            box-shadow: 0px 0px 15px rgba(255, 152, 0, 0.8);
-        }
-
-        .youtube-video {
-            width: 100%;
-            max-width: 560px;
-            height: 315px;
-            margin: auto;
-            border-radius: 10px;
-            transition: transform 0.3s ease-in-out;
-        }
-
-        .youtube-video:hover {
-            transform: scale(1.02);
+            padding: 10px 0;
         }
     </style>
 </head>
 <body>
 
-    <div class="container mt-5">
-        <div class="content-container">
-            <h1 class="mt-3">Your Name</h1>
-            <p class="lead">Web Developer | Designer | Creator</p>
-            <a href="https://www.facebook.com/profile.php?id=61563347068813" target="_blank" class="btn btn-custom btn-glow">
-                <i class="fab fa-facebook"></i> Facebook Profile
-            </a>
+<header>
+    <h1>Real Estate Business</h1>
+    <p>Your trusted partner in finding the perfect property</p>
+</header>
 
-            <div class="row mt-4">
-                <div class="col-md-6 offset-md-3">
-                    <div class="card p-4">
-                        <h3 class="mb-3">About Me</h3>
-                        <p>Passionate web developer with a love for designing and creating innovative web solutions. Experienced in front-end and back-end development.</p>
-                    </div>
-                </div>
-            </div>
+<nav>
+    <a href="#home">Home</a>
+    <a href="#services">Services</a>
+    <a href="#properties">Properties</a>
+    <a href="#contact">Contact</a>
+</nav>
 
-            <div class="row mt-4">
-                <div class="col-md-6 offset-md-3">
-                    <div class="card p-4">
-                        <h3 class="mb-3">Featured Project</h3>
-                        <iframe class="youtube-video" src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
-                    </div>
-                </div>
-            </div>
+<div class="container" id="home">
+    <h2>Welcome to Our Real Estate Business</h2>
+    <p>We specialize in helping you find the best properties to match your needs. Whether you are looking to buy, rent, or invest, our team offers top-notch services tailored to your goals.</p>
+</div>
 
-            <div class="row mt-4">
-                <div class="col-md-6 offset-md-3">
-                    <div class="card p-4">
-                        <h3 class="mb-3">Contact</h3>
-                        <p>Email: your.email@example.com</p>
-                        <p>Phone: +123 456 7890</p>
-                        <a href="mailto:your.email@example.com" class="btn btn-custom">
-                            <i class="fas fa-envelope"></i> Email Me
-                        </a>
-                    </div>
-                </div>
-            </div>
+<div class="container" id="services">
+    <h2>Our Services</h2>
+    <div class="property-item">
+        <div>
+            <h3>Buying Properties</h3>
+            <p>Our team guides you through the entire buying process, from property search to closing the deal.</p>
         </div>
     </div>
+    <div class="property-item">
+        <div>
+            <h3>Renting Properties</h3>
+            <p>If you're looking for a rental, we help you find the perfect place to call home, with flexible lease terms.</p>
+        </div>
+    </div>
+    <div class="property-item">
+        <div>
+            <h3>Real Estate Investment</h3>
+            <p>We assist investors in finding profitable real estate opportunities, including residential and commercial properties.</p>
+        </div>
+    </div>
+</div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        // Fade-in effect when page loads
-        document.addEventListener("DOMContentLoaded", function() {
-            document.querySelector(".content-container").classList.add("visible");
-        });
-    </script>
+<div class="container" id="properties">
+    <h2>Featured Properties</h2>
+    <div class="property-item">
+        <div>
+            <h3>Luxury Villa in Downtown</h3>
+            <p>A stunning 5-bedroom villa with top-of-the-line amenities, located in the heart of the city.</p>
+        </div>
+    </div>
+    <div class="property-item">
+        <div>
+            <h3>Modern Apartment in Suburbs</h3>
+            <p>Spacious 3-bedroom apartment, perfect for families, with easy access to public transportation.</p>
+        </div>
+    </div>
+    <div class="property-item">
+        <div>
+            <h3>Commercial Space in Business District</h3>
+            <p>Prime location for businesses, with high foot traffic and modern infrastructure.</p>
+        </div>
+    </div>
+</div>
+
+<div class="container" id="contact">
+    <h2>Contact Us</h2>
+    <p>If you're interested in any of our properties or would like more information about our services, feel free to reach out.</p>
+    <form>
+        <label for="name">Your Name:</label><br>
+        <input type="text" id="name" name="name"><br><br>
+        <label for="email">Your Email:</label><br>
+        <input type="email" id="email" name="email"><br><br>
+        <label for="message">Your Message:</label><br>
+        <textarea id="message" name="message"></textarea><br><br>
+        <input type="submit" value="Send Message">
+    </form>
+</div>
+
+<footer>
+    <p>&copy; 2023 Real Estate Business. All Rights Reserved.</p>
+</footer>
+
 </body>
 </html>
