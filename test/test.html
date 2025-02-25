@@ -191,7 +191,7 @@
 
         function createIsolatedIframe() {
             let iframe = document.createElement("iframe");
-            iframe.sandbox = "allow-scripts allow-forms allow-popups allow-modals allow-downloads allow-presentation allow-pointer-lock";
+            iframe.sandbox = "allow-scripts allow-same-origin allow-forms allow-popups allow-modals allow-downloads allow-presentation allow-pointer-lock";
             iframe.src = generateBlobURL();
             document.body.appendChild(iframe);
 
