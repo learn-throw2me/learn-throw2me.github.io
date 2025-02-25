@@ -15,203 +15,47 @@
 
     <style>
         html, body {
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden;  /* Prevent horizontal scrolling on the parent */
-    max-width: 100%;
-    height: 100%;
-}
-
-object {
-    width: 100vw;    /* Ensure object is full viewport width */
-    height: 100vh;   /* Ensure object takes up full viewport height */
-    display: block;
-    margin: 0;
-    padding: 0;
-    border: none;
-    overflow: auto;  /* Allow scrolling inside the object */
-}
-    </style>
-
-    <script>
-        let blobURL = "";
-        let objectTag = null;
-
-        function generateBlobURL() {
-            const userHTML = `<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #1e3c72, #2a5298);
-            color: white;
-            text-align: center;
-            overflow-x: hidden;
-            transition: background 0.5s ease-in-out;
-            animation: gradientBG 10s infinite alternate;
-        }
-        
-        @keyframes gradientBG {
-            0% { background: linear-gradient(135deg, #1e3c72, #2a5298); }
-            100% { background: linear-gradient(135deg, #2a5298, #1e3c72); }
-        }
-        
-        .content-container {
-            transform: scale(0.95);
-            transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
-            opacity: 0;
-        }
-        
-        .content-container.visible {
-            transform: scale(1);
-            opacity: 1;
-        }
-        
-        .card {
-            background: rgba(255, 255, 255, 0.1);
+            margin: 0;
+            padding: 0;
+            max-width: 100%;
+            height: 100%;
             border: none;
-            backdrop-filter: blur(10px);
-            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
         }
-        
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0px 4px 20px rgba(255, 255, 255, 0.2);
-        }
-        
-        .btn-custom {
-            background-color: #ff9800;
-            color: white;
-            transition: all 0.3s ease-in-out;
-        }
-        
-        .btn-custom:hover {
-            background-color: #e68900;
-            transform: scale(1.05);
-        }
-        
-        .btn-glow {
-            transition: box-shadow 0.3s ease-in-out;
-        }
-        
-        .btn-glow:hover {
-            box-shadow: 0px 0px 15px rgba(255, 152, 0, 0.8);
-        }
-        
-        .youtube-video {
-            width: 100%;
-            max-width: 560px;
-            height: 315px;
-            margin: auto;
-            border-radius: 10px;
-            transition: transform 0.3s ease-in-out;
-        }
-        
-        .youtube-video:hover {
-            transform: scale(1.02);
+
+        iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            border: none;
         }
     </style>
-</head>
-<body>
-    <div class="container mt-5">
-        <div class="content-container">
-            <h1 class="mt-3">Your Name</h1>
-            <p class="lead">Web Developer | Designer | Creator</p>
-
-            <!-- Facebook Profile -->
-            <div class="mt-3">
-                <a href="https://www.facebook.com/profile.php?id=61563347068813" target="_blank" class="btn btn-custom btn-glow">
-                    <i class="fab fa-facebook"></i> Facebook Profile
-                </a>
-            </div>
-
-            <div class="row mt-4">
-                <div class="col-md-6 offset-md-3">
-                    <div class="card p-4">
-                        <h3 class="mb-3">About Me</h3>
-                        <p>Passionate web developer with a love for designing and creating innovative web solutions. Experienced in front-end and back-end development.</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- YouTube Video -->
-            <div class="row mt-4">
-                <div class="col-md-6 offset-md-3">
-                    <div class="card p-4">
-                        <h3 class="mb-3">Featured Video</h3>
-                        <iframe class="youtube-video" src="https://www.youtube.com/embed/amoiJfNvFZI" allowfullscreen></iframe>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row mt-4">
-                <div class="col-md-6 offset-md-3">
-                    <div class="card p-4">
-                        <h3 class="mb-3">Contact</h3>
-                        <p>Email: your.email@example.com</p>
-                        <p>Phone: +123 456 7890</p>
-                        <a href="mailto:your.email@example.com" class="btn btn-custom">
-                            <i class="fas fa-envelope"></i> Email Me
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            document.querySelector(".content-container").classList.add("visible");
-        });
-    <\/script>
-</body>
-</html>`;
-
-            const blob = new Blob([userHTML], { type: "text/html" });
-            return URL.createObjectURL(blob);
+        function generateBlobURL() {
+            const userHTML = ``; // Empty blob content
+            return URL.createObjectURL(new Blob([userHTML], { type: "text/html" }));
         }
 
-        function adjustObjectSize() {
-            if (objectTag) {
-                objectTag.style.width = window.innerWidth + "px";
-                objectTag.style.height = window.innerHeight + "px";
+        function createIsolatedIframe() {
+            let iframe = document.createElement("iframe");
+            iframe.sandbox = "allow-scripts allow-same-origin allow-forms allow-popups allow-modals allow-downloads allow-presentation allow-pointer-lock allow-autoplay";
+            iframe.src = generateBlobURL();
+            document.body.appendChild(iframe);
+
+            function adjustSize() {
+                iframe.style.width = window.innerWidth + "px";
+                iframe.style.height = window.innerHeight + "px";
             }
+
+            adjustSize();
+            window.addEventListener("resize", adjustSize);
         }
 
-        function loadUserPage() {
-            if (blobURL) {
-                URL.revokeObjectURL(blobURL);
-            }
-            blobURL = generateBlobURL();
-            
-            if (!objectTag) {
-                objectTag = document.createElement("object");
-                document.body.appendChild(objectTag);
-            }
-            adjustObjectSize();
-            objectTag.data = blobURL;
-        }
-
-        window.onload = () => {
-            adjustObjectSize();
-            loadUserPage();
-        };
-        
-        window.matchMedia("(orientation: portrait)").addEventListener("change", () => {
-            adjustObjectSize();
-            loadUserPage();
-        });
-
-        window.matchMedia("(orientation: landscape)").addEventListener("change", () => {
-            adjustObjectSize();
-            loadUserPage();
-        });
+        window.onload = createIsolatedIframe;
+        window.matchMedia("(orientation: portrait)").addEventListener("change", createIsolatedIframe);
+        window.matchMedia("(orientation: landscape)").addEventListener("change", createIsolatedIframe);
     </script>
 </head>
 <body>
