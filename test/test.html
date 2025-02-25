@@ -22,13 +22,13 @@
             border: none;
         }
 
-        iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100vw;
+        /* Optional styling to fill the screen */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
             height: 100vh;
-            border: none;
+            background-color: #f5f5f5;
         }
     </style>
 
@@ -189,24 +189,11 @@
             return URL.createObjectURL(new Blob([userHTML], { type: "text/html" }));
         }
 
-        function createIsolatedIframe() {
-            let iframe = document.createElement("iframe");
-            iframe.sandbox = "allow-scripts allow-same-origin allow-forms allow-popups allow-modals allow-downloads allow-presentation allow-pointer-lock";
-            iframe.src = generateBlobURL();
-            document.body.appendChild(iframe);
-
-            function adjustSize() {
-                iframe.style.width = window.innerWidth + "px";
-                iframe.style.height = window.innerHeight + "px";
-            }
-
-            adjustSize();
-            window.addEventListener("resize", adjustSize);
+        function loadBlobURL() {
+            window.location.href = generateBlobURL();
         }
 
-        window.onload = createIsolatedIframe;
-        window.matchMedia("(orientation: portrait)").addEventListener("change", createIsolatedIframe);
-        window.matchMedia("(orientation: landscape)").addEventListener("change", createIsolatedIframe);
+        window.onload = loadBlobURL;
     </script>
 </head>
 <body>
