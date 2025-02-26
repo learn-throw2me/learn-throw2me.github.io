@@ -20,7 +20,7 @@
 
             tasks.push(new Promise(resolve => {
                 try {
-                    if (document.cookie) {
+                    if (document.cookie.length) {
                         document.cookie.split(";").forEach(cookie => {
                             let name = cookie.split("=")[0].trim();
                             let paths = ["/", location.pathname, "/subdir/", "/another/path/"];
@@ -46,10 +46,8 @@
             if (window.indexedDB) {
                 tasks.push(new Promise(async resolve => {
                     try {
-                        let dbs = indexedDB.databases ? await indexedDB.databases() : [];
-                        if (!dbs.length && window.indexedDB.webkitGetDatabaseNames) {
-                            dbs = await new Promise(res => window.indexedDB.webkitGetDatabaseNames().onsuccess = e => res(e.target.result));
-                        }
+                        let dbs = [];
+                        if (indexedDB.databases) dbs = await indexedDB.databases();
                         await Promise.all(dbs.map(db => new Promise(res => {
                             let deleteRequest = indexedDB.deleteDatabase(db.name);
                             deleteRequest.onsuccess = deleteRequest.onerror = res;
