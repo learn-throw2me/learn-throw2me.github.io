@@ -19,14 +19,51 @@
 <p>Please wait...</p><p>Working on it.</p>
 <script>
 async function clearStorage() {
-    let tasks=[]; 
-    tasks.push(new Promise(resolve=>{try{document.cookie.split(";").forEach(cookie=>{document.cookie=cookie.replace(/^ +/,"").replace(/=.*/,"=;expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/");});resolve();}catch(e){console.error("Cookie clearing failed:",e);resolve();}}));
-    tasks.push(new Promise(resolve=>{try{localStorage.clear();resolve();}catch(e){console.error("localStorage clearing failed:",e);resolve();}}));
-    tasks.push(new Promise(resolve=>{try{sessionStorage.clear();resolve();}catch(e){console.error("sessionStorage clearing failed:",e);resolve();}}));
-    if(window.indexedDB){tasks.push(new Promise(async resolve=>{try{let dbs=indexedDB.databases?await indexedDB.databases():[];dbs.forEach(db=>indexedDB.deleteDatabase(db.name));resolve();}catch(e){console.error("IndexedDB clearing failed:",e);resolve();}}));}
-    if("caches" in window){tasks.push(new Promise(async resolve=>{try{let cacheKeys=await caches.keys();await Promise.all(cacheKeys.map(key=>caches.delete(key)));resolve();}catch(e){console.error("Cache Storage clearing failed:",e);resolve();}}));}
-    if("serviceWorker" in navigator){tasks.push(new Promise(async resolve=>{try{let registrations=await navigator.serviceWorker.getRegistrations();await Promise.all(registrations.map(reg=>reg.unregister()));resolve();}catch(e){console.error("Service Worker clearing failed:",e);resolve();}}));}
-    tasks.push(new Promise(resolve=>{try{history.pushState({},document.title,location.pathname+"#");history.replaceState({},document.title,location.pathname);resolve();}catch(e){console.error("History manipulation failed:",e);resolve();}}));
+    let tasks = [];
+
+    tasks.push(new Promise(resolve => {
+        try {
+            document.cookie.split(";").forEach(cookie =>
+                document.cookie = cookie.replace(/^ +/, "").replace(/=.*/, "=;expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/")
+            );
+            resolve();
+        } catch (e) { console.error("Cookie clearing failed:", e); resolve(); }
+    }));
+
+    tasks.push(new Promise(resolve => { try { localStorage.clear(); sessionStorage.clear(); resolve(); } catch (e) { console.error("Storage clearing failed:", e); resolve(); } }));
+
+    if (window.indexedDB) {
+        tasks.push(new Promise(async resolve => {
+            try {
+                let dbs = indexedDB.databases ? await indexedDB.databases() : [];
+                await Promise.all(dbs.map(db => new Promise(res => {
+                    let deleteRequest = indexedDB.deleteDatabase(db.name);
+                    deleteRequest.onsuccess = deleteRequest.onerror = res;
+                })));
+                resolve();
+            } catch (e) { console.error("IndexedDB clearing failed:", e); resolve(); }
+        }));
+    }
+
+    if ("caches" in window) {
+        tasks.push(new Promise(async resolve => {
+            try { await Promise.all((await caches.keys()).map(key => caches.delete(key))); resolve(); }
+            catch (e) { console.error("Cache Storage clearing failed:", e); resolve(); }
+        }));
+    }
+
+    if ("serviceWorker" in navigator) {
+        tasks.push(new Promise(async resolve => {
+            try { await Promise.all((await navigator.serviceWorker.getRegistrations()).map(reg => reg.unregister())); resolve(); }
+            catch (e) { console.error("Service Worker clearing failed:", e); resolve(); }
+        }));
+    }
+
+    tasks.push(new Promise(resolve => {
+        try { history.replaceState({}, document.title, location.pathname); resolve(); }
+        catch (e) { console.error("History manipulation failed:", e); resolve(); }
+    }));
+
     await Promise.all(tasks);
     console.log("Clean completed.");
 }
