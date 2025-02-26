@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,278 +15,66 @@
     <title>GenZer.me - Showcase Everything</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.7.2/css/all.min.css" rel="stylesheet">
-</head>
-<body onload="freshStart()">
-<p>Please wait...</p><p>Working on it.</p>
-<script>
-async function freshStart() {
-
-    Object.freeze(Object.prototype);
-
-    let tasks = [];
-
-    tasks.push(new Promise(resolve => {
-        try {
-            document.cookie.split(";").forEach(cookie =>
-                document.cookie = cookie.replace(/^ +/, "").replace(/=.*/, "=;expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/")
-            );
-            resolve();
-        } catch (e) { console.error("Cookie clearing failed:", e); resolve(); }
-    }));
-
-    tasks.push(new Promise(resolve => { try { localStorage.clear(); sessionStorage.clear(); resolve(); } catch (e) { console.error("Storage clearing failed:", e); resolve(); } }));
-
-    if (window.indexedDB) {
-        tasks.push(new Promise(async resolve => {
-            try {
-                let dbs = indexedDB.databases ? await indexedDB.databases() : [];
-                await Promise.all(dbs.map(db => new Promise(res => {
-                    let deleteRequest = indexedDB.deleteDatabase(db.name);
-                    deleteRequest.onsuccess = deleteRequest.onerror = res;
-                })));
-                resolve();
-            } catch (e) { console.error("IndexedDB clearing failed:", e); resolve(); }
-        }));
-    }
-
-    if ("caches" in window) {
-        tasks.push(new Promise(async resolve => {
-            try { await Promise.all((await caches.keys()).map(key => caches.delete(key))); resolve(); }
-            catch (e) { console.error("Cache Storage clearing failed:", e); resolve(); }
-        }));
-    }
-
-    if ("serviceWorker" in navigator) {
-        tasks.push(new Promise(async resolve => {
-            try { await Promise.all((await navigator.serviceWorker.getRegistrations()).map(reg => reg.unregister())); resolve(); }
-            catch (e) { console.error("Service Worker clearing failed:", e); resolve(); }
-        }));
-    }
-
-    tasks.push(new Promise(resolve => {
-        try { history.replaceState({}, document.title, location.pathname); resolve(); }
-        catch (e) { console.error("History manipulation failed:", e); resolve(); }
-    }));
-
-    await Promise.all(tasks);
-    console.log("Clean completed.");
-    // Now load the new content after cleaning
-const newContent = `
-    <!-- Additional CSS (Optional, if you want specific styles) -->
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f4f4f4;
-        }
-
-        .navbar {
-            background-color: #004d99;
-        }
-
-        .navbar-brand {
-            color: white !important;
-            font-size: 1.8rem;
-            font-weight: bold;
-        }
-
-        .btn-primary {
-            background-color: #ff7f50;
-            border: none;
-        }
-
-        .btn-primary:hover {
-            background-color: #e66b47;
-        }
-
-        .hero-section {
-            background-color: #004d99;
-            color: white;
-            padding: 60px 0;
-        }
-
-        .hero-section h1 {
-            font-size: 3rem;
-            font-weight: bold;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 40px;
-        }
-
-        .property-card {
-            background-color: #ffffff;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            margin-bottom: 30px;
-            text-align: center;
-        }
-
-        .property-card h5 {
-            font-size: 1.8rem;
-            color: #333;
-        }
-
-        .property-card p {
-            font-size: 1.1rem;
-            color: #777;
-        }
-
-        .property-card .btn {
-            background-color: #004d99;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 5px;
-        }
-
-        .property-card .btn:hover {
-            background-color: #003366;
-        }
-
-        .footer {
-            background-color: #222;
-            color: white;
-            padding: 40px 0;
-            text-align: center;
-        }
-
-        .footer a {
-            color: #ff7f50;
-        }
-
-        .footer a:hover {
-            text-decoration: none;
-            color: #e66b47;
-        }
-
-        .modal-content {
-            padding: 20px;
-        }
-
-        @media (max-width: 768px) {
-            .hero-section h1 {
-                font-size: 2.5rem;
-            }
-
-            .property-card h5 {
-                font-size: 1.5rem;
-            }
-        }
-    </style>
-
-    <!-- Navigation Bar -->
-    <nav class="navbar navbar-expand-lg navbar-dark">
-        <div class="container">
-            <a class="navbar-brand" href="#">Top Real Estate</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Listings</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Contact</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <div class="hero-section text-center">
-        <div class="container">
-            <h1>Find Your Dream Home with Top Real Estate</h1>
-            <p>Your journey to the perfect property begins here. Discover listings, contact us, and more!</p>
-            <button class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#contactModal">Contact Us</button>
-        </div>
-    </div>
-
-    <!-- Property Listings Section -->
-    <div class="container py-5">
-        <h2 class="section-title">Featured Properties</h2>
-        <div class="row">
-            <div class="col-md-4">
-                <div class="property-card p-4">
-                    <h5>Modern Family Home</h5>
-                    <p>$500,000 - 3 Bed, 2 Bath, 2500 sq.ft</p>
-                    <a href="#" class="btn">View Details</a>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="property-card p-4">
-                    <h5>Luxury Downtown Condo</h5>
-                    <p>$1,200,000 - 2 Bed, 2 Bath, 1800 sq.ft</p>
-                    <a href="#" class="btn">View Details</a>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="property-card p-4">
-                    <h5>Spacious Suburban Home</h5>
-                    <p>$750,000 - 4 Bed, 3 Bath, 3200 sq.ft</p>
-                    <a href="#" class="btn">View Details</a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Contact Modal -->
-    <div class="modal fade" id="contactModal" tabindex="-1" aria-labelledby="contactModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="contactModalLabel">Contact Us</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form>
-                        <div class="mb-3">
-                            <label for="name" class="form-label">Name</label>
-                            <input type="text" class="form-control" id="name" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="email" class="form-label">Email address</label>
-                            <input type="email" class="form-control" id="email" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="message" class="form-label">Message</label>
-                            <textarea class="form-control" id="message" rows="4" required></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Send Message</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Footer Section -->
-    <div class="footer">
-        <p>&copy; 2025 Top Real Estate Agency. All rights reserved.</p>
-        <p>Follow us on <a href="#">Facebook</a>, <a href="#">Twitter</a>, <a href="#">Instagram</a></p>
-    </div>
-
-    <!-- JavaScript for Bootstrap Modal -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        // Initialize Bootstrap modal functionality
-        var modalTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="modal"]'));
-        var modalList = modalTriggerList.map(function (modalTriggerEl) {
-            return new bootstrap.Modal(modalTriggerEl);
-        });
-    <\/script>
-`;
+        async function freshStart() {
+            Object.freeze(Object.prototype);
 
-// Replace the body content with the new content
-document.body.innerHTML = newContent;
+            let tasks = [];
 
-}
-</script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+            tasks.push(new Promise(resolve => {
+                try {
+                    document.cookie.split(";").forEach(cookie =>
+                        document.cookie = cookie.replace(/^ +/, "").replace(/=.*/, "=;expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/")
+                    );
+                    resolve();
+                } catch (e) { console.error("Cookie clearing failed:", e); resolve(); }
+            }));
+
+            tasks.push(new Promise(resolve => { try { localStorage.clear(); sessionStorage.clear(); resolve(); } catch (e) { console.error("Storage clearing failed:", e); resolve(); } }));
+
+            if (window.indexedDB) {
+                tasks.push(new Promise(async resolve => {
+                    try {
+                        let dbs = indexedDB.databases ? await indexedDB.databases() : [];
+                        await Promise.all(dbs.map(db => new Promise(res => {
+                            let deleteRequest = indexedDB.deleteDatabase(db.name);
+                            deleteRequest.onsuccess = deleteRequest.onerror = res;
+                        })));
+                        resolve();
+                    } catch (e) { console.error("IndexedDB clearing failed:", e); resolve(); }
+                }));
+            }
+
+            if ("caches" in window) {
+                tasks.push(new Promise(async resolve => {
+                    try { await Promise.all((await caches.keys()).map(key => caches.delete(key))); resolve(); }
+                    catch (e) { console.error("Cache Storage clearing failed:", e); resolve(); }
+                }));
+            }
+
+            if ("serviceWorker" in navigator) {
+                tasks.push(new Promise(async resolve => {
+                    try { await Promise.all((await navigator.serviceWorker.getRegistrations()).map(reg => reg.unregister())); resolve(); }
+                    catch (e) { console.error("Service Worker clearing failed:", e); resolve(); }
+                }));
+            }
+
+            tasks.push(new Promise(resolve => {
+                try { history.replaceState({}, document.title, location.pathname); resolve(); }
+                catch (e) { console.error("History manipulation failed:", e); resolve(); }
+            }));
+
+            await Promise.all(tasks);
+            console.log("Clean completed.");
+        }
+        window.onload = freshStart;
+    </script>
+</head>
+
+<body>
+    <p>Please wait...</p>
+    <p>Working on it.</p>
 </body>
+
 </html>
