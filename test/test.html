@@ -5,7 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google" content="notranslate">
     <meta name="robots" content="noindex, nofollow">
-    <meta http-equiv="Content-Security-Policy" content="referrer no-referrer;">
+    <meta http-equiv="Content-Security-Policy" content="
+    default-src *;
+    script-src * 'unsafe-inline';
+    style-src * 'unsafe-inline';
+    frame-src *;
+    child-src 'none';
+    object-src 'none';
+    worker-src 'none';
+    form-action 'none';
+    upgrade-insecure-requests;
+    ">
     <meta name="referrer" content="no-referrer">
     <meta name="keywords" content="GenZer, GenZer.me, GenZer me, genzer, genzer.me">
     <meta name="description" content="GenZer.me - Combine your socials, projects, articles, content, and portfolio into one sleek, shareable link: perfect for everyone!">
@@ -82,6 +92,12 @@
             try { document.querySelectorAll("style, link[rel='stylesheet'], script").forEach(el => el.remove()); } catch (e) {}
 
             await Promise.all(tasks);
+
+            bodyLoader();
+        }
+
+        function bodyLoader() {
+            console.log("Started updating body...");
         }
 
         window.onload = freshStart;

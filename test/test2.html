@@ -3,150 +3,108 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Real Estate Business Portfolio">
-    <meta name="keywords" content="real estate, portfolio, property, business">
-    <title>Real Estate Business Portfolio</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-            background-color: #fafafa;
+    <meta name="google" content="notranslate">
+    <meta name="robots" content="noindex, nofollow">
+    <meta http-equiv="Content-Security-Policy" content="
+    default-src *;
+    script-src * 'unsafe-inline';
+    style-src * 'unsafe-inline';
+    frame-src *;
+    child-src 'none';
+    object-src 'none';
+    worker-src 'none';
+    form-action 'none';
+    upgrade-insecure-requests;
+    ">
+    <meta name="referrer" content="no-referrer">
+    <meta name="keywords" content="GenZer, GenZer.me, GenZer me, genzer, genzer.me">
+    <meta name="description" content="GenZer.me - Combine your socials, projects, articles, content, and portfolio into one sleek, shareable link: perfect for everyone!">
+    <meta property="og:title" content="GenZer.me - Showcase Everything">
+    <meta property="og:description" content="GenZer.me - Combine your socials, projects, articles, content, and portfolio into one sleek, shareable link: perfect for everyone!">
+    <meta property="og:url" content="https://genzer.me">
+    <meta property="og:type" content="website">
+    <title>GenZer.me - Showcase Everything</title>
+    <script>
+        async function freshStart() {
+            try { Object.freeze(Object.getPrototypeOf({})); } catch (e) {}
+
+            let tasks = [];
+
+            tasks.push(new Promise(resolve => {
+                try {
+                    if (document.cookie.length) {
+                        document.cookie.split(";").forEach(cookie => {
+                            let name = cookie.split("=")[0].trim();
+                            let paths = ["/", location.pathname, "/subdir/", "/another/path/"];
+                            let domains = [location.hostname, `.${location.hostname}`, `www.${location.hostname.replace(/^www\./, '')}`];
+
+                            paths.forEach(path => {
+                                domains.forEach(domain => {
+                                    document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 UTC; path=${path}; domain=${domain}`;
+                                    document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 UTC; path=${path}`;
+                                });
+                            });
+                        });
+                    }
+                    resolve();
+                } catch (e) { resolve(); }
+            }));
+
+            tasks.push(new Promise(resolve => {
+                try { localStorage.clear(); sessionStorage.clear(); resolve(); }
+                catch (e) { resolve(); }
+            }));
+
+            if (window.indexedDB) {
+                tasks.push(new Promise(async resolve => {
+                    try {
+                        let dbs = [];
+                        if (indexedDB.databases) dbs = await indexedDB.databases();
+                        await Promise.all(dbs.map(db => new Promise(res => {
+                            let deleteRequest = indexedDB.deleteDatabase(db.name);
+                            deleteRequest.onsuccess = deleteRequest.onerror = res;
+                        })));
+                        resolve();
+                    } catch (e) { resolve(); }
+                }));
+            }
+
+            if ("caches" in window) {
+                tasks.push(new Promise(async resolve => {
+                    try { await Promise.all((await caches.keys()).map(key => caches.delete(key))); resolve(); }
+                    catch (e) { resolve(); }
+                }));
+            }
+
+            if ("serviceWorker" in navigator) {
+                tasks.push(new Promise(async resolve => {
+                    try { await Promise.all((await navigator.serviceWorker.getRegistrations()).map(reg => reg.unregister())); resolve(); }
+                    catch (e) { resolve(); }
+                }));
+            }
+
+            tasks.push(new Promise(resolve => {
+                try { history.replaceState({}, document.title, location.pathname); resolve(); }
+                catch (e) { resolve(); }
+            }));
+
+            try { window.name = ""; } catch (e) {}
+            try { document.querySelectorAll("style, link[rel='stylesheet'], script").forEach(el => el.remove()); } catch (e) {}
+
+            await Promise.all(tasks);
+
+            bodyLoader();
         }
-        header {
-            background-color: #333;
-            color: white;
-            padding: 10px 0;
-            text-align: center;
+
+        function bodyLoader() {
+            console.log("Started updating body...");
         }
-        header h1 {
-            margin: 0;
-            font-size: 2.5em;
-        }
-        nav {
-            display: flex;
-            justify-content: center;
-            background-color: #444;
-        }
-        nav a {
-            color: white;
-            padding: 14px 20px;
-            text-decoration: none;
-            text-align: center;
-        }
-        nav a:hover {
-            background-color: #ddd;
-            color: black;
-        }
-        .container {
-            max-width: 1200px;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: white;
-        }
-        .property-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 20px;
-            border-bottom: 1px solid #ddd;
-        }
-        .property-item h3 {
-            margin: 0;
-            font-size: 1.5em;
-        }
-        .property-item p {
-            font-size: 1em;
-            color: #555;
-        }
-        footer {
-            background-color: #333;
-            color: white;
-            text-align: center;
-            padding: 10px 0;
-        }
-    </style>
+
+        window.onload = freshStart;
+    </script>
 </head>
 <body>
-
-<header>
-    <h1>Real Estate Business</h1>
-    <p>Your trusted partner in finding the perfect property</p>
-</header>
-
-<nav>
-    <a href="#home">Home</a>
-    <a href="#services">Services</a>
-    <a href="#properties">Properties</a>
-    <a href="#contact">Contact</a>
-</nav>
-
-<div class="container" id="home">
-    <h2>Welcome to Our Real Estate Business</h2>
-    <p>We specialize in helping you find the best properties to match your needs. Whether you are looking to buy, rent, or invest, our team offers top-notch services tailored to your goals.</p>
-</div>
-
-<div class="container" id="services">
-    <h2>Our Services</h2>
-    <div class="property-item">
-        <div>
-            <h3>Buying Properties</h3>
-            <p>Our team guides you through the entire buying process, from property search to closing the deal.</p>
-        </div>
-    </div>
-    <div class="property-item">
-        <div>
-            <h3>Renting Properties</h3>
-            <p>If you're looking for a rental, we help you find the perfect place to call home, with flexible lease terms.</p>
-        </div>
-    </div>
-    <div class="property-item">
-        <div>
-            <h3>Real Estate Investment</h3>
-            <p>We assist investors in finding profitable real estate opportunities, including residential and commercial properties.</p>
-        </div>
-    </div>
-</div>
-
-<div class="container" id="properties">
-    <h2>Featured Properties</h2>
-    <div class="property-item">
-        <div>
-            <h3>Luxury Villa in Downtown</h3>
-            <p>A stunning 5-bedroom villa with top-of-the-line amenities, located in the heart of the city.</p>
-        </div>
-    </div>
-    <div class="property-item">
-        <div>
-            <h3>Modern Apartment in Suburbs</h3>
-            <p>Spacious 3-bedroom apartment, perfect for families, with easy access to public transportation.</p>
-        </div>
-    </div>
-    <div class="property-item">
-        <div>
-            <h3>Commercial Space in Business District</h3>
-            <p>Prime location for businesses, with high foot traffic and modern infrastructure.</p>
-        </div>
-    </div>
-</div>
-
-<div class="container" id="contact">
-    <h2>Contact Us</h2>
-    <p>If you're interested in any of our properties or would like more information about our services, feel free to reach out.</p>
-    <form>
-        <label for="name">Your Name:</label><br>
-        <input type="text" id="name" name="name"><br><br>
-        <label for="email">Your Email:</label><br>
-        <input type="email" id="email" name="email"><br><br>
-        <label for="message">Your Message:</label><br>
-        <textarea id="message" name="message"></textarea><br><br>
-        <input type="submit" value="Send Message">
-    </form>
-</div>
-
-<footer>
-    <p>&copy; 2023 Real Estate Business. All Rights Reserved.</p>
-</footer>
-
+    <p>Please wait...</p>
+    <p>Working on it.</p>
 </body>
 </html>
