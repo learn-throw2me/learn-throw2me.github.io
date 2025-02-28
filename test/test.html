@@ -5,17 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google" content="notranslate">
     <meta name="robots" content="noindex, nofollow">
-    <meta http-equiv="Content-Security-Policy" content="
-    default-src *;
-    script-src * 'unsafe-inline';
-    style-src * 'unsafe-inline';
-    frame-src *;
-    child-src *;
-    object-src 'none';
-    worker-src 'none';
-    form-action 'none';
-    upgrade-insecure-requests;
-    ">
     <meta name="referrer" content="no-referrer">
     <meta name="keywords" content="GenZer, GenZer.me, GenZer me, genzer, genzer.me">
     <meta name="description" content="GenZer.me - Combine your socials, projects, articles, content, and portfolio into one sleek, shareable link: perfect for everyone!">
@@ -24,96 +13,24 @@
     <meta property="og:url" content="https://genzer.me">
     <meta property="og:type" content="website">
     <title>GenZer.me - Showcase Everything</title>
-    <script>
-        async function freshStart() {
-            try { Object.freeze(Object.getPrototypeOf({})); } catch (e) {}
-
-            let tasks = [];
-
-            tasks.push(new Promise(resolve => {
-                try {
-                    if (document.cookie.length) {
-                        document.cookie.split(";").forEach(cookie => {
-                            let name = cookie.split("=")[0].trim();
-                            let paths = ["/", location.pathname, "/subdir/", "/another/path/"];
-                            let domains = [location.hostname, `.${location.hostname}`, `www.${location.hostname.replace(/^www\./, '')}`];
-
-                            paths.forEach(path => {
-                                domains.forEach(domain => {
-                                    document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 UTC; path=${path}; domain=${domain}`;
-                                    document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 UTC; path=${path}`;
-                                });
-                            });
-                        });
-                    }
-                    resolve();
-                } catch (e) { resolve(); }
-            }));
-
-            tasks.push(new Promise(resolve => {
-                try { localStorage.clear(); sessionStorage.clear(); resolve(); }
-                catch (e) { resolve(); }
-            }));
-
-            if (window.indexedDB) {
-                tasks.push(new Promise(async resolve => {
-                    try {
-                        let dbs = [];
-                        if (indexedDB.databases) dbs = await indexedDB.databases();
-                        await Promise.all(dbs.map(db => new Promise(res => {
-                            let deleteRequest = indexedDB.deleteDatabase(db.name);
-                            deleteRequest.onsuccess = deleteRequest.onerror = res;
-                        })));
-                        resolve();
-                    } catch (e) { resolve(); }
-                }));
-            }
-
-            if ("caches" in window) {
-                tasks.push(new Promise(async resolve => {
-                    try { await Promise.all((await caches.keys()).map(key => caches.delete(key))); resolve(); }
-                    catch (e) { resolve(); }
-                }));
-            }
-
-            if ("serviceWorker" in navigator) {
-                tasks.push(new Promise(async resolve => {
-                    try { await Promise.all((await navigator.serviceWorker.getRegistrations()).map(reg => reg.unregister())); resolve(); }
-                    catch (e) { resolve(); }
-                }));
-            }
-
-            tasks.push(new Promise(resolve => {
-                try { history.replaceState({}, document.title, location.pathname); resolve(); }
-                catch (e) { resolve(); }
-            }));
-
-            try { window.name = ""; } catch (e) {}
-            try { document.querySelectorAll("style, link[rel='stylesheet'], script").forEach(el => el.remove()); } catch (e) {}
-
-            await Promise.all(tasks);
-            sessionStorage.setItem("cleaningDone", "true");
-             setTimeout(() => {
-                location.reload();
-            }, 200); 
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            font-family: Arial, sans-serif;
         }
-
-        function bodyLoader() {
-            console.log("Started updating body...");
+        p {
+            margin: 5px 0;
+            font-size: 1.2rem;
         }
-
-        window.addEventListener("load", () => {
-        if (sessionStorage.getItem("cleaningDone")) {
-            sessionStorage.removeItem("cleaningDone");
-            bodyLoader();
-        } else {
-            freshStart();
-        }
-    });
-    </script>
+    </style>
 </head>
 <body>
-    <p>Please wait...</p>
-    <p>Working on it.</p>
+    <p>Just a couple of seconds.<br>We are working on it!</p>
+    <script></script>
 </body>
 </html>
