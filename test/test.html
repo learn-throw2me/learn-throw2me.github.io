@@ -45,6 +45,7 @@ window.addEventListener("load", async function () {
 
             if (script.src) {
                 newScript.src = script.src;
+                newScript.defer = true;
                 newScript.onload = () => {};
                 newScript.onerror = () => {};
             } else {
