@@ -40,20 +40,26 @@ window.addEventListener("load", async function () {
             currentHead.appendChild(document.importNode(element, true));
         });
 
-        doc.querySelectorAll("head script").forEach(script => {
-            let newScript = document.createElement("script");
+        async function loadHeadScripts(doc, currentHead) {
+            for (let script of doc.querySelectorAll("head script")) {
+                await new Promise((resolve) => {
+                    let newScript = document.createElement("script");
 
-            if (script.src) {
-                newScript.src = script.src;
-                newScript.defer = true;
-                newScript.onload = () => {};
-                newScript.onerror = () => {};
-            } else {
-                newScript.textContent = script.textContent;
+                    if (script.src) {
+                        newScript.src = script.src;
+                        newScript.onload = resolve;
+                        newScript.onerror = resolve;
+                    } else {
+                        newScript.textContent = script.textContent;
+                        resolve();
+                    }
+
+                    currentHead.appendChild(newScript);
+                });
             }
-
-            currentHead.appendChild(newScript);
-        });
+        }
+        
+        await loadHeadScripts(doc, currentHead);
 
         const newBody = document.createElement("body");
         const scripts = [];
