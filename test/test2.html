@@ -14,16 +14,64 @@
     <title>GenZer.me - Showcase Everything</title>
 </head>
 <body class="changeTheContentHereImmediately-GenZer-me">
-    <p>Just a couple of seconds.<br>We are working on it!</p>
+    <p>Just a couple of seconds.</p>
+    <br>
+    <p></p>We are working on it!</p>
 <script>
-// Don't forget to encode the variable names so that they will not clash with dynamic script variables
-window.addEventListener("load", function () {
+window.addEventListener("load", async function () {
     let body = document.body;
     if (body.classList.contains("changeTheContentHereImmediately-GenZer-me")) {
         body.classList.remove("changeTheContentHereImmediately-GenZer-me");
-        
+
+        const response = await fetch("/test/pagecontent.txt");
+        const rawHTML = await response.text();
+
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(rawHTML, "text/html");
+
+        const currentHead = document.head;
+        doc.querySelectorAll("head link[rel='stylesheet'], head style").forEach(element => {
+            currentHead.appendChild(document.importNode(element, true));
+        });
+
+        const newBody = document.createElement("body");
+        const scripts = [];
+
+        Array.from(doc.body.childNodes).forEach(node => {
+            if (node.tagName?.toLowerCase() === "script") {
+                scripts.push(node);
+            } else {
+                newBody.appendChild(node.cloneNode(true));
+            }
+        });
+
+        document.body.replaceWith(newBody);
+
+        document.dispatchEvent(new Event("readystatechange"));
+        document.dispatchEvent(new Event("DOMContentLoaded"));
+
+        for (let script of scripts) {
+            await new Promise((resolve) => {
+                let newScript = document.createElement("script");
+
+                if (script.src) {
+                    newScript.src = script.src;
+                    newScript.onload = resolve;
+                    newScript.onerror = resolve;
+                } else {
+                    newScript.textContent = script.textContent;
+                    resolve();
+                }
+
+                document.body.appendChild(newScript);
+            });
+        }
+
+        document.dispatchEvent(new Event("load"));
+        window.dispatchEvent(new Event("load"));
     }
-});     
+});
 </script>
+
 </body>
 </html>
