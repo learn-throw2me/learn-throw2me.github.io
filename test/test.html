@@ -23,7 +23,7 @@ window.addEventListener("load", async function () {
     if (body.classList.contains("changeTheContentHereImmediately-GenZer-me")) {
         body.classList.replace("changeTheContentHereImmediately-GenZer-me", "user-submitted-body");
 
-        const response = await fetch("pagecontent.txt");
+        const response = await fetch("/test/pagecontent.txt");
         const rawHTML = await response.text();
 
         const parser = new DOMParser();
