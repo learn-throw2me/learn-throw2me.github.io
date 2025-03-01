@@ -18,25 +18,28 @@
     <br>
     <p></p>We are working on it!</p>
 <script>
+// Don't foreget to prefix all variable names with something. 
+// Implement a proper hand off to subdomain - access keys, password etc. Isolate from others.
+// Check for all kinds of pages, including Angular, React and Vue.
+// The URI for the subdomain should be just without anything after .me TLD., check # navigation.
+// Clear important js variables, local storages before loading the user submitted content.
 window.addEventListener("load", async function () {
     let body = document.body;
     if (body.classList.contains("changeTheContentHereImmediately-GenZer-me")) {
         body.classList.remove("changeTheContentHereImmediately-GenZer-me");
-
         const response = await fetch("/test/pagecontent.txt");
         const rawHTML = await response.text();
-
         const parser = new DOMParser();
         const doc = parser.parseFromString(rawHTML, "text/html");
-
         const currentHead = document.head;
         doc.querySelectorAll("head link[rel='stylesheet'], head style").forEach(element => {
             currentHead.appendChild(document.importNode(element, true));
         });
-
-        const newBody = document.createElement("body");
         const scripts = [];
-
+        doc.querySelectorAll("head script").forEach(scriptInHead => {
+            scripts.push(scriptInHead);
+        });
+        const newBody = document.createElement("body");
         Array.from(doc.body.childNodes).forEach(node => {
             if (node.tagName?.toLowerCase() === "script") {
                 scripts.push(node);
@@ -44,16 +47,10 @@ window.addEventListener("load", async function () {
                 newBody.appendChild(node.cloneNode(true));
             }
         });
-
         document.body.replaceWith(newBody);
-
-        document.dispatchEvent(new Event("readystatechange"));
-        document.dispatchEvent(new Event("DOMContentLoaded"));
-
         for (let script of scripts) {
             await new Promise((resolve) => {
                 let newScript = document.createElement("script");
-
                 if (script.src) {
                     newScript.src = script.src;
                     newScript.onload = resolve;
@@ -62,16 +59,17 @@ window.addEventListener("load", async function () {
                     newScript.textContent = script.textContent;
                     resolve();
                 }
-
                 document.body.appendChild(newScript);
             });
         }
-
-        document.dispatchEvent(new Event("load"));
-        window.dispatchEvent(new Event("load"));
+        requestAnimationFrame(() => {
+            document.dispatchEvent(new Event("readystatechange"));
+            document.dispatchEvent(new Event("DOMContentLoaded"));
+            document.dispatchEvent(new Event("load"));
+            window.dispatchEvent(new Event("load"));
+        });
     }
 });
 </script>
-
 </body>
 </html>
