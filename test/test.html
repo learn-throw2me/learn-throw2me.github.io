@@ -24,48 +24,49 @@
 // Clear important js variables, local storages before loading the user submitted content.
 window.addEventListener("load", function () {
     if (document.body.classList.contains("changeTheContentHereImmediately-GenZer-me")) {
+        document.body.classList.remove("changeTheContentHereImmediately-GenZer-me");
         contentPopulator();
     }
 });
-window.addEventListener("pageshow", () => {
+window.addEventListener("pageshow", (event) => {
     const navEntries = performance.getEntriesByType("navigation");
     const isReload = 
         (navEntries.length > 0 && navEntries[0].type === "reload") || 
-        document.wasReloaded === true || 
-        performance.navigation.type === 1;
-    document.wasReloaded = isReload;
+        event.persisted;
+
     if (isReload) {
-        document.body.classList.add("changeTheContentHereImmediately-GenZer-me");
-        console.log("Should reload now...");
         contentPopulator();
     }
 });
 async function contentPopulator() {
-    document.body.classList.remove("changeTheContentHereImmediately-GenZer-me");
     const response = await fetch("/test/pagecontent.txt");
     const rawHTML = await response.text();
     const parser = new DOMParser();
     const doc = parser.parseFromString(rawHTML, "text/html");
     const currentHead = document.head;
     const styles = doc.querySelectorAll("head link[rel='stylesheet'], head style");
-    styles.forEach(element => currentHead.appendChild(document.importNode(element, true)));
+    if (styles.length > 0) {
+        styles.forEach(element => currentHead.appendChild(document.importNode(element, true)));
+    }
     await new Promise(resolve => {
         const links = document.head.querySelectorAll("link[rel='stylesheet']");
         if (links.length === 0) return resolve();
         let loadedCount = 0;
         links.forEach(link => {
-            if (link.sheet && link.sheet.cssRules.length) {
-                if (++loadedCount === links.length) resolve();
-            } else {
-                link.onload = () => { if (++loadedCount === links.length) resolve(); };
-                link.onerror = () => { if (++loadedCount === links.length) resolve(); };
+            try {
+                if (link.sheet && link.sheet.cssRules.length) {
+                    if (++loadedCount === links.length) resolve();
+                } else {
+                    link.onload = () => { if (++loadedCount === links.length) resolve(); };
+                    link.onerror = () => { if (++loadedCount === links.length) resolve(); };
+                }
+            } catch (e) {
+                resolve();
             }
         });
     });
     const scripts = [];
-    doc.querySelectorAll("head script").forEach(scriptInHead => {
-        scripts.push(scriptInHead);
-    });
+    doc.querySelectorAll("head script").forEach(scriptInHead => scripts.push(scriptInHead));
     const newBody = document.createElement("body");
     Array.from(doc.body.childNodes).forEach(node => {
         if (node.tagName?.toLowerCase() === "script") {
