@@ -82,7 +82,12 @@ window.addEventListener("load", async function () {
     }
 });
 window.addEventListener("beforeunload", () => {
-    window.dispatchEvent(new Event("load"));
+    document.body.classList.add("changeTheContentHereImmediately-GenZer-me");
+});
+window.addEventListener("pageshow", (event) => {
+    if (event.persisted || performance.getEntriesByType("navigation")[0]?.type === "reload") {
+        location.reload();
+    }
 });
 </script>
 </body>
