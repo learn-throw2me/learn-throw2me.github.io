@@ -62,6 +62,7 @@ window.addEventListener("load", async function () {
                 document.body.appendChild(newScript);
             });
         }
+        console.log("Loading completed...");
         requestAnimationFrame(() => {
             document.dispatchEvent(new Event("readystatechange"));
             document.dispatchEvent(new Event("DOMContentLoaded"));
