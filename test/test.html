@@ -25,69 +25,71 @@
 window.addEventListener("load", async function () {
     let body = document.body;
     if (body.classList.contains("changeTheContentHereImmediately-GenZer-me")) {
-        body.classList.remove("changeTheContentHereImmediately-GenZer-me");
-        const response = await fetch("/test/pagecontent.txt");
-        const rawHTML = await response.text();
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(rawHTML, "text/html");
-        const currentHead = document.head;
-        const styles = doc.querySelectorAll("head link[rel='stylesheet'], head style");
-        styles.forEach(element => currentHead.appendChild(document.importNode(element, true)));
-        await new Promise(resolve => {
-            const links = document.head.querySelectorAll("link[rel='stylesheet']");
-            if (links.length === 0) return resolve();
-            let loadedCount = 0;
-            links.forEach(link => {
-                if (link.sheet && link.sheet.cssRules.length) {
-                    if (++loadedCount === links.length) resolve();
-                } else {
-                    link.onload = () => { if (++loadedCount === links.length) resolve(); };
-                    link.onerror = () => { if (++loadedCount === links.length) resolve(); };
-                }
-            });
-        });
-        const scripts = [];
-        doc.querySelectorAll("head script").forEach(scriptInHead => {
-            scripts.push(scriptInHead);
-        });
-        const newBody = document.createElement("body");
-        Array.from(doc.body.childNodes).forEach(node => {
-            if (node.tagName?.toLowerCase() === "script") {
-                scripts.push(node);
-            } else {
-                newBody.appendChild(node.cloneNode(true));
-            }
-        });
-        document.body.replaceWith(newBody);
-        for (let script of scripts) {
-            await new Promise((resolve) => {
-                let newScript = document.createElement("script");
-                if (script.src) {
-                    newScript.src = script.src;
-                    newScript.onload = resolve;
-                    newScript.onerror = resolve;
-                } else {
-                    newScript.textContent = script.textContent;
-                    resolve();
-                }
-                document.body.appendChild(newScript);
-            });
-        }
-        requestAnimationFrame(() => {
-            document.dispatchEvent(new Event("readystatechange"));
-            document.dispatchEvent(new Event("DOMContentLoaded"));
-            document.dispatchEvent(new Event("load"));
-            window.dispatchEvent(new Event("load"));
-        });
+        contentPopulator();
     }
 });
-window.addEventListener("beforeunload", () => {
-    document.body.classList.add("changeTheContentHereImmediately-GenZer-me");
-    sessionStorage.setItem("hardRefreshNeeded", "true");
-});
 window.addEventListener("pageshow", () => {
-    window.dispatchEvent(new Event("load"));
+    if (performance.getEntriesByType("navigation")[0]?.type === "reload") {
+        document.body.classList.add("changeTheContentHereImmediately-GenZer-me");
+        contentPopulator();
+    }
 });
+async function contentPopulator() {
+    body.classList.remove("changeTheContentHereImmediately-GenZer-me");
+    const response = await fetch("/test/pagecontent.txt");
+    const rawHTML = await response.text();
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(rawHTML, "text/html");
+    const currentHead = document.head;
+    const styles = doc.querySelectorAll("head link[rel='stylesheet'], head style");
+    styles.forEach(element => currentHead.appendChild(document.importNode(element, true)));
+    await new Promise(resolve => {
+        const links = document.head.querySelectorAll("link[rel='stylesheet']");
+        if (links.length === 0) return resolve();
+        let loadedCount = 0;
+        links.forEach(link => {
+            if (link.sheet && link.sheet.cssRules.length) {
+                if (++loadedCount === links.length) resolve();
+            } else {
+                link.onload = () => { if (++loadedCount === links.length) resolve(); };
+                link.onerror = () => { if (++loadedCount === links.length) resolve(); };
+            }
+        });
+    });
+    const scripts = [];
+    doc.querySelectorAll("head script").forEach(scriptInHead => {
+        scripts.push(scriptInHead);
+    });
+    const newBody = document.createElement("body");
+    Array.from(doc.body.childNodes).forEach(node => {
+        if (node.tagName?.toLowerCase() === "script") {
+            scripts.push(node);
+        } else {
+            newBody.appendChild(node.cloneNode(true));
+        }
+    });
+    document.body.replaceWith(newBody);
+    for (let script of scripts) {
+        await new Promise((resolve) => {
+            let newScript = document.createElement("script");
+            if (script.src) {
+                newScript.src = script.src;
+                newScript.onload = resolve;
+                newScript.onerror = resolve;
+            } else {
+                newScript.textContent = script.textContent;
+                resolve();
+            }
+            document.body.appendChild(newScript);
+        });
+    }
+    requestAnimationFrame(() => {
+        document.dispatchEvent(new Event("readystatechange"));
+        document.dispatchEvent(new Event("DOMContentLoaded"));
+        document.dispatchEvent(new Event("load"));
+        window.dispatchEvent(new Event("load"));
+    });
+}
 </script>
 </body>
 </html>
