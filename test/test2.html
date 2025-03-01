@@ -15,7 +15,6 @@
 </head>
 <body class="changeTheContentHereImmediately-GenZer-me">
     <p>Just a couple of seconds.</p>
-    <br>
     <p></p>We are working on it!</p>
 <script>
 // Don't foreget to prefix all variable names with something. 
@@ -23,65 +22,78 @@
 // Check for all kinds of pages, including Angular, React and Vue.
 // The URI for the subdomain should be just without anything after .me TLD., check # navigation.
 // Clear important js variables, local storages before loading the user submitted content.
-window.addEventListener("load", async function () {
-    let body = document.body;
-    if (body.classList.contains("changeTheContentHereImmediately-GenZer-me")) {
-        body.classList.remove("changeTheContentHereImmediately-GenZer-me");
-        const response = await fetch("/test/pagecontent.txt");
-        const rawHTML = await response.text();
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(rawHTML, "text/html");
-        const currentHead = document.head;
-        const styles = doc.querySelectorAll("head link[rel='stylesheet'], head style");
+window.addEventListener("load", function () {
+    if (document.body.classList.contains("changeTheContentHereImmediately-GenZer-me")) {
+        document.body.classList.remove("changeTheContentHereImmediately-GenZer-me");
+        contentPopulator();
+    }
+});
+window.addEventListener("pageshow", (event) => {
+    const navEntries = performance.getEntriesByType("navigation");
+    const navType = navEntries.length > 0 ? navEntries[0].type : null;
+    if (["reload", "back_forward"].includes(navType) || event.persisted) {
+        contentPopulator();
+    }
+});
+async function contentPopulator() {
+    const response = await fetch("/test/pagecontent.txt");
+    const rawHTML = await response.text();
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(rawHTML, "text/html");
+    const currentHead = document.head;
+    const styles = doc.querySelectorAll("head link[rel='stylesheet'], head style");
+    if (styles.length > 0) {
         styles.forEach(element => currentHead.appendChild(document.importNode(element, true)));
-        await new Promise(resolve => {
-            const links = document.head.querySelectorAll("link[rel='stylesheet']");
-            if (links.length === 0) return resolve();
-            let loadedCount = 0;
-            links.forEach(link => {
+    }
+    await new Promise(resolve => {
+        const links = document.head.querySelectorAll("link[rel='stylesheet']");
+        if (links.length === 0) return resolve();
+        let loadedCount = 0;
+        links.forEach(link => {
+            try {
                 if (link.sheet && link.sheet.cssRules.length) {
                     if (++loadedCount === links.length) resolve();
                 } else {
                     link.onload = () => { if (++loadedCount === links.length) resolve(); };
                     link.onerror = () => { if (++loadedCount === links.length) resolve(); };
                 }
-            });
-        });
-        const scripts = [];
-        doc.querySelectorAll("head script").forEach(scriptInHead => {
-            scripts.push(scriptInHead);
-        });
-        const newBody = document.createElement("body");
-        Array.from(doc.body.childNodes).forEach(node => {
-            if (node.tagName?.toLowerCase() === "script") {
-                scripts.push(node);
-            } else {
-                newBody.appendChild(node.cloneNode(true));
+            } catch (e) {
+                resolve();
             }
         });
-        document.body.replaceWith(newBody);
-        for (let script of scripts) {
-            await new Promise((resolve) => {
-                let newScript = document.createElement("script");
-                if (script.src) {
-                    newScript.src = script.src;
-                    newScript.onload = resolve;
-                    newScript.onerror = resolve;
-                } else {
-                    newScript.textContent = script.textContent;
-                    resolve();
-                }
-                document.body.appendChild(newScript);
-            });
+    });
+    const scripts = [];
+    doc.querySelectorAll("head script").forEach(scriptInHead => scripts.push(scriptInHead));
+    const newBody = document.createElement("body");
+    Array.from(doc.body.childNodes).forEach(node => {
+        if (node.tagName?.toLowerCase() === "script") {
+            scripts.push(node);
+        } else {
+            newBody.appendChild(node.cloneNode(true));
         }
-        requestAnimationFrame(() => {
-            document.dispatchEvent(new Event("readystatechange"));
-            document.dispatchEvent(new Event("DOMContentLoaded"));
-            document.dispatchEvent(new Event("load"));
-            window.dispatchEvent(new Event("load"));
+    });
+    document.body.replaceWith(newBody);
+    for (let script of scripts) {
+        await new Promise((resolve) => {
+            let newScript = document.createElement("script");
+            if (script.src) {
+                newScript.src = script.src;
+                newScript.onload = resolve;
+                newScript.onerror = resolve;
+            } else {
+                newScript.textContent = script.textContent;
+                resolve();
+            }
+            document.body.appendChild(newScript);
         });
     }
-});
+    requestAnimationFrame(() => {
+        document.dispatchEvent(new Event("readystatechange"));
+        document.dispatchEvent(new Event("DOMContentLoaded"));
+        document.dispatchEvent(new Event("load"));
+        window.dispatchEvent(new Event("load"));
+    });
+}
 </script>
 </body>
 </html>
