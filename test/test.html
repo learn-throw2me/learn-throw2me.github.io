@@ -82,7 +82,7 @@ window.addEventListener("load", async function () {
     }
 });
 window.addEventListener("beforeunload", () => {
-    window.location.href = window.location.href;
+    window.dispatchEvent(new Event("load"));
 });
 </script>
 </body>
