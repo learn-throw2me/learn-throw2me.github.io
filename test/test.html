@@ -22,9 +22,8 @@
 // Check for all kinds of pages, including Angular, React and Vue.
 // The URI for the subdomain should be just without anything after .me TLD., check # navigation.
 // Clear important js variables, local storages before loading the user submitted content.
-window.addEventListener("load", async function () {
-    let body = document.body;
-    if (body.classList.contains("changeTheContentHereImmediately-GenZer-me")) {
+window.addEventListener("load", function () {
+    if (document.body.classList.contains("changeTheContentHereImmediately-GenZer-me")) {
         contentPopulator();
     }
 });
@@ -35,7 +34,7 @@ window.addEventListener("pageshow", () => {
     }
 });
 async function contentPopulator() {
-    body.classList.remove("changeTheContentHereImmediately-GenZer-me");
+    document.body.classList.remove("changeTheContentHereImmediately-GenZer-me");
     const response = await fetch("/test/pagecontent.txt");
     const rawHTML = await response.text();
     const parser = new DOMParser();
