@@ -32,8 +32,21 @@ window.addEventListener("load", async function () {
         const parser = new DOMParser();
         const doc = parser.parseFromString(rawHTML, "text/html");
         const currentHead = document.head;
-        doc.querySelectorAll("head link[rel='stylesheet'], head style").forEach(element => {
-            currentHead.appendChild(document.importNode(element, true));
+        const styles = doc.querySelectorAll("head link[rel='stylesheet'], head style");
+        styles.forEach(element => currentHead.appendChild(document.importNode(element, true)));
+        await new Promise(resolve => {
+            const links = document.head.querySelectorAll("link[rel='stylesheet']");
+            if (links.length === 0) return resolve();
+
+            let loadedCount = 0;
+            links.forEach(link => {
+                if (link.sheet) {
+                    if (++loadedCount === links.length) resolve();
+                } else {
+                    link.onload = () => { if (++loadedCount === links.length) resolve(); };
+                    link.onerror = () => { if (++loadedCount === links.length) resolve(); };
+                }
+            });
         });
         const scripts = [];
         doc.querySelectorAll("head script").forEach(scriptInHead => {
