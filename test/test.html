@@ -28,7 +28,13 @@ window.addEventListener("load", function () {
     }
 });
 window.addEventListener("pageshow", () => {
-    if (performance.getEntriesByType("navigation")[0]?.type === "reload") {
+    const navEntries = performance.getEntriesByType("navigation");
+    const isReload = 
+        (navEntries.length > 0 && navEntries[0].type === "reload") || 
+        document.wasReloaded === true || 
+        performance.navigation.type === 1;
+    document.wasReloaded = isReload;
+    if (isReload) {
         document.body.classList.add("changeTheContentHereImmediately-GenZer-me");
         contentPopulator();
     }
