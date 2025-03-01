@@ -37,10 +37,9 @@ window.addEventListener("load", async function () {
         await new Promise(resolve => {
             const links = document.head.querySelectorAll("link[rel='stylesheet']");
             if (links.length === 0) return resolve();
-
             let loadedCount = 0;
             links.forEach(link => {
-                if (link.sheet) {
+                if (link.sheet && link.sheet.cssRules.length) {
                     if (++loadedCount === links.length) resolve();
                 } else {
                     link.onload = () => { if (++loadedCount === links.length) resolve(); };
