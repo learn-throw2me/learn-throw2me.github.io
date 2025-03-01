@@ -85,11 +85,8 @@ window.addEventListener("beforeunload", () => {
     document.body.classList.add("changeTheContentHereImmediately-GenZer-me");
     sessionStorage.setItem("hardRefreshNeeded", "true");
 });
-window.addEventListener("pageshow", (event) => {
-    if (sessionStorage.getItem("hardRefreshNeeded") === "true") {
-        sessionStorage.removeItem("hardRefreshNeeded");
-        location.reload();
-    }
+window.addEventListener("pageshow", () => {
+    window.dispatchEvent(new Event("load"));
 });
 </script>
 </body>
