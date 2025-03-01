@@ -15,7 +15,6 @@
 </head>
 <body class="changeTheContentHereImmediately-GenZer-me">
     <p>Just a couple of seconds.</p>
-    <br>
     <p></p>We are working on it!</p>
 <script>
 // Don't foreget to prefix all variable names with something. 
@@ -81,6 +80,9 @@ window.addEventListener("load", async function () {
             window.dispatchEvent(new Event("load"));
         });
     }
+});
+window.addEventListener("beforeunload", () => {
+    window.location.href = window.location.href;
 });
 </script>
 </body>
