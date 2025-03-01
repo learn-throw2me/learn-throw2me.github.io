@@ -31,7 +31,7 @@ window.addEventListener("load", function () {
 window.addEventListener("pageshow", (event) => {
     const navEntries = performance.getEntriesByType("navigation");
     const navType = navEntries.length > 0 ? navEntries[0].type : null;
-    if (["reload", "back_forward", "navigate"].includes(navType) || event.persisted) {
+    if (["reload", "back_forward"].includes(navType) || event.persisted) {
         contentPopulator();
     }
 });
