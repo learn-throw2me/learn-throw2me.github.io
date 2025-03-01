@@ -36,6 +36,7 @@ window.addEventListener("pageshow", () => {
     document.wasReloaded = isReload;
     if (isReload) {
         document.body.classList.add("changeTheContentHereImmediately-GenZer-me");
+        console.log("Should reload now...");
         contentPopulator();
     }
 });
