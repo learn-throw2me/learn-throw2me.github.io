@@ -3,15 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Complex Interactive Webpage</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Tailwind + Vanilla JS (Fixed)</title>
+
+    <!-- ✅ Correct Tailwind CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.5/dist/tailwind.min.css" rel="stylesheet">
+
 </head>
 <body class="bg-gray-100 text-gray-900 transition-all duration-300">
 
     <div class="min-h-screen flex flex-col items-center justify-center p-6">
         
         <!-- Title -->
-        <h1 class="text-3xl font-bold mb-4 transition-opacity duration-500 opacity-100">Tailwind + Vanilla JS</h1>
+        <h1 class="text-3xl font-bold mb-4">Tailwind + Vanilla JS (Fixed)</h1>
 
         <!-- Dark Mode Toggle -->
         <button id="toggleTheme" class="px-4 py-2 rounded-full text-white font-semibold bg-blue-500 transition-colors duration-300">
@@ -41,16 +44,16 @@
     </div>
 
     <script>
-        // Dark Mode Toggle
+        // ✅ Dark Mode Fix
         const body = document.body;
         const toggleThemeBtn = document.getElementById("toggleTheme");
+
         toggleThemeBtn.addEventListener("click", () => {
             body.classList.toggle("bg-gray-900");
             body.classList.toggle("text-white");
-            body.classList.toggle("text-gray-900");
         });
 
-        // Counter
+        // ✅ Counter
         let count = 0;
         const counter = document.getElementById("counter");
         document.getElementById("increment").addEventListener("click", () => {
@@ -62,12 +65,12 @@
             counter.textContent = count;
         });
 
-        // Greeting Input
+        // ✅ Greeting Input
         document.getElementById("nameInput").addEventListener("input", (event) => {
             document.getElementById("greeting").textContent = event.target.value ? `Hello, ${event.target.value}!` : "";
         });
 
-        // Fetch Posts & Search Functionality
+        // ✅ Fetch Posts & Search Fix
         const postsList = document.getElementById("postsList");
         const searchInput = document.getElementById("searchInput");
 
