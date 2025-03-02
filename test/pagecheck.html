@@ -1,150 +1,190 @@
 <!DOCTYPE html>
-<html lang="en" class="tourist-html">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Explore the World</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-    <style class="tourist-css">
-        body.tourist-body {
-            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-            color: #fff;
+    <title>Portfolio Slideshow</title>
+    
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        body {
+            background: #111;
+            color: white;
             font-family: Arial, sans-serif;
         }
-        .navbar.tourist-navbar {
-            background: rgba(0, 0, 0, 0.8);
-        }
-        .hero.tourist-hero {
-            text-align: center;
-            padding: 100px 20px;
-            background: rgba(0, 0, 0, 0.5);
+        .slideshow-container {
+            max-width: 400px;
+            height: 600px;
+            margin: 50px auto;
+            position: relative;
             border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.2);
         }
-        .btn-custom.tourist-btn {
-            background: #ff758c;
-            border: none;
-            color: white;
-            padding: 12px 20px;
-            font-size: 18px;
-        }
-        .section.tourist-section {
-            padding: 80px 20px;
+        .slide {
+            display: none;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: #222;
             text-align: center;
+            padding: 50px;
+            animation: fadeIn 0.5s ease-in-out;
         }
-        .card.tourist-card {
-            background: rgba(255, 255, 255, 0.1);
-            border: none;
+        .active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .progress-bar {
+            height: 5px;
+            background: white;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+        }
+        .slide-content {
+            position: absolute;
+            bottom: 30px;
+            width: 100%;
+        }
+        .nav-buttons {
+            position: absolute;
+            bottom: 15px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        .nav-buttons i {
+            cursor: pointer;
+            font-size: 24px;
+            color: white;
+            transition: 0.3s;
+        }
+        .nav-buttons i:hover {
+            color: #0d6efd;
         }
     </style>
 </head>
-<body class="tourist-body">
-    <nav class="navbar navbar-expand-lg navbar-dark tourist-navbar">
-        <div class="container">
-            <a class="navbar-brand" href="#"><i class="fas fa-globe"></i> Explore the World</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="#destinations">Destinations</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#packages">Packages</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+<body>
 
-    <div class="container hero tourist-hero mt-5">
-        <h1><i class="fas fa-map-marked-alt"></i> Discover Beautiful Places</h1>
-        <p>Embark on a journey of a lifetime with our exclusive travel packages.</p>
-        <button class="btn btn-custom tourist-btn" data-bs-toggle="modal" data-bs-target="#bookingModal">Book Now</button>
-    </div>
-
-    <section id="destinations" class="section tourist-section">
-        <h2><i class="fas fa-mountain"></i> Top Destinations</h2>
-        <div class="container mt-4">
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="card p-4 text-center tourist-card">
-                        <i class="fas fa-city fa-3x"></i>
-                        <h4>Paris</h4>
-                        <p>The city of love and lights.</p>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card p-4 text-center tourist-card">
-                        <i class="fas fa-umbrella-beach fa-3x"></i>
-                        <h4>Maldives</h4>
-                        <p>Paradise on earth with stunning beaches.</p>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card p-4 text-center tourist-card">
-                        <i class="fas fa-landmark fa-3x"></i>
-                        <h4>Rome</h4>
-                        <p>The eternal city full of history.</p>
-                    </div>
+    <div class="slideshow-container">
+        <!-- Slide 1 -->
+        <div class="slide active">
+            <div class="progress-bar"></div>
+            <h2><i class="fas fa-user"></i> About Me</h2>
+            <p>I'm a passionate web developer with experience in creating beautiful and functional websites.</p>
+            <div class="slide-content">
+                <div class="nav-buttons">
+                    <i class="fas fa-arrow-left prev"></i>
+                    <i class="fas fa-arrow-right next"></i>
                 </div>
             </div>
         </div>
-    </section>
 
-    <div class="modal fade" id="bookingModal">
-        <div class="modal-dialog">
-            <div class="modal-content text-dark tourist-modal">
-                <div class="modal-header">
-                    <h5 class="modal-title">Book Your Trip</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        <!-- Slide 2 -->
+        <div class="slide">
+            <div class="progress-bar"></div>
+            <h2><i class="fas fa-laptop-code"></i> My Skills</h2>
+            <p>Expert in HTML, CSS, JavaScript, Bootstrap, and modern frameworks like React and Vue.</p>
+            <div class="slide-content">
+                <div class="nav-buttons">
+                    <i class="fas fa-arrow-left prev"></i>
+                    <i class="fas fa-arrow-right next"></i>
                 </div>
-                <div class="modal-body">
-                    <form>
-                        <div class="mb-3">
-                            <label for="name" class="form-label">Name</label>
-                            <input type="text" class="form-control tourist-input" id="name">
-                        </div>
-                        <div class="mb-3">
-                            <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control tourist-input" id="email">
-                        </div>
-                        <div class="mb-3">
-                            <label for="destination" class="form-label">Destination</label>
-                            <select class="form-control tourist-select" id="destination">
-                                <option>Paris</option>
-                                <option>Maldives</option>
-                                <option>Rome</option>
-                            </select>
-                        </div>
-                        <button type="submit" class="btn btn-custom tourist-btn">Submit</button>
-                    </form>
+            </div>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="slide">
+            <div class="progress-bar"></div>
+            <h2><i class="fas fa-briefcase"></i> My Work</h2>
+            <p>I've worked on various projects, including e-commerce, dashboards, and landing pages.</p>
+            <div class="slide-content">
+                <div class="nav-buttons">
+                    <i class="fas fa-arrow-left prev"></i>
+                    <i class="fas fa-arrow-right next"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4 -->
+        <div class="slide">
+            <div class="progress-bar"></div>
+            <h2><i class="fas fa-envelope"></i> Contact</h2>
+            <p>Email: me@example.com<br>Phone: +123 456 7890</p>
+            <div class="slide-content">
+                <div class="nav-buttons">
+                    <i class="fas fa-arrow-left prev"></i>
+                    <i class="fas fa-arrow-right next"></i>
                 </div>
             </div>
         </div>
     </div>
 
-    <footer class="text-center py-4 mt-5 tourist-footer">
-        <p>&copy; 2025 Explore the World | <i class="fas fa-plane"></i> Travel Beyond Boundaries</p>
-    </footer>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            // Smooth scrolling for navigation links
-            document.querySelectorAll('.nav-link').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    const targetId = this.getAttribute('href').substring(1);
-                    document.getElementById(targetId).scrollIntoView({ behavior: 'smooth' });
-                });
+        let slides = document.querySelectorAll('.slide');
+        let currentSlide = 0;
+        let progressInterval;
+        
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.remove('active');
+                if (i === index) {
+                    slide.classList.add('active');
+                    animateProgress(slide);
+                }
             });
+        }
 
-            // Booking form submission handler
-            document.querySelector('#bookingModal form').addEventListener('submit', function (e) {
-                e.preventDefault();
-                alert('Thank you for booking your trip!');
-                document.getElementById('bookingModal').querySelector('.btn-close').click();
-            });
+        function animateProgress(slide) {
+            let progressBar = slide.querySelector('.progress-bar');
+            progressBar.style.width = "0%";
+            clearInterval(progressInterval);
+            let progress = 0;
+            progressInterval = setInterval(() => {
+                if (progress >= 100) {
+                    clearInterval(progressInterval);
+                    nextSlide();
+                }
+                progressBar.style.width = progress + "%";
+                progress += 2;
+            }, 100);
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        document.querySelectorAll('.next').forEach(btn => {
+            btn.addEventListener('click', nextSlide);
         });
+
+        document.querySelectorAll('.prev').forEach(btn => {
+            btn.addEventListener('click', prevSlide);
+        });
+
+        // Auto-slide every 5 seconds
+        setInterval(nextSlide, 5000);
     </script>
+
 </body>
 </html>
