@@ -52,7 +52,7 @@ async function contentPopulator() {
         let loadedCount = 0;
         links.forEach(link => {
             try {
-                if (link.sheet && link.sheet.cssRules.length) {
+                if (link.sheet && link.sheet.cssRules && link.sheet.cssRules.length) {
                     if (++loadedCount === links.length) resolve();
                 } else {
                     link.onload = () => { if (++loadedCount === links.length) resolve(); };
