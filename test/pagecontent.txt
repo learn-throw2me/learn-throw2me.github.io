@@ -3,138 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Elite Law Firm</title>
+    <title>Bootstrap Dynamic Content Example</title>
 
-    <!-- External Styles in Head -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link rel="stylesheet" href="https://example.com/head-styles.css">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Internal Styles in Head -->
-    <style>
-        body { font-family: Arial, sans-serif; }
-        .hero { background-color: #1f2937; color: white; padding: 50px 20px; text-align: center; }
-        .services { background-color: #f3f4f6; padding: 50px 20px; }
-        .contact-form { background-color: #e5e7eb; padding: 50px 20px; }
-    </style>
-
-    <!-- External Scripts in Head -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://example.com/head-script.js"></script>
+    <!-- Bootstrap JS -->
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </head>
-<body onload="showAlert()">
+<body>
+    <div class="container mt-4">
+        <h1>Bootstrap Dynamic Content Loader</h1>
+        <p>This page dynamically loads content from an external source.</p>
 
-    <!-- External Styles in Body -->
-    <link rel="stylesheet" href="https://example.com/body-styles.css">
+        <!-- Tooltip Example -->
+        <button type="button" class="btn btn-primary" data-bs-toggle="tooltip" title="This is a tooltip!">
+            Hover over me
+        </button>
 
-    <!-- Inline Styles in Body -->
-    <style>
-        .dynamic-text { color: #d9534f; font-weight: bold; }
-        .footer-link:hover { text-decoration: underline; }
-        .highlight { background-color: yellow; padding: 5px; }
-    </style>
-
-    <!-- Inline Script in Body -->
-    <script>
-        function changeText(element) {
-            element.innerText = "Clicked!";
-        }
-    </script>
-
-    <!-- Navigation Bar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container">
-            <a class="navbar-brand" href="#">Elite Law</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#testimonials">Testimonials</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-                </ul>
-            </div>
+        <!-- Placeholder for Dynamic Content -->
+        <div id="dynamic-content">
+            <p>Loading dynamic content...</p>
         </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section class="hero">
-        <h1>Elite Law Firm</h1>
-        <p>Providing expert legal solutions for your needs.</p>
-    </section>
-
-    <!-- Services Section -->
-    <section class="services" id="services">
-        <div class="container">
-            <h2 class="text-center">Our Services</h2>
-            <div class="row text-center">
-                <div class="col-md-4">
-                    <i class="fas fa-gavel fa-3x"></i>
-                    <h4>Corporate Law</h4>
-                    <p>Expert guidance for businesses.</p>
-                </div>
-                <div class="col-md-4">
-                    <i class="fas fa-balance-scale fa-3x"></i>
-                    <h4>Litigation</h4>
-                    <p>Defending your rights in court.</p>
-                </div>
-                <div class="col-md-4">
-                    <i class="fas fa-user-shield fa-3x"></i>
-                    <h4>Personal Injury</h4>
-                    <p>We fight for your compensation.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonials Section -->
-    <section id="testimonials" class="text-center p-5">
-        <h2>Client Testimonials</h2>
-        <p>"Elite Law helped us win our case! Highly recommended." - John Doe</p>
-    </section>
-
-    <!-- Contact Section -->
-    <section class="contact-form" id="contact">
-        <div class="container">
-            <h2 class="text-center">Contact Us</h2>
-            <form>
-                <div class="mb-3">
-                    <label class="form-label">Name</label>
-                    <input type="text" class="form-control" required>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">Email</label>
-                    <input type="email" class="form-control" required>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">Message</label>
-                    <textarea class="form-control" rows="4" required></textarea>
-                </div>
-                <button type="submit" class="btn btn-dark">Send</button>
-            </form>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-dark text-white text-center p-3">
-        &copy; 2025 Elite Law Firm. All Rights Reserved.
-    </footer>
-
-    <!-- More External CSS at the End of Body -->
-    <link rel="stylesheet" href="https://example.com/more-body-styles.css">
-
-    <!-- External Scripts at Body End -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.6/umd/popper.min.js"></script>
-
-    <!-- Custom Script at Body End -->
-    <script>
-        document.querySelector('button[type="submit"]').addEventListener('click', function(event) {
-            event.preventDefault();
-            alert("Form submitted successfully!");
-        });
-    </script>
-
+    </div>
 </body>
 </html>
