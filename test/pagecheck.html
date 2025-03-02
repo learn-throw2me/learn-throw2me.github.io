@@ -1,140 +1,150 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="tourist-html">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Elite Law Firm</title>
-
-    <!-- External Styles in Head -->
+    <title>Explore the World</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link rel="stylesheet" href="https://example.com/head-styles.css">
-
-    <!-- Internal Styles in Head -->
-    <style>
-        body { font-family: Arial, sans-serif; }
-        .hero { background-color: #1f2937; color: white; padding: 50px 20px; text-align: center; }
-        .services { background-color: #f3f4f6; padding: 50px 20px; }
-        .contact-form { background-color: #e5e7eb; padding: 50px 20px; }
-    </style>
-
-    <!-- External Scripts in Head -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://example.com/head-script.js"></script>
-</head>
-<body onload="showAlert()">
-
-    <!-- External Styles in Body -->
-    <link rel="stylesheet" href="https://example.com/body-styles.css">
-
-    <!-- Inline Styles in Body -->
-    <style>
-        .dynamic-text { color: #d9534f; font-weight: bold; }
-        .footer-link:hover { text-decoration: underline; }
-        .highlight { background-color: yellow; padding: 5px; }
-    </style>
-
-    <!-- Inline Script in Body -->
-    <script>
-        function changeText(element) {
-            element.innerText = "Clicked!";
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <style class="tourist-css">
+        body.tourist-body {
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+            color: #fff;
+            font-family: Arial, sans-serif;
         }
-    </script>
-
-    <!-- Navigation Bar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        .navbar.tourist-navbar {
+            background: rgba(0, 0, 0, 0.8);
+        }
+        .hero.tourist-hero {
+            text-align: center;
+            padding: 100px 20px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 20px;
+        }
+        .btn-custom.tourist-btn {
+            background: #ff758c;
+            border: none;
+            color: white;
+            padding: 12px 20px;
+            font-size: 18px;
+        }
+        .section.tourist-section {
+            padding: 80px 20px;
+            text-align: center;
+        }
+        .card.tourist-card {
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+        }
+    </style>
+</head>
+<body class="tourist-body">
+    <nav class="navbar navbar-expand-lg navbar-dark tourist-navbar">
         <div class="container">
-            <a class="navbar-brand" href="#">Elite Law</a>
+            <a class="navbar-brand" href="#"><i class="fas fa-globe"></i> Explore the World</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#testimonials">Testimonials</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#destinations">Destinations</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#packages">Packages</a></li>
                     <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <h1>Elite Law Firm</h1>
-        <p>Providing expert legal solutions for your needs.</p>
-    </section>
+    <div class="container hero tourist-hero mt-5">
+        <h1><i class="fas fa-map-marked-alt"></i> Discover Beautiful Places</h1>
+        <p>Embark on a journey of a lifetime with our exclusive travel packages.</p>
+        <button class="btn btn-custom tourist-btn" data-bs-toggle="modal" data-bs-target="#bookingModal">Book Now</button>
+    </div>
 
-    <!-- Services Section -->
-    <section class="services" id="services">
-        <div class="container">
-            <h2 class="text-center">Our Services</h2>
-            <div class="row text-center">
+    <section id="destinations" class="section tourist-section">
+        <h2><i class="fas fa-mountain"></i> Top Destinations</h2>
+        <div class="container mt-4">
+            <div class="row">
                 <div class="col-md-4">
-                    <i class="fas fa-gavel fa-3x"></i>
-                    <h4>Corporate Law</h4>
-                    <p>Expert guidance for businesses.</p>
+                    <div class="card p-4 text-center tourist-card">
+                        <i class="fas fa-city fa-3x"></i>
+                        <h4>Paris</h4>
+                        <p>The city of love and lights.</p>
+                    </div>
                 </div>
                 <div class="col-md-4">
-                    <i class="fas fa-balance-scale fa-3x"></i>
-                    <h4>Litigation</h4>
-                    <p>Defending your rights in court.</p>
+                    <div class="card p-4 text-center tourist-card">
+                        <i class="fas fa-umbrella-beach fa-3x"></i>
+                        <h4>Maldives</h4>
+                        <p>Paradise on earth with stunning beaches.</p>
+                    </div>
                 </div>
                 <div class="col-md-4">
-                    <i class="fas fa-user-shield fa-3x"></i>
-                    <h4>Personal Injury</h4>
-                    <p>We fight for your compensation.</p>
+                    <div class="card p-4 text-center tourist-card">
+                        <i class="fas fa-landmark fa-3x"></i>
+                        <h4>Rome</h4>
+                        <p>The eternal city full of history.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Testimonials Section -->
-    <section id="testimonials" class="text-center p-5">
-        <h2>Client Testimonials</h2>
-        <p>"Elite Law helped us win our case! Highly recommended." - John Doe</p>
-    </section>
-
-    <!-- Contact Section -->
-    <section class="contact-form" id="contact">
-        <div class="container">
-            <h2 class="text-center">Contact Us</h2>
-            <form>
-                <div class="mb-3">
-                    <label class="form-label">Name</label>
-                    <input type="text" class="form-control" required>
+    <div class="modal fade" id="bookingModal">
+        <div class="modal-dialog">
+            <div class="modal-content text-dark tourist-modal">
+                <div class="modal-header">
+                    <h5 class="modal-title">Book Your Trip</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
-                <div class="mb-3">
-                    <label class="form-label">Email</label>
-                    <input type="email" class="form-control" required>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Name</label>
+                            <input type="text" class="form-control tourist-input" id="name">
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control tourist-input" id="email">
+                        </div>
+                        <div class="mb-3">
+                            <label for="destination" class="form-label">Destination</label>
+                            <select class="form-control tourist-select" id="destination">
+                                <option>Paris</option>
+                                <option>Maldives</option>
+                                <option>Rome</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-custom tourist-btn">Submit</button>
+                    </form>
                 </div>
-                <div class="mb-3">
-                    <label class="form-label">Message</label>
-                    <textarea class="form-control" rows="4" required></textarea>
-                </div>
-                <button type="submit" class="btn btn-dark">Send</button>
-            </form>
+            </div>
         </div>
-    </section>
+    </div>
 
-    <!-- Footer -->
-    <footer class="bg-dark text-white text-center p-3">
-        &copy; 2025 Elite Law Firm. All Rights Reserved.
+    <footer class="text-center py-4 mt-5 tourist-footer">
+        <p>&copy; 2025 Explore the World | <i class="fas fa-plane"></i> Travel Beyond Boundaries</p>
     </footer>
 
-    <!-- More External CSS at the End of Body -->
-    <link rel="stylesheet" href="https://example.com/more-body-styles.css">
-
-    <!-- External Scripts at Body End -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.6/umd/popper.min.js"></script>
-
-    <!-- Custom Script at Body End -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        document.querySelector('button[type="submit"]').addEventListener('click', function(event) {
-            event.preventDefault();
-            alert("Form submitted successfully!");
+        document.addEventListener("DOMContentLoaded", function () {
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('.nav-link').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    document.getElementById(targetId).scrollIntoView({ behavior: 'smooth' });
+                });
+            });
+
+            // Booking form submission handler
+            document.querySelector('#bookingModal form').addEventListener('submit', function (e) {
+                e.preventDefault();
+                alert('Thank you for booking your trip!');
+                document.getElementById('bookingModal').querySelector('.btn-close').click();
+            });
         });
     </script>
-
 </body>
 </html>
