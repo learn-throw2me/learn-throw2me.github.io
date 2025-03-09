@@ -184,13 +184,13 @@
             autoRefresh: true,
             tabSize: 4
         });
-        editor.setOption("extraKeys", { Tab: "indentMore" });
-        editor.getWrapperElement().setAttribute("tabindex", "0");
-        editor.setValue("<!--Your code here-->\n<!--Scroll vertically, horizontally-->\n"); 
+        window.editor.setOption("extraKeys", { Tab: "indentMore" });
+        window.editor.getWrapperElement().setAttribute("tabindex", "0");
+        window.editor.setValue("<!--Your code here-->\n<!--Can scroll in X and Y-->\n"); 
     });
     function clearEditor() {
         if (window.editor) {
-            window.editor.setValue("<!--Your code here-->\n<!--Scroll vertically, horizontally-->\n");
+            window.editor.setValue("<!--Your code here-->\n<!--Can scroll in X and Y-->\n");
         }
     }
 </script>
