@@ -3,206 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Complex Portfolio</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Complex Web Page</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.14/codemirror.min.css">
     <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f8f9fa;
-        }
-        .hero {
-            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://via.placeholder.com/1920x1080'); /* Replace with your image */
-            background-size: cover;
-            background-position: center;
-            color: white;
-            text-align: center;
-            padding: 150px 0;
-        }
-        .section-title {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-        .project-card {
-            border: 1px solid #dee2e6;
-            border-radius: 8px;
-            overflow: hidden;
-            margin-bottom: 30px;
-            transition: transform 0.3s ease;
-        }
-        .project-card:hover {
-            transform: translateY(-5px);
-        }
-        .project-card img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
-        .contact-form {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        footer {
-            background-color: #343a40;
-            color: white;
-            text-align: center;
-            padding: 20px 0;
-        }
-        .skill-bar {
-            background-color: #e9ecef;
-            border-radius: 5px;
-            height: 20px;
-            margin-bottom: 15px;
-            position: relative;
-        }
-        .skill-progress {
-            background-color: #007bff;
-            height: 100%;
-            border-radius: 5px;
-            transition: width 0.5s ease;
-            position: absolute;
-            top: 0;
-            left: 0;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; background: #1e1e1e; color: white; }
+        .container { max-width: 900px; margin: 20px auto; padding: 20px; background: #292929; border-radius: 5px; }
+        .tabs { display: flex; border-bottom: 2px solid #555; }
+        .tab { padding: 10px 20px; cursor: pointer; flex: 1; text-align: center; background: #333; }
+        .tab.active { background: #444; border-bottom: 2px solid white; }
+        .tab-content { display: none; padding: 20px; }
+        .tab-content.active { display: block; }
+        .task-list { list-style: none; padding: 10px; }
+        .task { display: flex; justify-content: space-between; padding: 5px; background: #555; margin-bottom: 5px; }
+        .task button { background: red; color: white; border: none; padding: 5px; cursor: pointer; }
+        .editor-container { margin-top: 20px; }
+        .CodeMirror { height: 200px; background: black; }
     </style>
 </head>
 <body>
-
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <a class="navbar-brand" href="#">My Portfolio</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#projects">Projects</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#skills">Skills</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#contact">Contact</a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-    </header>
-
-    <section class="hero">
-        <div class="container">
-            <h1>Welcome to My Portfolio</h1>
-            <p>A showcase of my skills and projects.</p>
-            <a href="#projects" class="btn btn-primary btn-lg">View Projects</a>
+    <div class="container">
+        <div class="tabs">
+            <div class="tab active" onclick="openTab(event, 'dashboard')">Dashboard</div>
+            <div class="tab" onclick="openTab(event, 'editor')">Editor</div>
+            <div class="tab" onclick="openTab(event, 'tasks')">Tasks</div>
         </div>
-    </section>
-
-    <section id="projects" class="py-5">
-        <div class="container">
-            <h2 class="section-title">My Projects</h2>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="project-card">
-                        <img src="https://via.placeholder.com/400x200" alt="Project 1">
-                        <div class="p-3">
-                            <h3>Project 1</h3>
-                            <p>Description of project 1.</p>
-                            <a href="#" class="btn btn-sm btn-outline-primary">View Details</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="project-card">
-                        <img src="https://via.placeholder.com/400x200" alt="Project 2">
-                        <div class="p-3">
-                            <h3>Project 2</h3>
-                            <p>Description of project 2.</p>
-                            <a href="#" class="btn btn-sm btn-outline-primary">View Details</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="project-card">
-                        <img src="https://via.placeholder.com/400x200" alt="Project 3">
-                        <div class="p-3">
-                            <h3>Project 3</h3>
-                            <p>Description of project 3.</p>
-                            <a href="#" class="btn btn-sm btn-outline-primary">View Details</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div id="dashboard" class="tab-content active">
+            <h2>Dashboard</h2>
+            <p>Welcome to the interactive dashboard.</p>
         </div>
-    </section>
-
-    <section id="skills" class="py-5 bg-light">
-        <div class="container">
-            <h2 class="section-title">My Skills</h2>
-            <div class="row">
-                <div class="col-md-6">
-                    <h4>HTML</h4>
-                    <div class="skill-bar">
-                        <div class="skill-progress" style="width: 90%;"></div>
-                    </div>
-                    <h4>CSS</h4>
-                    <div class="skill-bar">
-                        <div class="skill-progress" style="width: 85%;"></div>
-                    </div>
-                    <h4>JavaScript</h4>
-                    <div class="skill-bar">
-                        <div class="skill-progress" style="width: 75%;"></div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <h4>Bootstrap</h4>
-                    <div class="skill-bar">
-                        <div class="skill-progress" style="width: 95%;"></div>
-                    </div>
-                    <h4>React</h4>
-                    <div class="skill-bar">
-                        <div class="skill-progress" style="width: 70%;"></div>
-                    </div>
-                    <h4>Node.js</h4>
-                    <div class="skill-bar">
-                        <div class="skill-progress" style="width: 60%;"></div>
-                    </div>
-                </div>
-            </div>
+        <div id="editor" class="tab-content">
+            <h2>Code Editor</h2>
+            <textarea id="code-editor"></textarea>
         </div>
-    </section>
-
-    <section id="contact" class="py-5">
-        <div class="container">
-            <h2 class="section-title">Contact Me</h2>
-            <div class="contact-form">
-                <form>
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Your Name">
-                    </div>
-                    <div class="form-group">
-                        <input type="email" class="form-control" placeholder="Your Email">
-                    </div>
-                    <div class="form-group">
-                        <textarea class="form-control" rows="5" placeholder="Your Message"></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Send Message</button>
-                </form>
-            </div>
+        <div id="tasks" class="tab-content">
+            <h2>Task Manager</h2>
+            <input type="text" id="taskInput" placeholder="New Task">
+            <button onclick="addTask()">Add</button>
+            <ul class="task-list" id="taskList"></ul>
         </div>
-    </section>
-
-    <footer>
-        <p>&copy; 2024 My Portfolio</p>
-    </footer>
-
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.14/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.14/mode/javascript/javascript.min.js"></script>
     <script>
-        // You can add more JavaScript functionality here, such as form validation or dynamic content loading.
+        function openTab(evt, tabName) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            document.getElementById(tabName).classList.add('active');
+            document.querySelectorAll('.tab').forEach(el => el.classList.remove('active'));
+            evt.currentTarget.classList.add('active');
+        }
+        function addTask() {
+            let input = document.getElementById('taskInput');
+            if (input.value.trim() === '') return;
+            let taskList = document.getElementById('taskList');
+            let li = document.createElement('li');
+            li.className = 'task';
+            li.innerHTML = `<span>${input.value}</span> <button onclick="this.parentElement.remove()">Remove</button>`;
+            taskList.appendChild(li);
+            input.value = '';
+        }
+        document.addEventListener("DOMContentLoaded", function () {
+            window.editor = CodeMirror.fromTextArea(document.getElementById("code-editor"), {
+                mode: "javascript",
+                theme: "dracula",
+                lineNumbers: true
+            });
+        });
     </script>
 </body>
 </html>
