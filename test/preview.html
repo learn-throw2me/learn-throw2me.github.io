@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google" content="notranslate">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="keywords" content="GenZer, GenZer.me, GenZer me, genzer, genzer.me">
+    <meta name="description" content="GenZer.me - Combine your socials, projects, articles, content, and portfolio into one sleek, shareable link: perfect for everyone!">
+    <link rel="canonical" href="https://genzer.me">
+    <meta property="og:title" content="Preview - GenZer.me">
+    <meta property="og:description" content="GenZer.me - Combine your socials, projects, articles, content, and portfolio into one sleek, shareable link: perfect for everyone!">
+    <meta property="og:url" content="https://genzer.me">
+    <meta property="og:type" content="website">
+    <title>Preview - GenZer.me</title>
+</head>
+<body class="changeTheContentHereImmediately-GenZer-me">
+    <p>Just a couple of seconds.</p>
+    <p>Working on it!</p>
+<script>
+window.addEventListener("load", function () {
+    if (document.body.classList.contains("changeTheContentHereImmediately-GenZer-me")) {
+        document.body.classList.remove("changeTheContentHereImmediately-GenZer-me");
+        alert("This preview is in a new tab.\n\nIf the page is not displayed correctly or not working as expected, try the following:\n" +
+        "- Stick to Bootstrap only.\n" +
+        "- Use simpler JavaScript functions.\n" +
+        "- Change the order of JavaScript tags.\n" +
+        "- Check event listener bindings."
+        );
+        contentPopulator();
+    }
+});
+window.addEventListener("pageshow", (event) => {
+    const navEntries = performance.getEntriesByType("navigation");
+    const navType = navEntries.length > 0 ? navEntries[0].type : null;
+    if (["reload", "back_forward"].includes(navType) || event.persisted) {
+        contentPopulator();
+    }
+});
+async function contentPopulator() {
+    const rawHTML = sessionStorage.getItem("genzerEditorContent") || "";
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(rawHTML, "text/html");
+    const currentHead = document.head;
+    const styles = doc.querySelectorAll("head link[rel='stylesheet'], head style");
+    if (styles.length > 0) {
+        styles.forEach(element => currentHead.appendChild(document.importNode(element, true)));
+    }
+    await new Promise(resolve => {
+        const links = document.head.querySelectorAll("link[rel='stylesheet']");
+        if (links.length === 0) return resolve();
+        let loadedCount = 0;
+        links.forEach(link => {
+            try {
+                if (link.sheet && link.sheet.cssRules && link.sheet.cssRules.length) {
+                    if (++loadedCount === links.length) resolve();
+                } else {
+                    link.onload = () => { if (++loadedCount === links.length) resolve(); };
+                    link.onerror = () => { if (++loadedCount === links.length) resolve(); };
+                }
+            } catch (e) {
+                resolve();
+            }
+        });
+    });
+    const scripts = [];
+    doc.querySelectorAll("head script").forEach(scriptInHead => scripts.push(scriptInHead));
+    const newBody = document.createElement("body");
+    Array.from(doc.body.childNodes).forEach(node => {
+        if (node.tagName?.toLowerCase() === "script") {
+            scripts.push(node);
+        } else {
+            newBody.appendChild(node.cloneNode(true));
+        }
+    });
+    document.body.replaceWith(newBody);
+    for (let script of scripts) {
+        await new Promise((resolve) => {
+            let newScript = document.createElement("script");
+            if (script.src) {
+                newScript.src = script.src;
+                newScript.onload = resolve;
+                newScript.onerror = resolve;
+            } else {
+                newScript.textContent = script.textContent;
+                resolve();
+            }
+            document.body.appendChild(newScript);
+        });
+    }
+    requestAnimationFrame(() => {
+        document.dispatchEvent(new Event("readystatechange"));
+        document.dispatchEvent(new Event("DOMContentLoaded"));
+        document.dispatchEvent(new Event("load"));
+        window.dispatchEvent(new Event("load"));
+    });
+}
+</script>
+</body>
+</html>
