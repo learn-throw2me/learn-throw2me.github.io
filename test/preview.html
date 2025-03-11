@@ -28,17 +28,17 @@ window.addEventListener("load", function () {
         "- Change the order of JavaScript tags.\n" +
         "- Check event listener bindings."
         );
-        contentPopulator();
+        contentPopulatorGenZerME();
     }
 });
 window.addEventListener("pageshow", (event) => {
     const navEntries = performance.getEntriesByType("navigation");
     const navType = navEntries.length > 0 ? navEntries[0].type : null;
     if (["reload", "back_forward"].includes(navType) || event.persisted) {
-        contentPopulator();
+        contentPopulatorGenZerME();
     }
 });
-async function contentPopulator() {
+async function contentPopulatorGenZerME() {
     const rawHTML = sessionStorage.getItem("genzerEditorContent") || "";
     const parser = new DOMParser();
     const doc = parser.parseFromString(rawHTML, "text/html");
