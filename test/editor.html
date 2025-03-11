@@ -219,30 +219,10 @@
         window.editor.setValue("<!--HTML-CSS-JS code here-->\n<!--Can scroll in X and Y-->\n"); 
     });
     document.querySelector(".btn-preview").addEventListener("click", function () {
-        const codeContent = window.editor.getValue().trim();
-        if (!codeContent) {
-            alert("Editor is empty!");
-            return;
-        }
-        try {
-            sessionStorage.setItem("genzerEditorContent", codeContent);
-            const storedContent = sessionStorage.getItem("genzerEditorContent");
-            if (storedContent === codeContent) {
-                alert("*This preview opens in a new tab.\n\nIf the page is not displayed correctly or not working as expected, try the following:\n" +
-                "- Stick to Bootstrap only.\n" +
-                "- Use supported icon & vector libraries.\n" +
-                "- Use simpler JavaScript functions.\n" +
-                "- Change the order of JavaScript tags.\n" +
-                "- Check event listener bindings."
-                );
-                window.open("preview.html", "_blank");
-            } else {
-                alert("Failed to store code in sessionStorage.");
-            }
-        } catch (e) {
-            console.error("Storage error:", e);
-            alert("Session storage is unavailable. Check browser settings.");
-        }
+        const codeContent = window.editor.getValue() || "";
+        sessionStorage.setItem("genzerEditorContent", codeContent.trim());
+        sessionStorage.setItem("genzerPreviewAlert", "true");
+        window.open("preview.html", "_blank");
     });
     function clearEditor() {
         if (window.editor) {
