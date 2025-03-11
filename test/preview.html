@@ -34,9 +34,10 @@ window.addEventListener("pageshow", (event) => {
 async function contentPopulatorGenZerME() {
     if (sessionStorage.getItem("genzerPreviewAlert") === "true") {
         sessionStorage.setItem("genzerPreviewAlert", "false");
-        alert("*This preview is opened in a new tab.\n\nIf the page is not displayed correctly or not working as expected, try the following:\n" +
-            "- Stick to Bootstrap only.\n" +
+        alert("*This preview is opened in a new tab.\n\nDid something go wrong? Try the following:\n" +
+            "- Stick to Bootstrap. No other UI kits.\n" +
             "- Use supported icon & vector libraries.\n" +
+            "- Order custom CSS style tags properly.\n" +
             "- Use simpler JavaScript functions.\n" +
             "- Change the order of JavaScript tags.\n" +
             "- Check event listener bindings."
